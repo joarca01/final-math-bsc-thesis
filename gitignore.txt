@@ -1,0 +1,23 @@
+#Tex files:
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.lot
+*.lof
+*.out
+*.synctex.gz
+*.synctex(busy)
+*.nav
+*.snm
+*.toc
+*.xml
+*.dat
+*.script
+*.table
+**/.vscode/
+others/jpleph/
+*seidelmann*.pdf
