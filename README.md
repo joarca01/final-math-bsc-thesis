@@ -1,4 +1,4 @@
-# BSc Thesis in Mathematics
+# Euclidean proofs of the infinitude of primes in arithmetic progressions
 My BSc Thesis in Mathematics at Universitat Autònoma de Barcelona, developed in the academic year 2024/25.
 
 ## Introduction
