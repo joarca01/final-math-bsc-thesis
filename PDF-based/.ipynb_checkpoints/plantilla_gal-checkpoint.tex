@@ -1,0 +1,245 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage[a4paper, total={165mm, 250mm}]{geometry}
+\geometry{top=2.54cm, bottom=2.54cm, left=2.54cm, right=2.54cm}
+\usepackage[utf8]{inputenc}
+\usepackage{titlesec}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel} 
+\usepackage{amsthm,amsmath,amssymb,amsfonts,amscd}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{enumerate}
+\usepackage[all]{xy}
+\usepackage{booktabs}
+\usepackage[usenames]{xcolor}
+\usepackage{fancyhdr}
+\usepackage{caption}
+\usepackage{setspace}
+\usepackage{cite}  
+\usepackage{hyperref}
+\usepackage{tikz-cd}
+\usepackage{authblk}
+\usepackage[normalem]{ulem}
+
+\linespread{1.0}
+\onehalfspacing
+
+\pagestyle{fancy}
+\headheight 30pt
+\fancyhf{}
+\rhead{Page \thepage}
+\lhead{\nouppercase{Infinite number of primes in ${k}n+{ell}$, $n\geqslant 0$}}
+\headsep 1.5em
+
+\newtheorem*{theoremA}{Theorem A}
+\newtheorem{theorem}{Theorem}%[section]
+
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{remarknonumber}{Remark}
+\newtheorem{observation}[theorem]{Observation}
+
+\renewcommand{\qedsymbol}{\rule{0.7em}{0.7em}} % Black box to end proofs. 
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+\newcommand{\Q}{\ensuremath{\mathbb{Q}}}
+\newcommand{\A}{\ensuremath{\mathbb{A}}}
+\newcommand{\F}{\ensuremath{\mathbb{F}}}
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)} % (mod k) sequence.
+\DeclareUnicodeCharacter{03B6}{\zeta} % Define Unicode Character 'ζ'. 
+
+\definecolor{applegreen}{rgb}{0.55, 0.71, 0.0}
+
+% ---- Figue, table and equation labelling ---- %
+%\numberwithin{equation}{section}
+%\numberwithin{figure}{section}
+%\numberwithin{table}{section}
+%\captionsetup[figure]{font=small, labelfont=large}
+
+% ---- Link style ---- %
+\hypersetup{colorlinks, citecolor=green, linkcolor=blue, urlcolor=blue}
+
+% ---- Paragraph indentation style ---- %
+\setlength{\parindent}{20pt}
+
+\title{\textbf{The arithmetic progression ${k}n+{ell}$, $n\geqslant0$, contains infinitely many primes.\\ A proof using Galois Theory}}
+\author[1]{Joan Arenillas i Cases}
+%\affil[1]{Department of Mathematics, Universitat Autònoma de Barcelona}
+
+\begin{document}
+\maketitle
+\sloppy
+We will prove that the arithmetic progression $\equiv {ell} \Mod{{k}}$, that is, ${k}n+{ell}$, $n\geqslant0$, contains infinitely many primes, provided there is at least one. We will begin with some notation first.
+
+Let $\zeta$ be a ${k}$-th primitive root of unity (for example $\zeta=e^{2\pi i/{{k}}}$) and let $K:=\Q(\zeta)$. We know that $\text{Gal}(K/\Q)\cong (\Z/{k}\Z)^\times$, the group of coprime residue classes modulo ${k}$. We shall also define what a \emph{prime divisor} of a given polynomial is. 
+\begin{definition}
+Let $f\in\Z[x]$ be a polynomial. We say that a prime number $p$ is a \emph{prime divisor} of $f$ if there exists $m\in\Z$ such that $p\mid f(m)$. We shall generally write $p\mid f$.
+\end{definition}
+
+We also need to give an expression for the discriminant of a polynomial. In terms of its roots $r_i$ (not necessarily distinct), the discriminant of a polynomial $A(x)=a_nx^n+\cdots+a_1x+a_0$ is given by
+	\begin{equation}\label{discrim}
+		D(A)=a_n^{2n-2}\prod_{i<j}(r_i-r_j)^2.
+	\end{equation}
+
+A preliminar result to show that there exist infinitely many primes $\equiv {ell}\Mod{{k}}$ is also needed:
+
+\begin{lemma}\label{ThSchur}
+If $f\in\Z[x]$ is non-constant, then $f$ has infinitely many prime divisors.
+\end{lemma}
+\begin{proof}
+Note that $f(0)=c$ for some integer $c\neq 0$ by hypothesis. There is obviously at least one prime divisor of $f$, since the case $f(x)=\pm 1$ only happens for a finite number of integer values of $x$. Now suppose $f$ has only a finite number of prime divisors, say $p_1,\dots,p_k$. Let $Q:=p_1\cdots p_k$ and let $d:=\text{deg}(f)$. Then $f(cQx)=cg(x)$ for some $g(x)\in\Z[x]$ of the form $1+c_1x+\cdots+c_{d}x^{d}$, $c_i\in\Z$, satisfying $Q\mid c_i$ for every $1\leqslant i \leqslant d$. This polynomial $g$ must also have at least one prime divisor, say $p$, for the same reason as before. Therefore, $p\mid g(m)$ for some $m\in\Z$ and this implies $p\mid cg(m)\Rightarrow p\mid f(cQm)$. Since $m':=cQm\in\Z$, $p\mid f$. But $p\nmid Q$, since $p\mid Q\mid c_i, \,\forall i$ and $p\mid g(m)$ would imply $p\mid g(m) - \sum_{i=1}^{d}c_im^i=1$, which means $p=1$, a contradiction. Now $p$ is a prime divisor of $f$ but $p$ is not any of the primes $p_1,\dots,p_k$, for otherwise $p\mid p_1\cdots p_k=Q$. Thus, we found a new prime divisor of $f$ not in our list. Since this argument can be repeated indefinitely, one concludes that $f$ has infinitely many prime divisors.
+\end{proof}
+
+We are now ready to begin the proof. In light of Schur's Theorem \cite{Murty}, we will begin by proving the following proposition.
+
+\begin{proposition}[\textbf{Schur}]\label{th4murty}
+Consider the subgroup $H=\{1, {ell}\}$ of $G:=(\Z/{k}\Z)^\times$. Then there exists an irreducible polynomial $f\in\Z[x]$ such that all of the prime divisors of $f$, with a finite number of exceptions, belong to the residue classes of $H$.
+\end{proposition}
+\begin{proof}
+In the following, we will consider this tower of extensions over $\Q$:
+	\[
+	\begin{tikzcd}	
+	K=\Q(\zeta) \arrow[d, dash] \\ 
+	L:=\Q(\zeta)^H \arrow[d, dash] \\ 
+	\Q,
+	\end{tikzcd}
+	\]
+\vspace{0.2cm}
+where we have defined $L$ to be the fixed field of $H$. Since $G$ is finite, we can list the coset representatives of $H$ in $G$. The elements of $G$ are ${coprimes_list}$, and the coset representatives can be chosen to be ${coset_reps_list}$, which we denote by $m_i$, $1\leqslant i \leqslant {num_coset_reps}$. Set $\eta:=h_u(\zeta)$ and $h_u(z):=(u-z)(u-z^{{ell}})\in\Z[z]$, with $u\in\Z$. Now, define $\eta_i:=h_u(\zeta^{m_i})$. If we choose $u$ appropriately so that the values $\eta_i$ are distinct, then $\Q(\eta)=L$. We will now show that they are different using $u={u}$ and the polynomial $h_{{u}}$. The values $h_{{u}}(\zeta^{m_i})$ are ${f_polynomial_roots_list}$, which are clearly distinct.
+
+We now define the polynomial
+\begin{equation}\label{polinomi}
+f(x):=\prod_{i=1}^{{num_coset_reps}}(x-\eta_i)=\prod_{i=1}^{{num_coset_reps}}\big(x-h_{{u}}(\zeta^{m_i})\big),
+\end{equation}
+which is irreducible over $\Q[x]$ since $\eta_i$, $1\leqslant i \leqslant {num_coset_reps}$, are the distinct conjugates of $\eta$. We can explicitely write $f(x)$. A simple calculation yields
+\begin{align*}
+f(x)&=\prod_{i=1}^{{num_coset_reps}}\Big(x-\Big({k}-e^\frac{2\pi im_i}{{k}}\Big)\Big({k}-e^\frac{2\pi i{ell}m_i}{{k}}\Big)\Big)\\
+&={poly}.
+\end{align*}
+ Note that $f(x)$ is the minimal polynomial of $\eta$, so $[\Q(\eta):\Q]=\text{deg}(f)={num_coset_reps}$. Since $[\Q(\zeta):\Q]=\text{deg}(\Phi_{{k}})=\varphi({k})={eulersphi_k}$ ($\varphi$ denotes Euler's phi function), we deduce that $[\Q(\zeta):\Q(\eta)]={eulersphi_k}/{num_coset_reps}={deg_ext}$. 
+ 
+Now, suppose that $p$ is a prime divisor of $f$ such that $p\nmid {k}$ and $p\nmid D(f)={factor_discriminant}$, where $D(f)$ is the discriminant of $f$. Therefore $p\neq{p_exclusions_list}$. The existence of such $p$ is guaranteed by Lemma \ref{ThSchur}, since we only excluded a finite number of values of $p$.
+
+We shall now work in the field $\F_p(\zeta)\cong\F_p[x]/(\Phi_{{k}}(x))$, where $\Phi_{{k}}$ is the ${k}$-th cyclotomic polynomial. Since $p\mid f$ there exists $a\in\Z$ such that 
+\begin{equation*}
+f(a)=\prod_{i=1}^{{num_coset_reps}}\big(a-h_{{u}}(\zeta^{m_i})\big)=0.
+\end{equation*}
+Now, since $\F_p(\zeta)$ is a field, there exists $i$ such that $a=h_{{u}}(\zeta^{m_i})$ and the following calculation holds in this field:
+\begin{align}\label{arrelsrep}
+h_{{u}}(\zeta^{m_i})&=a=a^p=h_{{u}}(\zeta^{m_i})^p=({u}-\zeta^{m_i})^p({u}-\zeta^{{ell}m_i})^p\notag \\
+&=({u}^p-\zeta^{pm_i})({u}^p-\zeta^{{ell}pm_i})=({u}-\zeta^{pm_i})({u}-\zeta^{{ell}pm_i})=h_{{u}}(\zeta^{pm_i}),
+\end{align}
+where we have used Fermat's little theorem in the second equality. The fifth equality, on the other hand, relies on the fact that $\text{char}(\F_p(\zeta))=p$ (so that $(c+d)^p=c^p+d^p \, \forall c,d \in \F_p(\zeta)$) and the following one, on Fermat's little theorem. Therefore, equality \eqref{arrelsrep} means that $h_{{u}}(\zeta^{m_i})$ and $h_{{u}}(\zeta^{pm_i})$ are roots of $\overline{f(x)}\in\F_p(\zeta)[x]$. 
+
+Recall that in the field $\Q(\zeta)$ the roots of $f(x)$ are $\eta_1,\dots,\eta_{{num_coset_reps}}$. If $\eta_i=\eta_j$ for some $i\neq j$ in the field $\F_p(\zeta)$, then $D(f \Mod{p})=D(f) \Mod{p}=0$, so $p\mid D(f)$, observing expression \eqref{discrim}. Since we chose $p\nmid D(f)={factor_discriminant}$, then $D(f)\not\equiv 0 \Mod{p} \Rightarrow D(f \Mod{p})\neq 0$ and so $f$ has no repeated roots$\Mod{{p}}$. That is, in the field $\F_p(\zeta)$ the polynomial $f$ has also ${num_coset_reps}$ distinct roots.
+
+In $\F_p(\zeta)$ we already know that $h_{{u}}(\zeta^{pm_i})$ is a root of $f(x)$, since $h_{{u}}(\zeta^{pm_i})=h_{{u}}(\zeta^{m_i})$, which is a root of $f(x)$ by construction. In $K$, $h_{{u}}(\zeta^{pm_i})$ is also a root of $f(x)$, \sout{since it is a root of $f(x)^2$. Indeed, $|G|=|\{a\in\Z: 1\leqslant a \leqslant {k}, (a,{k})=1\}|=\varphi({k})={eulersphi_k}$, which is twice as much the number of coset representatives in $G$ that build the polynomial $f$ in \eqref{polinomi}. Therefore, the polynomial}
+\begin{equation}\label{pol_aux}
+\prod_{(a,{k})=1}\big(x-h_{{u}}(\zeta^a)\big)
+\end{equation}
+\sout{has twice as much roots as $f(x)$ and it is by definition monic, just like $f(x)$. Note that the product runs over all ${k}$-th primitive roots of unity. It is obvious that the product runs over the values $a=m_i$ for $1\leqslant i \leqslant {num_coset_reps}$. This covers half of the possible values of $a$. Each remaining value of $a$ belongs to one and only one of the classes represented by the $m_i$'s. If $a$ belongs to the class of $m_i$ then $h_{{u}}(\zeta^a)=h_{{u}}(\zeta^{m_i})$. A quick calculation shows that this is true:}
+\begin{equation*}
+h_{{u}}(\zeta^a)=({u}-\zeta^a)({u}-\zeta^{{ell}a})=({u}-\zeta^{m_i})({u}-\zeta^{{ell}m_i})=h_{{u}}(\zeta^{m_i}).
+\end{equation*} 
+
+\sout{Therefore, every root in polynomial \eqref{polinomi} is repeated twice in \eqref{pol_aux}. Since they are both monic and have the same roots, it must happen that}
+\begin{equation}\label{polinomi2}
+f(x)^2=\prod_{(a,{k})=1}\big(x-h_{{u}}(\zeta^a)\big).
+\end{equation}
+
+\sout{Now, our claim that $h_{{u}}(\zeta^{pm_i})\in\Q(\zeta)$ is a root of $f$ is clear, since it is a root of $f^2$: since $p$ only appears as an exponent of $\zeta$, the quantity $h_{{u}}(\zeta^{pm_i})$ only depends on the value of $pm_i \Mod{{k}}$, that is, in the residue of $pm_i/{k}$. Now, $p,m_i\nmid {k}$ implies $(pm_i,{k})=1$. Let $r,d\in\Z$ be such that $pm_i={k}d+r$. Then $(r,{k})=1$: otherwise $(r,{k})\neq 1\Rightarrow (r,{k})=s>1$, for $s\in\Z$. Then $s\mid r$ and $s\mid {k}\Rightarrow s\mid {k}d \Rightarrow s\mid {k}d+r$. This means $s\mid pm_i\Rightarrow (pm_i,{k})=s>1$, a contradiction. Therefore $(r,{k})=1$ with $1\leqslant r \leqslant{k}$ and we have $h_{{u}}(\zeta^{pm_i})=h_{{u}}(\zeta^{r})=h_{{u}}(\zeta^{a})$ for some $a$ in the product of \eqref{polinomi2}, which also runs for the integer values of $a$ satisfying $(a,{k})=1$ with $1\leqslant a \leqslant{k}$.}
+
+since $h_{{u}}(\zeta^{pm_i})=h_{{u}}(\zeta^{m_i})$ in the field $\Q(\zeta)$. If this was not true, then we would have two distinct roots of $f(x)$, which would be the same$\Mod{p}$ (because of \eqref{arrelsrep}), thus $f \Mod{p}$ would have repeated roots, which is impossible since we already deduced $D(f \Mod{p})\neq 0$. Therefore, the equality
+\begin{equation*}
+\big({{u}}-\zeta^{pm_i}\big)\big({{u}}-\zeta^{{ell}pm_i}\big)=\big({{u}}-\zeta^{m_i}\big)\big({{u}}-\zeta^{{ell}m_i}\big)
+\end{equation*}
+holds in $\Q(\zeta)$. Now write the above equation in terms of $\rho:=\zeta^{m_i}$. This change yields
+\begin{align}
+-\big(\rho^{p}+\rho^{{ell}p}\big){{u}}+\rho^{(1+{ell})p}&=-\big(\rho+\rho^{{ell}}\big){{u}}+\rho^{1+{ell}},\notag \\
+-{u}\big(\rho^{p}+\rho^{{ell}p}\big)+\rho^{{1mesell}p}&=-{u}\big(\rho+\rho^{{ell}}\big)+\rho^{{1mesell}}\label{equality_in_zeta}.
+\end{align}
+The right hand side of the equation above does not depend on $p$. The left hand side only depends on the value of $p\Mod{{k}}$, since $p$ only appears as an exponent of $\rho$. The above equality gives information about $p$, which is what we are interested in. We want to see that the fact that \eqref{equality_in_zeta} holds implies that $p \Mod{{k}}\in H$. To do this, we will check every other value of $p \Mod{{k}}$ ($p \Mod{{k}}\neq{p_exclusions_list}$ but $p \Mod{{k}}\notin H$) and conclude that \eqref{equality_in_zeta} is not true in $\Q(\rho)$ in those cases. Therefore, we shall see the following: if $p \Mod{{k}}\neq{p_exclusions_list}$ and $p \Mod{{k}}\in G\setminus H=\{{G_minus_H}\}$, then $h_{{u}}(\rho^p)\neq h_{{u}}(\rho)$. This will automatically imply what we want prove: since \eqref{equality_in_zeta} holds, $p \Mod{{k}}\in H$. To see this, rewrite \eqref{equality_in_zeta} as
+
+\begin{equation}\label{equalityQ}
+-{u}\big(\rho^{p}+\rho^{{ell}p}\big)+\rho^{{1mesell}p}+{u}\big(\rho+\rho^{{ell}}\big)-\rho^{{1mesell}}=0
+\end{equation}
+
+and trade $\rho$ for $x$, since the condition \eqref{equalityQ} in $\Q(\rho)$ is equivalent to the condition
+
+\begin{equation}\label{polycheck0}
+-{u}\big(x^p+x^{{ell}p}\big)+x^{{1mesell}p}+{u}\big(x+x^{{ell}}\big)-x^{{1mesell}}=0
+\end{equation}
+
+in $\Q[x]/(\Phi_{{k}}(x))\cong\Q(\rho)$ ($\Phi_{{k}}(x)$ is also the minimal polynomial of $\rho$ since $\rho=\zeta^{m_i}$ is a primitive ${k}$-th root of unity). We will explicitely write the case $p={prime_example}$ (the remaining values of $p \Mod{{k}}$ are left as an exercise to the reader). With this value of $p$, equation \eqref{polycheck0} becomes
+
+\begin{align*}
+A(x)&:=-{u}\big(x^{{prime_example}}+x^{{ell_times_prime_example}}\big)+x^{{1mesell_times_prime_example}}+{u}\big(x+x^{{ell}}\big)-x^{{1mesell}}\\
+&={dividend_check}=0.
+\end{align*}
+If we recall that $\Q(\rho)\cong\Q[x]/(\Phi_{{k}}(x))$, the above equation is equivalent to $A(x)$ being a multiple of the ${k}$-th cyclotomic polynomial, $\Phi_{{k}}(x) = {cyclotomic_polynomial}$. Therefore, we are interested in showing that the residue $R(x)$ of the division $A(x)/\Phi_{{k}}(x)$ satisfies $R(x)\neq 0$, from which our result will follow. A simple Euclidean divison of polynomials shows that $A(x)=({quocient})\cdot\Phi_{{k}}(x)+({residue})$, so $R(x)={residue} \neq 0$. Therefore, equality \eqref{equality_in_zeta} implies that $p$ belongs to a residue class of $H$, that is, $p \Mod{{k}} \in H$.
+\end{proof}
+
+We now need some more results to show that there exist infinitely many primes $\equiv {ell}\Mod{{k}}$. We will need the converse of the previous proposition. For a general $H\leqslant G$, the following proposition holds.
+
+\begin{proposition}\label{th5murty}
+Let $f(x)$ be as in Proposition \ref{th4murty}. That is, $f$ is an irreducible polynomial such that all its prime divisors (except finitely many) belong to the residue classes of $H$. Under these hypothesis, any prime belonging to any residue class of $H$ divides $f$.
+\end{proposition}
+\begin{proof}
+Let $p$ be a prime belonging to a residue class of $H$. That means $p \Mod{{k}} \in H$. Let us work in the field $\F_p(\zeta)\cong\F_p[x]/(\Phi_{{k}}(x))$. By definition, $\eta=h_{{u}}(\zeta)$. Now, in this field it holds
+\begin{equation*}
+\eta^p=h_{{u}}(\zeta)^p=h_{{u}}(\zeta^p)=h_{{u}}(\zeta)=\eta,
+\end{equation*}
+where we have used that $\text{char}(\F_p(\zeta))=p$ in the second equality. The third equality relies on the fact that $h_{{u}}(\zeta^a)=h_{{u}}(\zeta) \ \forall a\in H$.
+
+Consider now the equation $x^p-x$. Since $\F_p(\zeta)$ is a field there are at most $p$ solutions to this equation. In fact, there exist exactly $p$ integer solutions to the equation: thanks to Fermat's little theorem $0,\dots,p-1$ are roots of $x^p-x \Mod{p}$. Since $\eta^p-\eta=0$, $\eta$ is also a solution, and it must be an integer, so $\eta=a$ in $\F_p(\zeta)$. It is now enough to recall that $\eta$ is a root of $f(x)$ to conclude the proof. Indeed, the equality $0=f(\eta)=f(a)$ holds in $\F_p[x]$, so $p \mid f(a)$ and $p$ divides $f$.
+\end{proof}
+
+Note that we have proved Proposition \ref{th4murty} for an specific choice of $H$, namely $H=\{1,{ell}\}$. In the following, we will need this Proposition for the case $H=\{1\}$, which can be easily adapted using the polynomial $h(z)=z$ instead of $h_{{u}}=({u}-z)({u}-z^{{ell}})$\footnote{For a proof of Proposition \ref{th4murty} using $H=\{1\}$ run the case $\ell = 1$ and $k={k}$.}. Doing so results in $f(x)=\Phi_{{k}}(x)$.
+
+\begin{corollary}\label{divisors_cyclotomic}
+Consider $\Phi_{{k}}(x)={cyclotomic_polynomial}$, the ${k}$-th cyclotomic polynomial. Then all the prime divisors of $\Phi_{{k}}$ are either $\equiv 1\Mod{{k}}$ or divide ${k}$.
+\end{corollary}
+\begin{proof}
+Start by recalling that the cyclotomic polynomials are irreducible. Now Proposition \ref{th4murty} with $H=\{1\}$ tells us that all prime divisors of $\Phi_{{k}}$, except finitely many, belong to the residue class of $H$. In fact, the exceptions are: either when $p\mid {k}$ or $p\mid D(\Phi_{{k}})$. Note that the only primes $p$ that divide $D(\Phi_{{k}})={factor_discriminant_cyclo}$ are those $p$ such that $p\mid {k}$, that is, the only exceptions are $p={primes_div_k_list}$. In conclusion, if $p$ is a prime divisor of $\Phi_{{k}}$, it always happens that $p\equiv 1\Mod{{k}}$ or $p={primes_div_k_list}$.
+\end{proof}
+
+To finish off, we need to prove the following theorem, in light of the article \cite{Murty}.
+\begin{theorem}[\textbf{Murty}]
+	Since ${ell}^2\equiv 1\Mod{{k}}$ (that means that ${ell}$ has order $2$) there are infinitely many primes $\equiv {ell} \Mod{{k}}$, provided there is at least one.
+\end{theorem}
+\begin{proof}
+We can use now the notation and results of Proposition \ref{th4murty}. That is, take $H=\{1,{ell}\}\leqslant(\Z/{k}\Z)^\times$ and let $L$ be the fixed field by $H$. Our choice of the polynomial $h_u(z)=(u-z)(u-z^{{ell}})$ and the integer $u={{u}}$ in Proposition $\ref{th4murty}$ guarantees that $L=\Q(\eta)$, with $\eta=h_{{u}}(\zeta)$, so that the prime divisors of the polynomial $f(x)={poly}$ (apart from finitely many) belong to the residue class of $H$, that is, are $\equiv 1,{ell} \Mod{{k}}$.
+
+Let us explicitely write the roots of $f(x)={poly}$. Their distinct values are ${f_polynomial_roots_list}$ so that the discriminant of $f(x)$ can be easily calculated to be $D(f)={factor_discriminant}$, following expression \eqref{discrim}. We have already seen in Corollary \ref{divisors_cyclotomic} that any prime divisor of $\Phi_{{k}}$ is $\equiv 1 \Mod{{k}}$ or divides ${k}$. In particular, every prime divisor of $\Phi_{{k}}({u})=f(0)={indep_coef_f}={factor_indep_coef_f}$ is $\equiv 1 \Mod{{k}}$, as it can be easily checked. Now, by hypothesis we can pick one prime $p\equiv {ell}\Mod{{k}}$. In our specific progression, we can take $p={primer_primer}$, and note that ${primer_primer} \nmid D(f)={factor_discriminant}$.
+	Now, by Proposition \ref{th5murty}, we can find some $b\in\Z$ such that ${primer_primer}\mid f(b)$. We can be even more precise: $b$ can be chosen so that ${primer_primer}^2\nmid f(b)$. For instance, the value $b={valor_b}$ works, since $f({valor_b})={f_at_b}$.
+	
+To end the proof we can procede by contradiction. Suppose there are finitely many primes $\equiv {ell}\Mod{{k}}$ and denote them by $p_1,\dots,p_m$ (let $p_1:=p={primer_primer}$). Also let $q_1,\dots,q_t$ be the prime divisors of $D(f)={factor_discriminant}$, namely ${prime_divisors_disc_list}$. Let $Q:=p_2\cdots p_mq_1\cdots q_t={prod_prime_div_disc}\cdot p_2\cdots p_m$. Consider the following congruence equation system, where we try to solve for $c\in\Z$:
+	\begin{align*}
+		c&\equiv {valor_b}\Mod{{primer_primer}^2},\\
+		c&\equiv 0\Mod{{k}Q}.
+	\end{align*}
+	The Chinese Remainder Theorem guarantees the existence of a solution to this system (unique$\Mod{{primer_primer}^2\cdot{k}Q}$) since $({primer_primer}^2,{k}Q)=1$. This is true because $p_1\neq{prime_divisors_disc_list}$ and $p_1={primer_primer}\not\equiv 0 \Mod{{k}}$. It follows that $f(c)\equiv f({valor_b})={f_at_b}\equiv {f_at_b_red} \Mod{{primer_primer}^2}$ and $f(c)\equiv f(0)={indep_coef_f}\Mod{{k}Q}$. In Proposition \ref{th4murty} we have proven that all prime divisors of $f$ (with a finite number of exceptions) belong to the residue classes of $H=\{1, {ell}\}$, i.e., are $\equiv1, {ell}\Mod{{k}}$. Also, in the proof we have seen that the \textit{finite number of exceptions} can be categorized between those primes that divide ${k}$ or divide $D(f)={factor_discriminant}$, that is, when the prime divisor is ${p_exclusions_list}$).
+	
+	Now, since $f(0)={indep_coef_f}$ is only divisible by those primes $\equiv 1\Mod{{k}}$ (we have seen that before), we can deduce that $f(c)$ is only divisible by primes $\equiv 1\Mod{{k}}$ and by $p_1={primer_primer}\equiv {ell}\Mod{{k}}$. Let's see why. In the previous paragraph we said that every prime divisor $r$ of $f(c)$ is $r={p_exclusions_list}$ or satisfies $r\equiv 1,{ell}\Mod{{k}}$. If $r\equiv 1\Mod{{k}}$ or $r=p_1={primer_primer}$ our claim is obvious. Otherwise, $r={p_exclusions_list}$ or $r=p_2,\dots,p_m$. This means that $r\mid {k}Q$. Now, since $c\equiv 0\Mod{{k}Q}$ we deduce that $c\equiv 0\Mod{r}$, so that $f(c)\equiv f(0)={indep_coef_f}\Mod{r}$. That would mean that $f(0)\equiv f(c)\equiv 0\Mod{r}$, since $r$ is a divisor of $f(c)$. But this is a contradiction, since $f(0)={indep_coef_f}$ is only divisible by those primes $\equiv 1\Mod{{k}}$ and $r$ is not one of them: we know that either $r\mid {k}$ (which would mean $r\equiv 0\not\equiv 1\Mod{{k}}$) or $r\mid D(f)={factor_discriminant}$ ($r\not\equiv 1\Mod{{k}}$) or $r=p_2,\dots,p_m$ (but all the $p_i$'s are $\equiv{ell} \not\equiv 1\Mod{{k}}$).
+    
+Since ${primer_primer}^2\nmid f({valor_b})={f_at_b}$, one deduces that ${primer_primer}^2\nmid f(c)$ from the fact that $f(c)\equiv f({valor_b})\Mod{{primer_primer}^2}$. Now, recall that $f(c)$ has every prime divisor $\equiv 1 \Mod{{k}}$ except for $p_1$, which is $\equiv {ell}\Mod{{k}}$. It follows,$\Mod{{k}}$, that $f(c)=1\cdot1\cdots{ell}={ell}$ (observe that {ell} only appears once because $f(c)$ is only divisible by $p_1={primer_primer}$ once, since ${primer_primer}^2\nmid f(c)$). But we know that $f(c)\equiv f(0)={indep_coef_f}\equiv1\Mod{{k}}$, since $f(0)$ is only divisible by those primes $\equiv 1\Mod{{k}}$. That is a contradiction. Therefore, the arithmetic progression $\equiv {ell}\Mod{{k}}$ contains infinitely many primes.
+\end{proof}
+
+\newpage
+
+\thispagestyle{empty}
+\bibliographystyle{amsalpha}
+\bibliography{references}
+
+\end{document}
