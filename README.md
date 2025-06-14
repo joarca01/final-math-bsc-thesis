@@ -31,7 +31,8 @@ The webpage we created (available at http://167.172.185.115) makes the technical
 
 The code for the webpage is located in the folder `HTML-based`.
 
-Alternatively, an early version of the code is available at `PDF-based`. The relevant file in this folder is `template_euc.ipynb`, which, for a given $k$ and $\ell$, generates a `.tex` file with the proof, which can be later compiled to obtain a `.pdf`. It is enough to have every file in a folder and execute the function `ap_euc` in `template_euc.ipynb`. This version of the code requires:
+Alternatively, an early version of the code is available at `PDF-based`. The relevant file in this folder is `template_euc.ipynb`, which, for a given $k$ and $\ell$, generates a `.tex` file with the proof, which can be later compiled to obtain a `.pdf`. It is enough to have every file in a unique folder and execute the function `ap_euc` in `template_euc.ipynb`. This version of the code requires:
 
 - `tex` compiler
 - `stopit` module
+- `threading` module
