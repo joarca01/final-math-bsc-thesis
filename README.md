@@ -10,13 +10,13 @@ This type of proof, however, is not available for every value of $k$ and $\ell$.
 
 The arithmetic progression $\equiv\ell\pmod{k}$ admits a Euclidean proof if and only if $\ell^2\equiv 1 \pmod{k}$.
 
-The work also aims to give a systematic, Euclidean, and elemental method to build Euclidean proofs whenever the above condition is satisfied.
+The work also aims to give a systematic and elemental method to build Euclidean proofs whenever the above condition is satisfied.
 
 ## Purpose of the repository
 
 This repository serves a double purpose. For one part, it stores the latest version of the BSc Thesis (in English), together with the Beamer presentation used to defend it (in Catalan).
 
-However, the main goal of this repository is to host the stable version of the $\LaTeX$, SageMath, and Python codes, together with the HTML templates that *effectively* implement a *systematic*, *elemental*, and *Euclidean* proof of the infinitude of primes $\equiv \ell\pmod{k}$, whenever Murty's conditions are satisfied. As far as the author is concerned, this is something new to the literature.
+However, the main goal of this repository is to host the stable version of the $\LaTeX$, SageMath, and Python codes, together with the HTML templates that *effectively* implement a *systematic*, *elemental*, and *Euclidean* proof of the infinitude of primes $\equiv \ell\pmod{k}$, whenever Schur and Murty's conditions are satisfied. As far as the author is concerned, this is something new to the literature.
 
 ## Requirements
 
