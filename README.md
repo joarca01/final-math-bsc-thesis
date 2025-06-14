@@ -24,7 +24,7 @@ The webpage we created (available at http://167.172.185.115) makes the technical
 
 - Remember that the values of $k$ and $\ell$ must be positive integers, satisfying $\gcd(k,\ell)=1$.
 - Also, the condition $k>\ell$ must be met for $k>1$. Observe that this is not a limitation. If, say, $k=12$ and $\ell=17$, then the progression $12n+17$, $n\geqslant 0$ has the same terms as $12n+5$ for $n\geqslant 1$. The trick consists in considering $17 \bmod{12}=5$. 
-- Additionally, the condition $\ell^2\equiv 1 \pmod{k}$ is crucial to guarantee that a Euclidean proof exists. If your brain starts to ache trying to find the suitable values of $\ell$ for a given $k$, the webpage can do this calculation.
+- Additionally, the condition $\ell^2\equiv 1 \pmod{k}$ is crucial to guarantee that a Euclidean proof exists. If your brain starts to ache trying to find the suitable values of $\ell$ for a given $k$, the webpage can do this calculation for you.
 - Finally, with the chosen arithmetic progression (represented by the elected pair $k$, $\ell$) one can get a personalised Euclidean proof of the fact that there are infinitely many primes $\equiv \ell\pmod{k}$.
   
 ## Execution of the code
