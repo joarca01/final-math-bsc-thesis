@@ -1,7 +1,0 @@
-PWD /Users/joanarenillascases/OneDrive/TFG Mates
-INPUT /usr/local/texlive/2020/texmf.cnf
-INPUT /usr/local/texlive/2020/texmf-dist/web2c/texmf.cnf
-INPUT /usr/local/texlive/2020/texmf-var/web2c/pdftex/latex.fmt
-INPUT template1_alt.tex
-OUTPUT template1_alt.log
-OUTPUT template1_alt.dvi
