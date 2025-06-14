@@ -1,0 +1,202 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage[a4paper, total={165mm, 250mm}]{geometry}
+\geometry{top=2.54cm, bottom=2.54cm, left=2.54cm, right=2.54cm}
+\usepackage[utf8]{inputenc}
+\usepackage{titlesec}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel} 
+\usepackage{amsthm,amsmath,amssymb,amsfonts,amscd}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{enumerate}
+\usepackage[all]{xy}
+\usepackage{booktabs}
+\usepackage[usenames]{xcolor}
+\usepackage{fancyhdr}
+\usepackage{caption}
+\usepackage{setspace}
+\usepackage{cite}  
+\usepackage{hyperref}
+\usepackage{tikz-cd}
+\usepackage{authblk}
+\usepackage[normalem]{ulem}
+
+\linespread{1.0}
+\onehalfspacing
+
+\pagestyle{fancy}
+\headheight 30pt
+\fancyhf{}
+\rhead{Page \thepage}
+\lhead{\nouppercase{Infinite number of primes in $12n+5$, $n\geqslant 0$}}
+\headsep 1.5em
+
+\newtheorem*{theoremA}{Theorem A}
+\newtheorem{theorem}{Theorem}%[section]
+
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{remarknonumber}{Remark}
+\newtheorem{observation}[theorem]{Observation}
+
+\renewcommand{\qedsymbol}{\rule{0.7em}{0.7em}} % Black box to end proofs. 
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+\newcommand{\Q}{\ensuremath{\mathbb{Q}}}
+\newcommand{\A}{\ensuremath{\mathbb{A}}}
+\newcommand{\F}{\ensuremath{\mathbb{F}}}
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)} % (mod k) sequence.
+\DeclareUnicodeCharacter{03B6}{\zeta} % Define Unicode Character 'ζ'. 
+
+\definecolor{applegreen}{rgb}{0.55, 0.71, 0.0}
+
+% ---- Figue, table and equation labelling ---- %
+%\numberwithin{equation}{section}
+%\numberwithin{figure}{section}
+%\numberwithin{table}{section}
+%\captionsetup[figure]{font=small, labelfont=large}
+
+% ---- Link style ---- %
+\hypersetup{colorlinks, citecolor=green, linkcolor=blue, urlcolor=blue}
+
+% ---- Paragraph indentation style ---- %
+\setlength{\parindent}{20pt}
+
+\title{\textbf{The arithmetic progression $12n+5$, $n\geqslant0$, contains infinitely many primes.\\ An elementary proof}}
+\date{\vspace{-5ex}}
+\author[1]{Joan Arenillas i Cases}
+%\affil[1]{Department of Mathematics, Universitat Autònoma de Barcelona}
+
+\begin{document}
+\maketitle
+\sloppy
+We will prove that the arithmetic progression $\equiv 5 \Mod{12}$ contains infinitely many primes. Equivalently, we will see that there are infinitely many primes of the form $12n+5$, $n\geqslant0$. To follow the proof, one must recall the expression for the discriminant of a polynomial. In terms of its roots $r_1,r_2,\dots,r_m$ (not necessarily distinct), the discriminant of a polynomial $A(x)=a_nx^n+\cdots+a_1x+a_0$ is given by
+    \begin{equation}\label{discrim}
+		\Delta(A)=a_n^{2n-2}\prod_{i<j}(r_i-r_j)^2.
+	\end{equation}
+
+We shall also define what a \emph{prime divisor} of a given polynomial is. 
+\begin{definition}
+Let $f\in\Z[x]$ be a polynomial. We say that a prime number $p$ is a \emph{prime divisor} of $f$ if there exists $m\in\Z$ such that $p$ divides $f(m)$. We shall generally write $p\mid f$.
+\end{definition}
+
+It will also be handy to have in mind that the $12$-th cyclotomic polynomial is $\Phi_{12}(x)=x^{4} - x^{2} + 1$. We are now in position of starting the proof.
+
+\begin{proposition}\label{th4murty}
+Consider the polynomial $f(x)=x^{2} + 286 x + 20593$. Suppose $p$ is a prime divisor of $f$. Then $p \Mod{12}$ belongs to $H:=\{1,5\}$, except for finitely many exceptions.  
+\end{proposition} 
+\begin{proof}
+Consider the set $S=\{1, 7\}$ and the values $h(\zeta^{m_i}):=-(12-\zeta^{m_i})(12-\zeta^{5m_i})$, with $m_i\in S$, $1 \leqslant i \leqslant 2$, and $\zeta:=e^{2\pi i/{12}}$, a $12$-th primitive root of unity (thus a root of $\Phi_{12}(x)$). A simple calcualtion shows that $f(x)$ can be written as
+
+\begin{equation*}
+\binoppenalty=10000 % no line break after \cdot
+\mathchardef\plus=\mathcode`+ % save the mathcode
+\mathcode`+="8000 % make the plus math active
+\thinmuskip=0mu
+\begingroup\lccode`~=`+
+  \lowercase{\endgroup\def~}{%
+    \plus\allowbreak\hspace{3pt plus 2pt}%
+}
+\hphantom{f(x)=\prod_{i=1}^{2}\big(}
+\parbox{0.8\displaywidth}{\linespread{1.1}\selectfont
+  \makebox[0pt][r]{$f(x)=\displaystyle\prod_{i=1}^{2}\big($}$x-h(\zeta^{m_i})\big)=x^{2} + 286 x + 20593.$
+}
+\end{equation*}
+
+%\begin{align}\label{polinomi}
+%f(x)&=\prod_{i=1}^{2}\big(x-h(\zeta^{m_i})\big)\\
+%&=x^{2} + 286 x + 20593.
+%\end{align}
+
+The roots of $f(x)$ are $h(\zeta^{m_i})$ for $m_i \in S$. Their values are $12 ζ^{3} - 143, -12 ζ^{3} - 143$ so that the discriminant of $f(x)$ can be easily calculated to be $\Delta(f)=-1 \cdot 2^{6} \cdot 3^{2}$, following expression \eqref{discrim}.
+
+Now, suppose that $p$ is a prime divisor of $f$ such that $p$ does not divide $12$ and $\Delta(f)=-1 \cdot 2^{6} \cdot 3^{2}$. Therefore, $p\neq2, 3$.
+
+We shall now work in the field $\F_p(\zeta)$, which is the smallest field that contains both the finite field $\F_p$ and $\zeta$. Since $p$ divides $f$ there exists $a\in\Z$ such that 
+\begin{equation*}
+f(a)=\prod_{i=1}^{2}\big(a-h(\zeta^{m_i})\big)=0.
+\end{equation*}
+Now, since $\F_p(\zeta)$ is a field, there exists $i$ such that $a=h(\zeta^{m_i})$ and the following calculation holds in this field:
+\begin{align}\label{arrelsrep}
+h(\zeta^{m_i})&=a=a^p=h(\zeta^{m_i})^p=-(12-\zeta^{m_i})^p(12-\zeta^{5m_i})^p\notag \\ 
+&=-(12^p-\zeta^{pm_i})(12^p-\zeta^{5pm_i})=-(12-\zeta^{pm_i})(12-\zeta^{5pm_i})=h(\zeta^{pm_i}),
+\end{align}
+where we have used Fermat's little theorem in the second equality. The fifth equality, on the other hand, relies on the fact that $\text{char}(\F_p(\zeta))=p$ (so that $(c+d)^p=c^p+d^p$ for every $c,d \in \F_p(\zeta)$) and the following one, on Fermat's little theorem. Therefore, equality \eqref{arrelsrep} means that $h(\zeta^{pm_i})=h(\zeta^{m_i})$ is also a root of $\overline{f(x)}\in\F_p(\zeta)[x]$. 
+
+We will now see that $h(\zeta^{pm_i})$ is also a root of $f(x)$. Begin by noting that the value $h(\zeta^{pm_i})$ only depends on the value of $pm_i \Mod{12}$ since it only appears as an exponent of $\zeta$. Now, the fact that neither $p$ nor $m_i$ divide $12$ implies that $(pm_i,12)=1$. Let $r,d\in\Z$ be such that $pm_i=12d+r$. Then $(r,12)=1$: otherwise $(r,12)\neq 1$ implies $(r,12)=s>1$, for $s\in\Z$. Then, since $s$ divides $r$ and $s$ divides $12$, $s$ divides $12d$ so $s$ divides $12d+r$. This means that $s$ divides $pm_i$, which implies $(pm_i,12)=s>1$, a contradiction. Therefore, $(r,12)=1$ with $1\leqslant r < 12$ and we have that $h(\zeta^{pm_i})=h(\zeta^{r})$, with $\zeta^r$ being a primitive $12$-th root of unity.
+
+There are now only two options: either $r\in S$ (therefore $h(\zeta^{pm_i})$ is obviously a root of $f(x)$) or $r\equiv 5m_i\Mod{12}$. In the latter case, let us prove that $h(\zeta^{5m_i})=h(\zeta^{m_i})$ for $m_i\in S$, so $h(\zeta^{r})=h(\zeta^{5m_i})=h(\zeta^{m_i})$ is also a root of $f(x)$. Indeed,
+\begin{align*}
+h(\zeta^{5m_i})&=-(12-\zeta^{5m_i})(12-\zeta^{5^2m_i})=-(12-\zeta^{5^2m_i})(12-\zeta^{5m_i})\\
+&=-(12-\zeta^{m_i})(12-\zeta^{5m_i})=h(\zeta^{m_i}),
+\end{align*}
+where we have used that $\zeta^{5^2m_i}$ only depens on the value of $5^2m_i \Mod{12}$ and the fact that $5^2\equiv 1\Mod{12}$.
+
+Therefore, $h(\zeta^{pm_i})=h(\zeta^{r})$ is always a root of $f(x)$ in $\Q(\zeta)$ (the smallest field that contains $\Q$ and $\zeta$). If $h(\zeta^{pm_i})$ and $h(\zeta^{m_i})$ were two distinct roots of $f(x)$ in $\Q(\zeta)$, we know because of \eqref{arrelsrep} that they would be the same in $\F_p(\zeta)$. Therefore, $\Delta(f \Mod{p})=\Delta(f) \Mod{p}=0$, so $p$ divides $\Delta(f)$, observing expression \eqref{discrim}. This is a contradiction with our choice of $p$. Thus, $h(\zeta^{pm_i})$ and $h(\zeta^{m_i})$ are in fact the same root of $f(x)$ in $\Q(\zeta)$.
+
+Therefore, the equality
+\begin{equation*}
+\big({12}-\zeta^{pm_i}\big)\big({12}-\zeta^{5pm_i}\big)=\big({12}-\zeta^{m_i}\big)\big({12}-\zeta^{5m_i}\big)
+\end{equation*}
+holds in $\Q(\zeta)$. Now write the above equation in terms of $\theta:=\zeta^{m_i}$. This change yields
+\begin{align}
+-\big(\theta^{p}+\theta^{5p}\big){12}+\theta^{(1+5)p}&=-\big(\theta+\theta^{5}\big){12}+\theta^{1+5}, \notag \\
+-12\big(\theta^{p}+\theta^{5p}\big)+\theta^{6p}&=-12\big(\theta+\theta^{5}\big)+\theta^{6}\label{equality_in_zeta}.
+\end{align}
+The right hand side of the equation above does not depend on $p$. The left hand side only depends on the value of $p\Mod{12}$, since $p$ only appears as an exponent of $\theta$. The above equality gives information about $p$, which is what we are interested in. We want to see that the fact that \eqref{equality_in_zeta} holds implies that $p \Mod{12}\in H$. To do this, we will check every other value of $p \Mod{12}$ (that is, $p \Mod{12}\notin H$) and conclude that \eqref{equality_in_zeta} is not true in $\Q(\theta)$ in those cases. Therefore, we shall see the following: if $p \Mod{12}\in G\setminus H=\{7, 11\}$, then $h(\theta^p)\neq h(\theta)$. This will automatically imply what we want prove: since \eqref{equality_in_zeta} holds, $p \Mod{12}\in H$. To see this, rewrite \eqref{equality_in_zeta} as
+
+\begin{equation}\label{equalityQ}
+-12\big(\theta^{p}+\theta^{5p}\big)+\theta^{6p}+12\big(\theta+\theta^{5}\big)-\theta^{6}=0
+\end{equation}
+
+and trade $\theta$ for $x$, since the condition \eqref{equalityQ} in $\Q(\theta)$ is equivalent to the condition
+
+\begin{equation}\label{polycheck0}
+-12\big(x^p+x^{5p}\big)+x^{6p}+12\big(x+x^{5}\big)-x^{6}=0
+\end{equation}
+
+in $\Q[x]/(\Phi_{12}(x))\cong\Q(\theta)$ ($\Phi_{12}(x)$ is also the minimal polynomial of $\theta$ since $\theta=\zeta^{m_i}$ is a primitive $12$-th root of unity). We will explicitely write the case $p=7$ (the remaining values of $p \Mod{12}\in G\setminus H$ are left as an exercise to the reader). With this value of $p$, equation \eqref{polycheck0} becomes
+
+\begin{align*}
+A(x)&:=-12\big(x^{7}+x^{35}\big)+x^{42}+12\big(x+x^{5}\big)-x^{6}\\
+&=x^{42} - 12 x^{35} - 12 x^{7} - x^{6} + 12 x^{5} + 12 x=0.
+\end{align*}
+If we recall that $\Q(\theta)\cong\Q[x]/(\Phi_{12}(x))$, the above equation is equivalent to $A(x)$ being a multiple of the $12$-th cyclotomic polynomial, $\Phi_{12}(x) = x^{4} - x^{2} + 1$. Therefore, we are interested in showing that the residue $R(x)$ of the division $A(x)/\Phi_{12}(x)$ satisfies $R(x)\neq 0$, from which our result will follow. A simple Euclidean divison of polynomials shows that $A(x)=(x^{38} + x^{36} - x^{32} - 12 x^{31} - x^{30} - 12 x^{29} + x^{26} + 12 x^{25} + x^{24} + 12 x^{23} - x^{20} - 12 x^{19} - x^{18} - 12 x^{17} + x^{14} + 12 x^{13} + x^{12} + 12 x^{11} - x^{8} - 12 x^{7} - x^{6} - 12 x^{5} - 12 x^{3} + 12 x)\cdot\Phi_{12}(x)+(24 x^{3})$, so $R(x)=24 x^{3} \neq 0$. Therefore, equality \eqref{equality_in_zeta} implies that $p \Mod{12} \in H$. Thus, $p\equiv 1,5\Mod{12}$.
+\end{proof}
+
+We can now prove that
+
+\begin{proposition}
+There exist infinitely many primes $\equiv 5\Mod{12}$.
+\end{proposition}
+\begin{proof}
+Consider the polynomial $f(x)=x^{2} + 286 x + 20593$. To prove that there exist infinitely many primes $\equiv 5 \Mod{12}$ we can procede by contradiction. Suppose there are finitely many primes $\equiv 5\Mod{12}$ and denote them by $p_1,\dots,p_m$. Since $5, 17 \equiv 5 \Mod{12}$, we can write the list as $5, 17, p_{3},\dots, p_m$ (so $p_{2}:=17$). Now let $Q:={2 \cdot 3 \cdot 5}\cdot p_{3}\cdots p_m$. Consider the following congruence equation system, where we try to solve for $c\in\Z$:
+	\begin{align*}
+		c&\equiv 7\Mod{17^2},\\
+		c&\equiv 0\Mod{12Q}.
+	\end{align*}
+The Chinese Remainder Theorem guarantees the existence of a solution to this system (unique$\Mod{17^2\cdot12Q}$) since $17^2$ does not divide $12Q$. It follows that $f(c)\equiv f(7)=22644\equiv 17\cdot6\Mod{17^2}$ and $f(c)\equiv f(0)=20593\Mod{12Q}$. 
+
+Now, since $f(0)=20593$ is only divisible by primes $\equiv 1\Mod{12}$, we deduce that $f(c)$ is only divisible by primes $\equiv 1\Mod{12}$ and by $p_{2}=17\equiv 5\Mod{12}$. Let's see why. Proposition \ref{th4murty} guarantees that every prime divisor $r$ of $f(c)$ is $r=2, 3$ or satisfies $r\equiv 1,5\Mod{12}$. If $r\equiv 1\Mod{12}$ or $r=p_{2}=17$ our claim is obvious. Thus, suppose $r=2, 3$ or $r=5, \text{\texttt{,}} p_{3},\dots,p_m$. This means that $r$ divides $12Q$. Now, since $c\equiv 0\Mod{12Q}$ we deduce that $c\equiv 0\Mod{r}$, so that $f(c)\equiv f(0)=20593\Mod{r}$. That would mean that $f(0)\equiv f(c)\equiv 0\Mod{r}$, since $r$ is a divisor of $f(c)$. But this is a contradiction, since $f(0)=20593$ is only divisible by primes $\equiv 1\Mod{12}$ and $r$ is not one of them: we know that either $r$ divides $12$ (which implies $r\equiv 0\not\equiv 1\Mod{12}$) or $r$ divides $\Delta(f)=-1 \cdot 2^{6} \cdot 3^{2}$ (which implies $r\not\equiv 1\Mod{12}$) or $r=5, \text{\texttt{,}} p_{3},\dots,p_m$ (but all the $p_i$'s are $\equiv 5 \not\equiv 1\Mod{12}$). Therefore, $f(c)$ is only divisible by primes $\equiv 1\Mod{12}$ and by $p_{2}=17$.
+
+Since $17^2$ does not divide $f(7)=17\cdot1332$, one deduces that $17^2$ does not divide $f(c)$ from the fact that $f(c)\equiv f(7)\Mod{17^2}$. In fact, $17$ only divides $f(c)$ once, since $f(c)\equiv f(7)\Mod{17}$ and $f(7)=17\cdot1332$. Now, recall that $f(c)$ has every prime divisor $\equiv 1 \Mod{12}$ except for $p_{2}$, which is $\equiv 5\Mod{12}$. It follows,$\Mod{12}$, that $f(c)=1\cdot1\cdots 1\cdot5=5$ (observe that 5 only appears once). But we know that $f(c)\equiv f(0)=20593\equiv 1\Mod{12}$, since $f(0)$ is only divisible by primes $\equiv 1\Mod{12}$. That is a contradiction. Therefore, the arithmetic progression $\equiv 5\Mod{12}$ contains infinitely many primes.
+\end{proof}
+
+\newpage
+
+%\thispagestyle{empty}
+%\bibliographystyle{amsalpha}
+%\bibliography{references}
+
+\end{document}

@@ -1,0 +1,173 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{geometry}
+\geometry{top=2.54cm, bottom=2.54cm, left=2.54cm, right=2.54cm, heightrounded}
+\usepackage[utf8]{inputenc}
+\usepackage{titlesec}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel} 
+\usepackage{amsthm,amsmath,amssymb,amsfonts,amscd}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{enumerate}
+\usepackage[all]{xy}
+\usepackage{booktabs}
+\usepackage[usenames]{xcolor}
+\usepackage{fancyhdr}
+\usepackage{caption}
+\usepackage{setspace}
+\usepackage{cite}  
+\usepackage{hyperref}
+\usepackage{tikz-cd}
+\usepackage{authblk}
+\usepackage[normalem]{ulem}
+
+\linespread{1.0}
+\onehalfspacing
+
+\pagestyle{fancy}
+\headheight 30pt
+\fancyhf{}
+\rhead{Page \thepage}
+\lhead{\nouppercase{Infinite number of primes in $15n+1$, $n\geqslant 0$}}
+\headsep 1.5em
+
+\newtheorem*{theoremA}{Theorem A}
+\newtheorem{theorem}{Theorem}%[section]
+
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{remarknonumber}{Remark}
+\newtheorem{observation}[theorem]{Observation}
+\newtheorem*{claimnonumber}{Claim}
+
+\renewcommand{\qedsymbol}{\rule{0.7em}{0.7em}} % Black box to end proofs. 
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+\newcommand{\Q}{\ensuremath{\mathbb{Q}}}
+\newcommand{\A}{\ensuremath{\mathbb{A}}}
+\newcommand{\F}{\ensuremath{\mathbb{F}}}
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)} % (mod k) sequence.
+\DeclareUnicodeCharacter{03B6}{\zeta} % Define Unicode Character 'ζ'. 
+
+% ---- Link style ---- %
+\hypersetup{colorlinks, citecolor=green, linkcolor=blue, urlcolor=blue}
+
+% ---- Paragraph indentation style ---- %
+\setlength{\parindent}{20pt}
+
+\title{\textbf{The arithmetic progression $15n+1$, $n\geqslant0$, contains infinitely many primes.\\ An elementary proof}}
+\date{\vspace{-5ex}}
+\author[1]{Joan Arenillas i Cases}
+%\affil[1]{Department of Mathematics, Universitat Autònoma de Barcelona}
+
+\begin{document}
+\maketitle
+\sloppy
+
+\section{The main Theorem}
+
+We will prove that the arithmetic progression $\equiv 1 \Mod{15}$ contains infinitely many primes. Equivalently, we will see that there are infinitely many primes of the form $15n+1$, $n\geqslant0$. To follow the proof, one must recall the expression for the discriminant of a polynomial. \begin{definition}
+In terms of its roots $\{r_1,r_2,\dots,r_m\}\subset\C$ (not necessarily distinct), the discriminant of a monic polynomial $A(x)=x^m+a_{m-1}x^{m-1}\cdots+a_1x+a_0$ is given by
+\begin{equation}\label{eq:discrim}
+	\Delta(A)=\prod_{i<j}(r_i-r_j)^2, \quad 1\leqslant i,j\leqslant m.
+\end{equation}
+\end{definition}
+
+We shall also define what a \emph{prime divisor} of a given polynomial is.
+
+\begin{definition}
+Let $A(x)\in\Z[x]$ be a polynomial. We say that a prime number $p$ is a \emph{prime divisor} of $A$ if there exists $m\in\Z$ such that $p$ divides $A(m)$.
+\end{definition}
+
+We are now able to show that there exist infinitely many primes $\equiv 1\Mod{15}$. Consider the polynomial $f(x):=\Phi_{15}(x)=x^{8} - x^{7} + x^{5} - x^{4} + x^{3} - x + 1$ and the set $S=\{1, 2, 4, 7, 8, 11, 13, 14\}$. Also consider the values $\zeta^{s}$, with $s\in S$ and $\zeta:=e^{2\pi i/{15}}$, a $15$th primitive root of unity (thus a root of $\Phi_{15}(x)$). A simple calculation shows that $f(x)$ can be written as
+\begin{align*}
+f(x)&=\prod_{s\in S}\big(x-\zeta^{s}\big)\\
+&=x^{8} - x^{7} + x^{5} - x^{4} + x^{3} - x + 1\\
+&=\Phi_{15}(x).
+\end{align*}
+The roots of $f(x)$ are obviously $\zeta^{s}$ for $s \in S$. Their values are 
+
+$$ζ, ζ^{2}, ζ^{4}, ζ^{7}, ζ^{7} - ζ^{5} + ζ^{4} - ζ^{3} + ζ - 1, -ζ^{6} - ζ, -ζ^{7} + ζ^{5} - ζ^{4} - ζ + 1, -ζ^{7} + ζ^{6} - ζ^{4} + ζ^{3} - ζ^{2} + 1,$$ 
+
+so that the discriminant of $f(x)$ can be calculated to be $\Delta(f)=3^{4} \cdot 5^{6}$, following expression \eqref{eq:discrim}.
+ 
+Now, suppose that $p$ is a prime divisor of $f$ such that $p\neq3, 5$. Next, consider a field $\F$ containing both the finite field $\F_p$ and $\zeta$\footnote{For instance, consider $\F=\F_{p^n}$ with a suitable $n\in\Z$ such that $\Phi_{15}$ has a root $\zeta$.}. Since $p$ divides $f$, working in $\F$, there exists $a\in\Z$ such that 
+\begin{equation*}
+f(a)=\prod_{s\in S}\big(a-\zeta^{s}\big)=0.
+\end{equation*}
+
+Since $\F$ is a field, there exists $s\in S$ such that $a=h(\zeta^{s})$, and the following calculation holds in this field:
+
+\begin{equation}\label{eq:reproots}
+\zeta^{s}=a=a^p=\zeta^{ps},
+\end{equation}
+where we have used Fermat's little theorem in the second equality. Therefore, equality \eqref{eq:reproots} means that $\zeta^{ps}=\zeta^{s}$ is also a root of $\overline{f(x)}\in\F[x]$. 
+
+\begin{lemma}
+$\zeta^{ps}$ is also a root of $f(x)$ in $\Q(\zeta)$ $($the smallest subfield of $\C$ containing $\zeta)$.
+\end{lemma}
+\begin{proof}
+Begin by noting that the value $h(\zeta^{ps})$ only depends on the value of $ps \Mod{15}$ since it only appears as an exponent of $\zeta$. Since $p$ does not divide $15$ and $s$ is coprime to $15$, $ps$ is coprime to $15$ and hence $\zeta^{ps}$ is a primitive $15$th root of unity. Since $ps\in S$, $\zeta^{ps}$ is obviously a root of $f(x)$ in $\Q(\zeta)$.
+\end{proof}
+
+\begin{lemma}
+$\zeta^{ps}$ and $\zeta^{s}$ are the same root of $f(x)$ in $\Q(\zeta)$.
+\end{lemma}
+\begin{proof}
+If $\zeta^{ps}$ and $\zeta^{s}$ were two distinct roots of $f(x)$ in $\Q(\zeta)$, we know because of \eqref{eq:reproots} that they would be the same in $\F$. Therefore, observing expression \eqref{eq:discrim}, it follows that $\Delta(f \Mod{p})=\Delta(f) \Mod{p}=0$, so $p$ divides $\Delta(f)=3^{4} \cdot 5^{6}$. This is a contradiction with our choice of $p$. Thus, $\zeta^{ps}$ and $\zeta^{s}$ are in fact the same root of $f(x)$ in $\Q(\zeta)$.
+\end{proof}
+
+Therefore, the equality
+\begin{equation*}
+\zeta^{ps}=\zeta^{s}
+\end{equation*}
+holds in $\Q(\zeta)$. Next, write the above equation in terms of $\theta:=\zeta^{s}$. This change yields
+\begin{equation}\label{eq:equality_in_zeta}
+\theta^{p}=\theta.
+\end{equation}
+The right-hand side of the equation above does not depend on $p$. The left-hand side only depends on the value of $p\Mod{15}$, since $p$ only appears as an exponent of $\theta$. In conclusion, expression \eqref{eq:equality_in_zeta} only holds if $p \Mod{15}=1$, that is, $p\equiv 1\Mod{15}$.
+
+We now know that every prime divisor $p$ of $f(x)=\Phi_{15}(x)$ is 
+$$
+p=3, 5 \quad \text{or  } p\equiv 1\Mod{15}.
+$$
+The following corollary concludes the proof.
+
+\begin{corollary}
+There are infinitely many primes $\equiv 1 \Mod{15}$.
+\end{corollary}
+\begin{proof}
+In Section \ref{sec:properties} we will establish that the polynomial $\Phi_{15}$ has infinitely many prime divisors. But, from the remark above, all prime divisors of $\Phi_{15}$ must be $\equiv 1\Mod{15}$ (except for $p=3, 5$). 
+\end{proof}
+
+\section{Properties of the polynomial $\Phi_{15}(x)$}\label{sec:properties}
+
+We just need the following lemma to fully prove that there exist infinitely many primes $\equiv 1 \Mod{15}$.
+
+\begin{lemma}
+The cyclotomic polynomial $\Phi_{15}(x)\in\Z[x]$ has infinitely many prime divisors.
+\end{lemma}
+\begin{proof}
+There is obviously at least one prime divisor of $\Phi_{15}$, since the case $\Phi_{15}(x)=x^{8} - x^{7} + x^{5} - x^{4} + x^{3} - x + 1=\pm 1$ only happens for a finite number of integer values of $x$. Now suppose $\Phi_{15}$ has only a finite number of prime divisors, say $p_1, p_2,\dots,p_k$. Let $Q:=p_1p_2\cdots p_k$. Observe that $\text{deg}(\Phi_{15})=8$ and $\Phi_{15}(0)=1\neq 0$. Then $\Phi_{15}(Qx)=g(x)$ for some $g(x)\in\Z[x]$ of the form $1+c_1x+\cdots+c_{8}x^{8}$, $c_i\in\Z$, satisfying $Q\mid c_i$ for every $1\leqslant i \leqslant 8$. This polynomial $g$ must also have at least one prime divisor, say $p$, for the same reason as before. Therefore, $p$ divides $g(m)$ for some $m\in\Z$, and this implies that $p$ divides $g(m)$, which means that $p$ divides $\Phi_{15}(Qm)$. Since $m':=Qm\in\Z$, it follows that $p$ divides $\Phi_{15}$. But $p$ does not divide $Q$, since $p$ dividing $Q$ would mean that $p$ divides $c_i$, for every $1\leqslant i \leqslant 8$ (recall that $Q$ divides every $c_i$). This, together with the fact that $p$ divides $g(m)$, would imply that $p$ divides $g(m) - \sum_{i=1}^{8}c_im^i=1$, which means $p=1$, a contradiction. 
+
+Now, $p$ is a prime divisor of $\Phi_{15}$, but $p$ is not any of the primes $p_1,p_2,\dots,p_k$, since we just proved that $p$ does not divide $p_1p_2\cdots p_k=Q$. Thus, we found a new prime divisor of $\Phi_{15}$ not in our list. Since this argument can be repeated indefinitely, one concludes that $\Phi_{15}$ has infinitely many prime divisors.
+\end{proof}
+
+\newpage
+
+%\thispagestyle{empty}	
+%\bibliographystyle{amsalpha}
+%\bibliography{references}
+
+\end{document}
