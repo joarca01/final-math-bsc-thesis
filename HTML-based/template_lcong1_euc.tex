@@ -1,0 +1,153 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{geometry}
+\geometry{top=2.54cm, bottom=2.54cm, left=2.54cm, right=2.54cm, heightrounded}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel} 
+\usepackage{amsthm, amsmath, amssymb, amsfonts, amscd}
+\usepackage{mathtools}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{ifluatex}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage[table]{xcolor}
+\usepackage{tcolorbox}
+\usepackage{mdframed}
+
+% ---- Spacing ---- %
+\linespread{1.0}
+\onehalfspacing
+
+% ---- Page header ---- %
+\pagestyle{fancy}
+\headheight 30pt
+\fancyhf{}
+\rhead{Page \thepage}
+\lhead{\nouppercase{Infinite number of primes in ${k}n+{ell}$, $n\geqslant 0$}}
+\headsep 1.5em
+
+% ---- Link & URL style ---- %
+\hypersetup{colorlinks, citecolor=green, linkcolor=blue, urlcolor=blue}
+\urlstyle{rm}
+
+% ---- Paragraph indentation style ---- %
+\setlength{\parindent}{20pt}
+
+% ---- Box ---- %
+\definecolor{framecolor}{rgb}{0.5, 0.5, 0.5}
+\definecolor{backcolor}{rgb}{0.94, 0.97, 1.0}
+\newtcolorbox{mybox}{colback=backcolor, colframe=framecolor, boxrule=0.5pt, arc=3pt}
+
+% ---- Theorems ---- %
+\newtheorem{theorem}{Theorem}%[section]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+
+% ---- Definitions ---- %
+\renewcommand{\qedsymbol}{\rule{0.7em}{0.7em}} % Black box to end proofs. 
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\DeclareMathOperator{\degpol}{deg} % Degree of a polynomial.
+\DeclareUnicodeCharacter{03B6}{\zeta} % Define Unicode Character 'ζ'.
+%\newcommand{\splitatcommas}[1]{%
+%  \begingroup
+%  \begingroup\lccode`~=`, \lowercase{\endgroup
+%    \edef~{\mathchar\the\mathcode`, \penalty0 \noexpand\hspace{0pt plus 1em}}%
+%  }\mathcode`,="8000 #1%
+%  \endgroup
+%}% Break long inline expressions after comma sign.
+\renewcommand\title{\textbf{The arithmetic progression ${k}n+{ell}$, $n\geqslant0$, contains infinitely many primes.\\ A Euclidean proof}}
+
+\begin{document}
+\thispagestyle{plain}
+\pagenumbering{arabic}
+\sloppy
+%\begin{center}
+%{\huge \bfseries \title\par}
+%\vspace{1cm}
+%\end{center}
+\section{The arithmetic progression ${k}n+{ell}$, $n\geqslant0$, contains infinitely many primes. A Euclidean proof}
+
+We will prove that the arithmetic progression $\equiv {ell} \pmod{{k}}$ contains infinitely many primes. Equivalently, we will see that there are infinitely many primes of the form ${k}n+{ell}$, $n\geqslant0$. To follow the proof, one must recall the expression of the discriminant of a polynomial. 
+
+\textbf{Definition.} The discriminant of a monic polynomial $A(x)=x^m+a_{m-1}x^{m-1}+\cdots+a_1x+a_0$ is given, in terms of its roots $\{r_1,r_2,\dots,r_m\}\subset\C$ (not necessarily distinct), by
+\begin{equation}\label{eq:discrim}
+	\Delta(A)=\prod_{i<j}(r_i-r_j)^2, \quad 1\leqslant i,j\leqslant m.
+\end{equation}
+
+It will be useful to remember that the ${k}${sufix_cyclo_alt} cyclotomic polynomial is $\Phi_{{k}}(x)={cyclotomic_polynomial}$. We shall also define what a \emph{prime divisor} of a given polynomial is.
+
+\textbf{Definition.} Let $A(x)\in\Z[x]$ be a polynomial. We say that a prime number $p$ is a \emph{prime divisor} of $A$ (or simply that $p$ \emph{divides} $A$) if there exists $m\in\Z$ such that $p$ divides $A(m)$.
+
+\section{The main Theorem}\label{sec:mainTh}
+
+We are now able to show that there exist infinitely many primes $\equiv 1\pmod{{k}}$. For this purpose, consider the polynomial 
+\begin{equation*}
+\Phi_{{k}}(x)={cyclotomic_polynomial}.
+\end{equation*}
+We will specifically show that every prime divisor $p$ of $\Phi_{{k}}(x)$ {prime_divisors_disc_cyclo_alt} To see this, consider the set $S:=\{{coset_reps_list}\}$ and the values $\zeta^{s}$, with $s\in S$ and $\zeta:=e^{2\pi i/{{k}}}$, a ${k}${sufix_cyclo_alt} primitive root of unity (thus a root of $\Phi_{{k}}(x)$). A simple calculation shows that $\Phi_{{k}}(x)$ can be written as
+\begin{equation*}
+\Phi_{{k}}(x)=\prod_{s\in S}\big(x-\zeta^{s}\big)={cyclotomic_polynomial}.
+\end{equation*}
+{disc_cyclo_value_alt}
+
+Now, suppose that $p$ is a prime divisor of $\Phi_{{k}}$ such that $p\notin T$. Next, consider a field $\F$ containing both the finite field $\F_p$ and $\zeta$\footnote{For instance, consider $\F=\F_{p^n}$ with a suitable integer $n\geqslant 1$ such that $\Phi_{{k}}$ has a root $\zeta$.}. Since $p$ divides $\Phi_{{k}}$, working in $\F$, there exists $a\in\Z$ such that 
+\begin{equation*}
+\Phi_{{k}}(a)=\prod_{s'\in S}\big(a-\zeta^{s'}\big)=0.
+\end{equation*}
+Since $\F$ is a field, there exists some $s\in S$ such that $a=\zeta^{s}$.
+
+\textbf{Lemma.} \emph{The equality $\zeta^s=\zeta^{ps}$ holds in $\F$.}
+
+\textit{Proof.} Observe that the following calculation holds in $\F$:
+\begin{equation*}\label{eq:reproots}
+\zeta^{s}=a=a^p=\zeta^{ps},
+\end{equation*}
+where we have used Fermat little theorem in the second equality. \ $\blacksquare$ 
+
+Therefore, the fact that $\zeta^{s}=\zeta^{ps}$ means that $\zeta^{ps}=\zeta^{s}$ is a root of $\overline{\Phi_{{k}}(x)}\in\F[x]$. 
+
+\textbf{Lemma.} \emph{$\zeta^{ps}$ is also a root of $\Phi_{{k}}(x)$ in $\Q(\zeta)$ $($the smallest subfield of $\C$ containing $\zeta)$.}
+
+\textit{Proof.} Begin by noting that the value $\zeta^{ps}$ only depends on the value of $ps \bmod{{k}}$ since it only appears as an exponent of $\zeta$. Since $p$ does not divide ${k}$ and $s$ is coprime to ${k}$, $ps$ is coprime to ${k}$ (so $ps \bmod{{k}}$ is coprime to ${k}$) and hence $\zeta^{ps}$ is a primitive ${k}${sufix_cyclo_alt} root of unity. Thus, $\zeta^{ps}$ is a root of $\Phi_{{k}}(x)$ in $\Q(\zeta)$. \ $\blacksquare$
+
+\textbf{Lemma.} \emph{$\zeta^{ps}$ and $\zeta^{s}$ are the same root of $\Phi_{{k}}(x)$ in $\Q(\zeta)$.}
+
+\textit{Proof.} If $\zeta^{ps}$ and $\zeta^{s}$ were two distinct roots of $\Phi_{{k}}(x)$ in $\Q(\zeta)$, we know because of the equality $\zeta^{s}=\zeta^{ps}$ that they would be the same in $\F$. Therefore, observing the expression of the discriminant, it follows that $\Delta(\Phi_{{k}} \bmod{p})=\Delta(\Phi_{{k}}) \bmod{p}=0$, so $p$ divides $\Delta(\Phi_{{k}})={factor_discriminant}$. This is a contradiction with our choice of $p$. Thus, $\zeta^{ps}$ and $\zeta^{s}$ are in fact the same root of $\Phi_{{k}}(x)$ in $\Q(\zeta)$. \ $\blacksquare$
+
+Therefore, the equality
+\begin{equation}\label{eq:equality_in_zeta}
+\zeta^{ps}=\zeta^{s}
+\end{equation}
+holds in $\Q(\zeta)$. 
+
+\textbf{Lemma.} \emph{The fact that $\zeta^{ps}=\zeta^{s}$ holds in $\Q(\zeta)$ implies that $p \bmod{{k}}=1$.}
+
+\textit{Proof.} Write the above equation in terms of $\theta:=\zeta^{s}$. This change yields
+\begin{equation*}
+\theta^{p}=\theta.
+\end{equation*}
+The right-hand side of the equation above does not depend on $p$. The left-hand side only depends on the value of $p\bmod{{k}}$, since $p$ only appears as an exponent of $\theta$. In conclusion, $\zeta^{ps}=\zeta^{s}$ only holds if $p \bmod{{k}}=1$, that is, if $p\equiv 1\pmod{{k}}$. \ $\blacksquare$
+
+In conclusion, every prime divisor $p$ of $\Phi_{{k}}$ {prime_divisors_disc_cyclo_alt} In Section \ref{sec:properties} we will establish that the polynomial $\Phi_{{k}}$ has infinitely many prime divisors. But, from the remark above, all these prime divisors must be $\equiv 1\pmod{{k}}$ (except for those $p\in T$). This concludes the proof that there are infinitely many primes $\equiv {ell} \pmod{{k}}$.
+
+\section{Property of the polynomial \texorpdfstring{$\Phi_{{k}}(x)$}{Pkx}}\label{sec:properties}
+
+We just need the following lemma to complete the proof of the main Theorem in Section \ref{sec:mainTh}.
+
+\textbf{Lemma.} \emph{The cyclotomic polynomial $\Phi_{{k}}(x)\in\Z[x]$ has infinitely many prime divisors.}
+
+\textit{Proof.} There is obviously at least one prime divisor of $\Phi_{{k}}$, since the case $\Phi_{{k}}(x)={cyclotomic_polynomial}=\pm 1$ only happens for a finite number of integer values of $x$. Now suppose $\Phi_{{k}}$ has only a finite number of prime divisors, say $p_1, p_2,\dots,p_k$ and let $Q:=p_1p_2\cdots p_k$. 
+
+Observe that $\degpol(\Phi_{{k}})={eulersphi_k}$ and $\Phi_{{k}}(0)={indep_coef_cyclotomic}\neq 0$. Then, $\Phi_{{k}}(Qx)=g(x)$ for some $g(x)\in\Z[x]$ of the form {polynom_aux_alt} This, together with the fact that $p$ divides $g(m)$, would imply that $p$ divides $g(m) - \sum_{i=1}^{{eulersphi_k}}c_im^i=1$, which means $p=1$, a contradiction. 
+
+Now, $p$ is a prime divisor of $\Phi_{{k}}$, but $p$ is not any of the primes $p_1,p_2,\dots,p_k$, since we just proved that $p$ does not divide $p_1p_2\cdots p_k=Q$. Thus, we found a new prime divisor of $\Phi_{{k}}$ not in our list, so one concludes that $\Phi_{{k}}$ has infinitely many prime divisors. \ $\blacksquare$
+
+\end{document}

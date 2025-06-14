@@ -1,0 +1,278 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{geometry}
+\geometry{top=2.54cm, bottom=2.54cm, left=2.54cm, right=2.54cm, heightrounded}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel} 
+\usepackage{amsthm, amsmath, amssymb, amsfonts, amscd}
+\usepackage{mathtools}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{ifluatex}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage[table]{xcolor}
+\usepackage{tcolorbox}
+\usepackage{mdframed}
+
+% ---- Spacing ---- %
+\linespread{1.0}
+\onehalfspacing
+
+% ---- Page header ---- %
+\pagestyle{fancy}
+\headheight 30pt
+\fancyhf{}
+\rhead{Page \thepage}
+\lhead{\nouppercase{Infinite number of primes in $15n+11$, $n\geqslant 0$}}
+\headsep 1.5em
+
+% ---- Link & URL style ---- %
+\hypersetup{colorlinks, citecolor=green, linkcolor=blue, urlcolor=blue}
+\urlstyle{rm}
+
+% ---- Paragraph indentation style ---- %
+\setlength{\parindent}{20pt}
+
+% ---- Box ---- %
+\definecolor{framecolor}{rgb}{0.5, 0.5, 0.5}
+\definecolor{backcolor}{rgb}{0.94, 0.97, 1.0}
+\newtcolorbox{mybox}{colback=backcolor, colframe=framecolor, boxrule=0.5pt, arc=3pt}
+
+% ---- Theorems ---- %
+\newtheorem{theorem}{Theorem}%[section]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+
+% ---- Definitions ---- %
+\renewcommand{\qedsymbol}{\rule{0.7em}{0.7em}} % Black box to end proofs. 
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\Q}{\ensuremath{\mathbb{Q}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+\newcommand{\F}{\ensuremath{\mathbb{F}}}
+\DeclareMathOperator{\degpol}{deg} % Degree of a polynomial.
+\DeclareUnicodeCharacter{03B6}{\zeta} % Define Unicode Character 'ζ'. 
+\newcommand{\splitatcommas}[1]{%
+  \begingroup
+  \begingroup\lccode`~=`, \lowercase{\endgroup
+    \edef~{\mathchar\the\mathcode`, \penalty0 \noexpand\hspace{0pt plus 1em}}%
+  }\mathcode`,="8000 #1%
+  \endgroup
+}% Break long inline expressions after comma sign
+\newsavebox{\equationbox} % Save box for storing the equation
+\newcommand{\autosizeequation}[1]{%
+	\sbox{\equationbox}{$\displaystyle #1$}% Store the equation in the box
+	\ifdim \wd\equationbox > \textwidth % Check if the width exceeds text width
+	\resizebox{\textwidth}{!}{$\displaystyle #1$}% Resize if too wide
+	\else
+	#1 % Otherwise, leave it as is
+	\fi
+}% Define a custom macro that checks the equation's length and resizes if necessary
+\renewcommand\title{\textbf{The arithmetic progression $15n+11$, $n\geqslant0$, contains infinitely many primes.\\ A Euclidean proof}}
+
+\begin{document}
+\thispagestyle{plain}
+\pagenumbering{arabic}
+\sloppy
+\begin{center}
+{\huge \bfseries \title\par}
+\vspace{1cm}
+\end{center}
+
+\begin{mybox}
+{\Large \textbf{About this document}}
+\vspace{0.3cm}\\
+\textit{This file has been automatically generated for the user-supplied arithmetic progression. The code behind this document can be found in the url \url{http://www.overleaf.com}, and has been developed as part of a BSc Thesis in Mathematics by Joan Arenillas i Cases at the Autonomous University of Barcelona. The above link also provides full access to the complete Thesis. Please use \href{mailto:joanarenillas01@gmail.com}{\nolinkurl{joanarenillas01@gmail.com}} to report any typo or express any suggestions.}
+\end{mybox}
+\vspace{0.5cm}
+
+We will prove that the arithmetic progression $\equiv 11 \pmod{15}$ contains infinitely many primes. Equivalently, we will see that there are infinitely many primes of the form $15n+11$, $n\geqslant0$. For this purpose, consider the polynomial 
+\begin{equation*}
+\binoppenalty=10000 % no line break after \cdot
+\mathchardef\plus=\mathcode`+ % save the mathcode
+\mathcode`+="8000 % make the plus math active
+\thinmuskip=0mu
+\begingroup\lccode`~=`+
+  \lowercase{\endgroup\def~}{%
+    \plus\allowbreak\hspace{0pt plus 2pt}%
+}
+\hphantom{}
+\parbox{1.0\displaywidth}{\centering\linespread{1.1}\selectfont
+  \makebox[0pt][r]{$ $}$f(x):=x^{4} + 884 x^{3} + 293206 x^{2} + 43243679 x + 2392743361.$
+}
+\end{equation*}
+
+\section{The main Theorem}\label{sec:mainTh}
+
+To prove that there exist infinitely many primes $\equiv 11 \pmod{15}$ we can proceed by contradiction. Suppose there are finitely many primes $\equiv 11\pmod{15}$ and denote them by $p_1, p_2,\dots,p_m$. Since $11, 41, 71 \equiv 11 \pmod{15}$, we can write the list as $11, 41, 71, p_{4},p_{5},\dots, p_m$ (so $p_{3}=71$). Now, let $Q:=5 \cdot 11^{2} \cdot 19 \cdot 41^{2} \cdot 1091\cdot p_{4}p_{5}\cdots p_m$. Consider the following congruence equation system:
+	\begin{equation*}
+        \begin{cases}      
+		c\equiv 2\pmod{71^2}\\
+		c\equiv 0\pmod{15Q}.
+        \end{cases}
+	\end{equation*}
+The Chinese Remainder Theorem guarantees the existence of $c\in\Z$ that is a solution to the above system since $71$ does not divide $15Q$. It follows that 
+	\begin{gather*}
+		\autosizeequation{f(c)\equiv f(2)=2480410631\equiv 71\cdot24\pmod{71^2},}\\
+        \autosizeequation{f(c)\equiv f(0)=61 \cdot 39225301\pmod{15Q}.}
+	\end{gather*}
+
+In particular, observe that the prime $p_{3}=71$ divides $f(c)$, but $71^2$ does not.
+\begin{lemma}
+Every prime that divides $f(c)$ is $\equiv 1\pmod{15}$ $($except for $p_{3}=71)$. 
+\end{lemma}
+\begin{proof}
+Let $r$ be a prime divisor of $f(c)$ different from $71$. In Section \ref{sec:properties} we will establish that $r=\splitatcommas{3, 5, 11, 19, 41, 1091}$ or $r\equiv 1,11\pmod{15}$. For now, we will assume this is true. To reach a contradiction, suppose $r\not\equiv 1\pmod{15}$. Thus, $r\equiv 11\pmod{15}$ or $r=\splitatcommas{3, 5, 11, 19, 41, 1091}$, so $r$ divides $15\cdot5 \cdot 11^{2} \cdot 19 \cdot 41^{2} \cdot 1091\cdot p_{4}p_{5}\cdots p_m=15Q$. Since $f(c)\equiv 61 \cdot 39225301\pmod{15Q}$ and $r$ is a divisor of $15Q$, we deduce that $f(c)\equiv 61 \cdot 39225301\pmod{r}$. But $r$ is a divisor of $f(c)$, so $f(c)\equiv 0 \pmod{r}$. Therefore, $61 \cdot 39225301\equiv 0\pmod{r}$. Thus, it must happen that $r=61, 39225301$, which are $\equiv 1 \pmod{15}$. This forces $r$ to be $\equiv 1 \pmod{15}$, a contradiction. Therefore, $f(c)$ is only divisible by primes $\equiv 1\pmod{15}$ (and by $p_{3}=71$).
+\end{proof}
+
+Finally, from the fact that $f(c)$ has every prime divisor $\equiv 1 \pmod{15}$ except for $p_{3}=71$ it follows,$\bmod{15}$, that $f(c)=1\cdot1\cdots 1\cdot11=11$ (note that $11$ only appears once because $p_{3}=71\equiv11\pmod{15}$ and the fact that $71^2$ does not divide $f(c)$). However, observe that $f(c)\equiv f(0)\equiv 1\pmod{15}$. This is a contradiction. Therefore, the arithmetic progression $\equiv 11\pmod{15}$ contains infinitely many primes.
+
+\section{Properties of the polynomial \texorpdfstring{$f(x)$}{fx}}\label{sec:properties}
+ 
+To complete the proof of the main Theorem in Section \ref{sec:mainTh} we must justify that every prime divisor $p$ of $f(c)$ either belongs to the finite set 
+\begin{equation*}
+\binoppenalty=10000 % no line break after \cdot
+\mathchardef\comma=\mathcode`, % save the mathcode
+\mathcode`,="8000 % make the comma math active
+\thinmuskip=0mu
+\begingroup\lccode`~=`,
+  \lowercase{\endgroup\def~}{%
+    \comma\allowbreak\hspace{3pt plus 2pt}%
+}
+\hphantom{}
+\parbox{1.0\displaywidth}{\centering\linespread{1.1}\selectfont
+  \makebox[0pt][r]{$ $}$T:=\{3, 5, 11, 19, 41, 1091\}$
+}
+\end{equation*}
+or satisfies $p\equiv 1,11\pmod{15}$. To see this, we must first recall the expression of the discriminant of a polynomial. 
+\begin{definition}
+The discriminant of a monic polynomial $A(x)=x^m+a_{m-1}x^{m-1}+\cdots+a_1x+a_0$ is given, in terms of its roots $\{r_1,r_2,\dots,r_m\}\subset\C$ (not necessarily distinct), by
+\begin{equation}\label{eq:discrim}
+	\Delta(A)=\prod_{i<j}(r_i-r_j)^2, \quad 1\leqslant i,j\leqslant m.
+\end{equation}
+\end{definition}
+
+It will be useful to remember that the $15$th cyclotomic polynomial is $\Phi_{15}(x)=x^{8} - x^{7} + x^{5} - x^{4} + x^{3} - x + 1$. We shall also define what a \emph{prime divisor} of a given polynomial is. 
+\begin{definition}
+Let $A(x)\in\Z[x]$ be a polynomial. We say that a prime number $p$ is a \emph{prime divisor} of $A$ (or simply that $p$ \emph{divides} $A$) if there exists $m\in\Z$ such that $p$ divides $A(m)$.
+\end{definition}
+With the definition above, we are interested in describing the prime divisors of $f$.
+
+Let's now start the proof. Consider the set $S:=\splitatcommas{\{1, 2, 4, 8\}}$ and the values $h(\zeta^{s}):=(\zeta^{s}-15)(15-\zeta^{11s})$, with $s\in S$ and $\zeta:=e^{2\pi i/{15}}$, a $15$th primitive root of unity (thus a root of $\Phi_{15}(x)$). A simple calculation shows that $f(x)$ can be written as
+\begin{equation}\label{eq:fpolynomial}
+\binoppenalty=10000 % no line break after \cdot
+\mathchardef\plus=\mathcode`+ % save the mathcode
+\mathcode`+="8000 % make the plus math active
+\thinmuskip=0mu
+\begingroup\lccode`~=`+
+  \lowercase{\endgroup\def~}{%
+    \plus\allowbreak\hspace{0pt plus 2pt}%
+}
+\hphantom{}
+\parbox{1.0\displaywidth}{\centering\linespread{1.1}\selectfont
+  \makebox[0pt][r]{$ $}$f(x)=\displaystyle\prod_{s\in S}\big(x-h(\zeta^{s})\big)=x^{4} + 884 x^{3} + 293206 x^{2} + 43243679 x + 2392743361.$
+}
+\end{equation}
+The discriminant of $f(x)$ can be calculated\footnote{One way of calculating $\Delta(f)$ is via the resultant of $f$ and $f'$.} to be $\Delta(f)=5^{3} \cdot 11^{2} \cdot 19^{2} \cdot 41^{2} \cdot 1091^{2}$.
+
+Now, suppose that $p$ is a prime divisor of $f$ such that $p\notin T$. Next, consider a field $\F$ containing both the finite field $\F_p$ and $\zeta$\footnote{For instance, consider $\F=\F_{p^n}$ with a suitable integer $n\geqslant 1$ such that $\Phi_{15}$ has a root $\zeta$.}. Since $p$ divides $f$, working in $\F$, there exists $a\in\Z$ such that 
+\begin{equation*}
+f(a)=\prod_{s'\in S}\big(a-h(\zeta^{s'})\big)=0.
+\end{equation*}
+Since $\F$ is a field, there exists some $s\in S$ such that $a=h(\zeta^{s})$.
+\begin{lemma}
+The equality $h(\zeta^s)=h(\zeta^{ps})$ holds in $\F$.
+\end{lemma}
+\begin{proof}
+ Observe that the following calculation holds in $\F$:
+\begin{align}\label{eq:reproots}
+h(\zeta^{s})&=a\notag \\ 
+&=a^p\notag \\ 
+&=h(\zeta^{s})^p\notag \\ 
+&=(\zeta^{s}-15)^p(15-\zeta^{11s})^p\notag \\ 
+&=(\zeta^{ps}-15^p)(15^p-\zeta^{11ps})\notag \\ 
+&=(\zeta^{ps}-15)(15-\zeta^{11ps})\notag \\ 
+&=h(\zeta^{ps}),
+\end{align}
+where we have used Fermat's little theorem in the second equality. The fifth equality, on the other hand, relies on the fact that $\F$ has characteristic $p$ (so that $(c+d)^p=c^p+d^p$ for every $c,d \in \F$) and the following one, on Fermat's little theorem.
+\end{proof}
+
+Therefore, equality \eqref{eq:reproots} means that $h(\zeta^{ps})=h(\zeta^{s})$ is a root of $\overline{f(x)}\in\F[x]$. 
+
+\begin{lemma}
+$h(\zeta^{ps})$ is also a root of $f(x)$ in $\Q(\zeta)$ $($the smallest subfield of $\C$ containing $\zeta)$.
+\end{lemma}
+\begin{proof}
+Begin by noting that the value $h(\zeta^{ps})$ only depends on the value of $ps \bmod{15}$ since it only appears as an exponent of $\zeta$. Since $p$ does not divide $15$ and $s$ is coprime to $15$, $ps$ is coprime to $15$ (so $ps \bmod{15}$ is coprime to $15$) and hence $\zeta^{ps}$ is a primitive $15$th root of unity.
+
+There are now only two options: either $ps \bmod{15}\in S$ or $ps \bmod{15}\notin S$. In the first case, $h(\zeta^{ps})$ is a root of $f(x)$, observing expression \eqref{eq:fpolynomial}. In the latter case, note that every integer $ps \bmod{15}$ relatively prime to $15$ not in $S$ satisfies $ps\equiv 11t\pmod{15}$ for some $t\in S$ (for instance, if $ps \bmod{15}=13$, pick $t=8\in S$ so that $13\equiv 11\cdot8 \pmod{15}$). This means that $h(\zeta^{ps})=h(\zeta^{11t})$. Let us prove that $h(\zeta^{11t})=h(\zeta^{t})$, so $h(\zeta^{ps})=h(\zeta^{11t})=h(\zeta^{t})$ is also a root of $f(x)$. Indeed,
+\begin{align*}
+h(\zeta^{11t})&=(\zeta^{11t}-15)(15-\zeta^{11^2t})\\
+&=(\zeta^{11^2t}-15)(15-\zeta^{11t})\\
+&=(\zeta^{t}-15)(15-\zeta^{11t})\\
+&=h(\zeta^{t}),
+\end{align*}
+where we have used that $\zeta^{11^2t}$ only depends on the value of $11^2t \bmod{15}$ and the fact that $11^2\equiv 1\pmod{15}$. Therefore, $h(\zeta^{ps})=h(\zeta^{t})$ is always a root of $f(x)$ in $\Q(\zeta)$.
+\end{proof}
+
+\begin{lemma}
+$h(\zeta^{ps})$ and $h(\zeta^{s})$ are the same root of $f(x)$ in $\Q(\zeta)$.
+\end{lemma}
+\begin{proof}
+If $h(\zeta^{ps})$ and $h(\zeta^{s})$ were two distinct roots of $f(x)$ in $\Q(\zeta)$, we know because of \eqref{eq:reproots} that they would be the same in $\F$. Therefore, observing expression \eqref{eq:discrim}, it follows that $\Delta(f \bmod{p})=\Delta(f) \bmod{p}=0$, so $p$ divides $\Delta(f)=5^{3} \cdot 11^{2} \cdot 19^{2} \cdot 41^{2} \cdot 1091^{2}$. This is a contradiction with our choice of $p$. Thus, $h(\zeta^{ps})$ and $h(\zeta^{s})$ are in fact the same root of $f(x)$ in $\Q(\zeta)$.
+\end{proof}
+
+Therefore, the equality
+\begin{equation*}
+h(\zeta^{ps})=\big(\zeta^{ps}-15\big)\big({15}-\zeta^{11ps}\big)=\big(\zeta^{s}-15\big)\big({15}-\zeta^{11s}\big)=h(\zeta^{s})
+\end{equation*}
+holds in $\Q(\zeta)$. Next, write the above equation in terms of $\theta:=\zeta^{s}$ and multiply both sides by $-1$. This changes yield
+\begin{align}
+225-{15}\big(\theta^{p}+\theta^{11p}\big)+\theta^{(1+11)p}&=225-{15}\big(\theta+\theta^{11}\big)+\theta^{1+11}, \notag \\
+-15\big(\theta^{p}+\theta^{11p}\big)+\theta^{12p}&=-15\big(\theta+\theta^{11}\big)+\theta^{12}\label{eq:equality_in_theta}.
+\end{align}
+The right-hand side of the equation above does not depend on $p$. The left-hand side only depends on the value of $p\bmod{15}$, since $p$ only appears as an exponent of $\theta$. The above equality gives information about $p$, which is what we are interested in. 
+
+\begin{lemma}
+The fact that \eqref{eq:equality_in_theta} holds implies that $p \bmod{15}\in H:=\{1,11\}$.
+\end{lemma}
+\begin{proof}
+To prove this, we will check every value of $p$ such that $p \bmod{15}\notin H$ and conclude that \eqref{eq:equality_in_theta} is not true in $\Q(\theta)$ in those cases. Therefore, we shall see the following: if $p \bmod{15}\in G\setminus H=\splitatcommas{\{2, 4, 7, 8, 13, 14\}}$, then $-h(\theta^p)\neq -h(\theta)$. This will automatically imply what we want to prove: since \eqref{eq:equality_in_theta} holds, $p \bmod{15}\in H$. To see this, rewrite \eqref{eq:equality_in_theta} as
+\begin{equation}\label{eq:equalityQ}
+-15\big(\theta^{p}+\theta^{11p}\big)+\theta^{12p}+15\big(\theta+\theta^{11}\big)-\theta^{12}=0
+\end{equation}
+and trade $\theta$ for $x$, since the condition \eqref{eq:equalityQ} in $\Q(\theta)$ is equivalent to the condition
+\begin{equation}\label{eq:polycheck0}
+-15\big(x^p+x^{11p}\big)+x^{12p}+15\big(x+x^{11}\big)-x^{12}=0
+\end{equation}
+in $\Q[x]/(\Phi_{15}(x))\cong\Q(\theta)$ ($\Phi_{15}(x)$ is also the minimal polynomial of $\theta$, since $\theta=\zeta^{s}$ is a primitive $15$th root of unity). We will explicitly write the case $p=2 \bmod{15}$ (the remaining values of $p \pbod{15}\in G\setminus H$ are left as an exercise to the reader). With this value of $p$, equation \eqref{eq:polycheck0} becomes
+\begin{align*}
+A(x)&:=-15\big(x^{2}+x^{22}\big)+x^{24}+15\big(x+x^{11}\big)-x^{12}\\
+&=x^{24} - 15 x^{22} - x^{12} + 15 x^{11} - 15 x^{2} + 15 x=0.
+\end{align*}
+
+If we recall that $\Q(\theta)\cong\Q[x]/(\Phi_{15}(x))$, the above equation is equivalent to $A(x)$ being a multiple of the $15$th cyclotomic polynomial, $\Phi_{15}(x) = x^{8} - x^{7} + x^{5} - x^{4} + x^{3} - x + 1$. Therefore, we are interested in showing that the residue $R(x)$ of the division $A(x)/\Phi_{15}(x)$ satisfies $R(x)\neq 0$, from which our result will follow. A simple Euclidean division of polynomials shows that $A(x)=B(x)\cdot\Phi_{15}(x)+(-13 x^{7} - 16 x^{6} - x^{3} - 13 x^{2} - 1)$, with $B(x)$ a polynomial of degree $16$, so $R(x)=-13 x^{7} - 16 x^{6} - x^{3} - 13 x^{2} - 1 \neq 0$. Therefore, equality \eqref{eq:equality_in_theta} implies that $p \bmod{15} \in H$, that is, $p\equiv 1,11\pmod{15}$.
+\end{proof}
+
+In conclusion, every prime divisor $p$ of $f(c)$ either belongs to the finite set 
+\begin{equation*}
+\binoppenalty=10000 % no line break after \cdot
+\mathchardef\comma=\mathcode`, % save the mathcode
+\mathcode`,="8000 % make the comma math active
+\thinmuskip=0mu
+\begingroup\lccode`~=`,
+  \lowercase{\endgroup\def~}{%
+    \comma\allowbreak\hspace{3pt plus 2pt}%
+}
+\hphantom{}
+\parbox{1.0\displaywidth}{\centering\linespread{1.1}\selectfont
+  \makebox[0pt][r]{$ $}$T:=\{3, 5, 11, 19, 41, 1091\}$
+}
+\end{equation*}
+or satisfies $p\equiv 1,11\pmod{15}$, which finally settles the main Theorem in Section \ref{sec:mainTh}. 
+
+\end{document}

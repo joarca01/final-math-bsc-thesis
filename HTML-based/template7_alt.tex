@@ -1,0 +1,22 @@
+To prove that there exist infinitely many primes $\equiv {ell} \pmod{{k}}$ we can proceed by contradiction. Suppose there are finitely many primes $\equiv {ell}\pmod{{k}}$ and denote them by $p_1, p_2,\dots,p_m$. Since ${prev_primes_list} \equiv {ell} \pmod{{k}}$, we can write the list as ${prev_primes_list}, p_{{index_prime_unk}},p_{{index_prime_unk_plusone}},\dots, p_m$ (so $p_{{index_prime}}={first_prime}$). {def_Q_alt} Consider the following congruence equation system:
+	\begin{equation*}
+        \begin{cases}      
+		c\equiv {b_value}\pmod{{first_prime}^2}\\
+		c\equiv 0\pmod{{k}Q}.
+        \end{cases}
+	\end{equation*}
+The Chinese Remainder Theorem guarantees the existence of $c\in\Z$ that is a solution to the above system since ${first_prime}$ does not divide ${k}Q$. It follows that 
+	\begin{gather*}
+		f(c)\equiv f({b_value})={f_at_b}\equiv {first_prime}\cdot{f_at_b_red}\pmod{{first_prime}^2},\\
+        f(c)\equiv f(0)={indep_coef_f}\pmod{{k}Q}.
+	\end{gather*}
+
+In particular, observe that the prime $p_{{index_prime}}={first_prime}$ divides $f(c)$, but ${first_prime}^2$ does not.
+
+\textbf{Lemma.} \emph{Every prime that divides $f(c)$ is $\equiv 1\pmod{{k}}$ $($except for $p_{{index_prime}}={first_prime})$.} 
+
+{begin_lema1_alt} Since $f(c)\equiv f(0)\pmod{{k}Q}$ and $r$ is a divisor of ${k}Q$, we deduce that $f(c)\equiv f(0)\pmod{r}$. But $r$ is a divisor of $f(c)$, so $f(c)\equiv 0 \pmod{r}$. Therefore, $f(0)\equiv 0\pmod{r}$. Thus, it must happen that $r$ is a prime divisor of $f(0)$. Note that $f(0)=\Phi_{{k}}({u})$. We will now show that every prime divisor of $\Phi_{{k}}({u})$ is $\equiv 1 \pmod{{k}}$. 
+
+Let $q$ be a prime divisor of $\Phi_{{k}}({u})$, so $\Phi_{{k}}({u})\equiv 0\pmod{q}$. Now, ${u}^{{k}}-1\equiv 0\pmod{q}$, since $\Phi_{{k}}$ divides $x^{{k}}-1$. Therefore, the order of ${u}$ as an element of $(\Z/q\Z)^\times$ divides ${k}$. {cont_proof_div_f0_alt}
+
+This forces every prime divisor of $f(0)=\Phi_{{k}}({u})$ to be $\equiv 1 \pmod{{k}}$, a contradiction.
