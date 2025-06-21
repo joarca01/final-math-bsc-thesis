@@ -20,7 +20,7 @@ However, the main goal of this repository is to host the stable version of the $
 
 ## Requirements
 
-The webpage we created (available at http://167.172.185.115) makes the technical requirements to access the proofs virtually nonexistent. In fact, this was a goal from the beginning of the thesis: we wanted to create an automated proof generator available to everyone. The only requisites to use the webpage are related to the supplied values of $k$ and $\ell$. Specifically, here's how to use the webpage:
+The webpage we created (available at http://167.172.185.115) makes the technical requirements to access the proofs virtually nonexistent. In fact, this was a goal from the beginning of the thesis: we wanted to create an automated proof generator publicly accessible. The only requisites to use the webpage are related to the supplied values of $k$ and $\ell$. Specifically, here's how to use the webpage:
 
 - Remember that the values of $k$ and $\ell$ must be positive integers, satisfying $\gcd(k,\ell)=1$.
 - Also, the condition $k>\ell$ must be met for $k>1$. Observe that this is not a limitation. If, say, $k=12$ and $\ell=17$, then the progression $12n+17$, $n\geqslant 0$ has the same terms as $12n+5$ for $n\geqslant 1$. The trick consists in considering $17 \bmod{12}=5$. 
@@ -31,7 +31,7 @@ The webpage we created (available at http://167.172.185.115) makes the technical
 
 The code for the webpage is located in the folder `HTML-based`.
 
-Alternatively, an early version of the code is available at `PDF-based`. The relevant file in this folder is `template_euc.ipynb`, which, for a given $k$ and $\ell$, generates a `.tex` file with the proof, which can be later compiled to obtain a `.pdf`. It is enough to have every file in a unique folder and execute the function `ap_euc` in `template_euc.ipynb`. This version of the code requires:
+Alternatively, an early version of the code is available at `PDF-based` (this folder is temporarily unavailable until I defend the Thesis). The relevant file in this folder is `template_euc.ipynb`, which, for a given $k$ and $\ell$, generates a `.tex` file with the proof, which can be later compiled to obtain a `.pdf`. It is enough to have every file in a unique folder and execute the function `ap_euc` in `template_euc.ipynb`. This version of the code requires:
 
 - `tex` compiler
 - `stopit` module
