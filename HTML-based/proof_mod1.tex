@@ -1,0 +1,93 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{geometry}
+\geometry{top=2.54cm, bottom=2.54cm, left=2.54cm, right=2.54cm, heightrounded}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel} 
+\usepackage{amsthm, amsmath, amssymb, amsfonts, amscd}
+\usepackage{mathtools}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{ifluatex}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage[table]{xcolor}
+\usepackage{tcolorbox}
+\usepackage{mdframed}
+
+% ---- Spacing ---- %
+\linespread{1.0}
+\onehalfspacing
+
+% ---- Page header ---- %
+\pagestyle{fancy}
+\headheight 30pt
+\fancyhf{}
+\rhead{Page \thepage}
+\lhead{\nouppercase{Infinite number of primes in $n+1$, $n\geqslant 0$}}
+\headsep 1.5em
+
+% ---- Link & URL style ---- %
+\hypersetup{colorlinks, citecolor=green, linkcolor=blue, urlcolor=blue}
+\urlstyle{rm}
+
+% ---- Paragraph indentation style ---- %
+\setlength{\parindent}{20pt}
+
+% ---- Box ---- %
+\definecolor{framecolor}{rgb}{0.5, 0.5, 0.5}
+\definecolor{backcolor}{rgb}{0.94, 0.97, 1.0}
+\newtcolorbox{mybox}{colback=backcolor, colframe=framecolor, boxrule=0.5pt, arc=3pt}
+
+% ---- Theorems ---- %
+\newtheorem{theorem}{Theorem}%[section]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+
+% ---- Definitions ---- %
+\renewcommand{\qedsymbol}{\rule{0.7em}{0.7em}} % Black box to end proofs. 
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\Q}{\ensuremath{\mathbb{Q}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+\newcommand{\F}{\ensuremath{\mathbb{F}}}
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)} % (mod k) sequence.
+\DeclareUnicodeCharacter{03B6}{\zeta} % Define Unicode Character 'ζ'. 
+\newcommand{\splitatcommas}[1]{%
+	\begingroup
+	\begingroup\lccode`~=`, \lowercase{\endgroup
+		\edef~{\mathchar\the\mathcode`, \penalty0 \noexpand\hspace{0pt plus 1em}}%
+	}\mathcode`,="8000 #1%
+	\endgroup
+}% Break long inline expressions after comma sign
+\newsavebox{\equationbox} % Save box for storing the equation
+\newcommand{\autosizeequation}[1]{%
+	\sbox{\equationbox}{$\displaystyle #1$}% Store the equation in the box
+	\ifdim \wd\equationbox > \textwidth % Check if the width exceeds text width
+	\resizebox{\textwidth}{!}{$\displaystyle #1$}% Resize if too wide
+	\else
+	#1 % Otherwise, leave it as is
+	\fi
+}% Define a custom macro that checks the equation's length and resizes if necessary
+\renewcommand\title{\textbf{The arithmetic progression $n+1$, $n\geqslant0$, contains infinitely many primes.\\ A Euclidean proof}}
+
+\begin{document}
+	\thispagestyle{plain}
+	\pagenumbering{arabic}
+	\sloppy
+	%\begin{center}
+	%	{\huge \bfseries \title\par}
+	%	\vspace{1cm}
+	%\end{center}
+	\section{The arithmetic progression $n+1$, $n\geqslant0$, contains infinitely many primes. A Euclidean proof}
+
+	The fact that the arithmetic progression $\equiv 1 \Mod{1}$, that is, $n+1$, $n\geqslant0$, contains infinitely many primes, stems from the fact that there exist infinitely many primes. For completeness we shall reproduce here Euclid's proof that there exist infinitely many primes.
+	
+\textbf{Theorem (Euclid).} \emph{There are infinitely many prime numbers.}
+
+	\textit{Proof.} Suppose there are finitely many primes, say $p_1,p_2,\dots,p_m$. Our goal is to show that there exists yet another prime not in our list. Thus, consider $Q:=p_1p_2\cdots p_m+1$. This number has at least one prime divisor, $p$, since $Q>1$. If $p$ was one of the $p_i$ for $1\leqslant i \leqslant m$, then $p$ would divide $p_1p_2\cdots p_m$. Since $p$ also divides $Q$, we deduce that $p$ divides $Q-p_1p_2\cdots p_m=1$, so $p$ must be equal to $1$, a contradiction ($1$ is not a prime). Therefore, $p$ is a prime and it cannot be in our list, which is a contradiction again. \ $\blacksquare$
+	
+\end{document}

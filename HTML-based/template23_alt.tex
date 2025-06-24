@@ -1,0 +1,65 @@
+
+% ---- Page header ---- %
+\pagestyle{fancy}
+\headheight 30pt
+\fancyhf{}
+\rhead{Page \thepage}
+\lhead{\nouppercase{Infinite number of primes in ${original_k}n+{original_ell}$, $n\geqslant 0$}}
+\headsep 1.5em
+
+% ---- Link & URL style ---- %
+\hypersetup{colorlinks, citecolor=green, linkcolor=blue, urlcolor=blue}
+\urlstyle{rm}
+
+% ---- Paragraph indentation style ---- %
+\setlength{\parindent}{20pt}
+
+% ---- Box ---- %
+\definecolor{framecolor}{rgb}{0.5, 0.5, 0.5}
+\definecolor{backcolor}{rgb}{0.94, 0.97, 1.0}
+\newtcolorbox{mybox}{colback=backcolor, colframe=framecolor, boxrule=0.5pt, arc=3pt}
+
+% ---- Theorems ---- %
+\newtheorem{theorem}{Theorem}%[section]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+
+% ---- Definitions ---- %
+\renewcommand{\qedsymbol}{\rule{0.7em}{0.7em}} % Black box to end proofs. 
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\DeclareMathOperator{\degpol}{deg} % Degree of a polynomial.
+\DeclareUnicodeCharacter{03B6}{\zeta} % Define Unicode Character 'ζ'. 
+%\newcommand{\splitatcommas}[1]{%
+%  \begingroup
+%  \begingroup\lccode`~=`, \lowercase{\endgroup
+%    \edef~{\mathchar\the\mathcode`, \penalty0 \noexpand\hspace{0pt plus 1em}}%
+%  }\mathcode`,="8000 #1%
+%  \endgroup
+%}% Break long inline expressions after comma sign
+\newsavebox{\equationbox} % Save box for storing the equation
+%\newcommand{\autosizeequation}[1]{%
+%	\sbox{\equationbox}{$\displaystyle #1$}% Store the equation in the box
+%	\ifdim \wd\equationbox > \textwidth % Check if the width exceeds text width
+%	\resizebox{\textwidth}{!}{$\displaystyle #1$}% Resize if too wide
+%	\else
+%	#1 % Otherwise, leave it as is
+%	\fi
+%}% Define a custom macro that checks the equation's length and resizes if necessary
+\renewcommand\title{\textbf{The arithmetic progression ${original_k}n+{original_ell}$, $n\geqslant0$, contains infinitely many primes.\\ A Euclidean proof}}
+
+\begin{document}
+\thispagestyle{plain}
+\pagenumbering{arabic}
+\sloppy
+%\begin{center}
+%{\huge \bfseries \title\par}
+%\vspace{1cm}
+%\end{center}
+\section{The arithmetic progression ${original_k}n+{original_ell}$, $n\geqslant0$, contains infinitely many primes. A Euclidean proof}
+
+By the Chinese Remainder Theorem, a prime $p$ will be $\equiv{original_ell}\pmod{{original_k}}$ if and only if $p\equiv{original_ell}\pmod{2}$ and $p\equiv{original_ell}\pmod{{k}}$. Since ${original_ell}$ is odd, the first condition is equivalent to $p\equiv 1\pmod{2}$, which is trivially satisfied by every prime (except for $2$). Therefore, proving that there exist infinitely many primes $\equiv{original_ell}\pmod{{original_k}}$ is equivalent to showing there exist infinitely many primes $\equiv {ell}\pmod{{k}}$, so we will instead proof this latter statement.
