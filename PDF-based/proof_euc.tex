@@ -1,0 +1,256 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{geometry}
+\geometry{top=2.54cm, bottom=2.54cm, left=2.54cm, right=2.54cm, heightrounded}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel} 
+\usepackage{amsthm, amsmath, amssymb, amsfonts, amscd}
+\usepackage{mathtools}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{ifluatex}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage[table]{xcolor}
+\usepackage{tcolorbox}
+\usepackage{mdframed}
+
+% ---- Spacing ---- %
+\linespread{1.0}
+\onehalfspacing
+
+% ---- Page header ---- %
+\pagestyle{fancy}
+\headheight 30pt
+\fancyhf{}
+\rhead{Page \thepage}
+\lhead{\nouppercase{Infinite number of primes in $51n+35$, $n\geqslant 0$}}
+\headsep 1.5em
+
+% ---- Link & URL style ---- %
+\hypersetup{colorlinks, citecolor=green, linkcolor=blue, urlcolor=blue}
+\urlstyle{rm}
+
+% ---- Paragraph indentation style ---- %
+\setlength{\parindent}{20pt}
+
+% ---- Box ---- %
+\definecolor{framecolor}{rgb}{0.5, 0.5, 0.5}
+\definecolor{backcolor}{rgb}{0.94, 0.97, 1.0}
+\newtcolorbox{mybox}{colback=backcolor, colframe=framecolor, boxrule=0.5pt, arc=3pt}
+
+% ---- Theorems ---- %
+\newtheorem{theorem}{Theorem}%[section]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+
+% ---- Definitions ---- %
+\renewcommand{\qedsymbol}{\rule{0.7em}{0.7em}} % Black box to end proofs. 
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\Q}{\ensuremath{\mathbb{Q}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+\newcommand{\F}{\ensuremath{\mathbb{F}}}
+\DeclareMathOperator{\degpol}{deg} % Degree of a polynomial.
+\DeclareUnicodeCharacter{03B6}{\zeta} % Define Unicode Character 'ζ'. 
+\newcommand{\splitatcommas}[1]{%
+  \begingroup
+  \begingroup\lccode`~=`, \lowercase{\endgroup
+    \edef~{\mathchar\the\mathcode`, \penalty0 \noexpand\hspace{0pt plus 1em}}%
+  }\mathcode`,="8000 #1%
+  \endgroup
+}% Break long inline expressions after comma sign
+\newsavebox{\equationbox} % Save box for storing the equation
+\newcommand{\autosizeequation}[1]{%
+	\sbox{\equationbox}{$\displaystyle #1$}% Store the equation in the box
+	\ifdim \wd\equationbox > \textwidth % Check if the width exceeds text width
+	\resizebox{\textwidth}{!}{$\displaystyle #1$}% Resize if too wide
+	\else
+	#1 % Otherwise, leave it as is
+	\fi
+}% Define a custom macro that checks the equation's length and resizes if necessary
+\renewcommand\title{\textbf{The arithmetic progression $51n+35$, $n\geqslant0$, contains infinitely many primes.\\ A Euclidean proof}}
+
+\begin{document}
+\thispagestyle{plain}
+\pagenumbering{arabic}
+\sloppy
+\begin{center}
+{\huge \bfseries \title\par}
+\vspace{1cm}
+\end{center}
+
+\begin{mybox}
+{\Large \textbf{About this document}}
+\vspace{0.3cm}\\
+\textit{This file has been automatically generated for the user-supplied arithmetic progression. The code behind this document can be found in the url \url{https://github.com/joarca01/final-math-bsc-thesis}, and has been developed as part of a BSc Thesis in Mathematics by Joan Arenillas i Cases at the Autonomous University of Barcelona. The above link also provides full access to the complete Thesis. Please use \href{mailto:joanarenillas01@gmail.com}{\nolinkurl{joanarenillas01@gmail.com}} to report any typo or express any suggestions.}
+\end{mybox}
+\vspace{0.5cm}
+
+We will prove that the arithmetic progression $\equiv 35 \pmod{51}$ contains infinitely many primes. Equivalently, we will see that there are infinitely many primes of the form $51n+35$, $n\geqslant0$. For this purpose, consider the polynomial 
+\begin{equation*}
+\binoppenalty=10000 % no line break after \cdot
+\mathchardef\plus=\mathcode`+ % save the mathcode
+\mathcode`+="8000 % make the plus math active
+\thinmuskip=0mu
+\begingroup\lccode`~=`+
+  \lowercase{\endgroup\def~}{%
+    \plus\allowbreak\hspace{0pt plus 2pt}%
+}
+\hphantom{}
+\parbox{1.0\displaywidth}{\centering\linespread{1.1}\selectfont
+  \makebox[0pt][r]{$ $}$f(x):=x^{16} + 41564 x^{15} + 809798044 x^{14} + 9817081493948 x^{13} + 82882990874110336 x^{12} + 516745943856254528780 x^{11} + 2461045776942047374624636 x^{10} + 9133213097746587155992893740 x^{9} + 26691858129023247806536115380090 x^{8} + 61635331097275521694392753587100407 x^{7} + 112080993547733232403552911983760867409 x^{6} + 158816450223036109059733286885825093520161 x^{5} + 171905565158061875866107680565415107466929985 x^{4} + 137408314622976892172335483399457480336634284510 x^{3} + 76491541061244145651409658257166611628292501466320 x^{2} + 26494764597591439058927261555967710356172555864587511 x + 4301785361217497374788042324368518937185458391375540801.$
+}
+\end{equation*}
+
+\section{The main Theorem}\label{sec:mainTh}
+
+To prove that there exist infinitely many primes $\equiv 35 \pmod{51}$ we can proceed by contradiction. Suppose there are finitely many primes $\equiv 35\pmod{51}$ and denote them by $p_1, p_2,\dots,p_m$. Since $137 \equiv 35 \pmod{51}$, we can write the list as $137, p_{2},p_{3},\dots, p_m$ (so $p_{1}=137$). Now, let $t$ be the product of every prime divisor of the discriminant of $f$ (denoted by $\Delta(f)$) different from $137$. Define $Q:= t\cdot p_{2}p_{3}\cdots p_m$. Consider the following congruence equation system:
+	\begin{equation*}
+        \begin{cases}      
+		c\equiv 21\pmod{137^2}\\
+		c\equiv 0\pmod{51Q}.
+        \end{cases}
+	\end{equation*}
+The Chinese Remainder Theorem guarantees the existence of $c\in\Z$ that is a solution to the above system since $137$ does not divide $51Q$. It follows that 
+	\begin{gather*}
+		\autosizeequation{f(c)\equiv f(21)=4893214816490069930571611257450088898981718913368488583\equiv 137\cdot51\pmod{137^2},}\\
+        \autosizeequation{f(c)\equiv f(0)=6529 \cdot 6733 \cdot 1716587581 \cdot 8120815069 \cdot 7019850568745870836272543037\pmod{51Q}.}
+	\end{gather*}
+
+In particular, observe that the prime $p_{1}=137$ divides $f(c)$, but $137^2$ does not.
+\begin{lemma}
+Every prime that divides $f(c)$ is $\equiv 1\pmod{51}$ $($except for $p_{1}=137)$. 
+\end{lemma}
+\begin{proof}
+Let $r$ be a prime divisor of $f(c)$ different from $137$. In Section \ref{sec:properties} we will establish that $r$ is a prime divisor of $\Delta(f)$, of $51$ or $r\equiv 1,35\pmod{51}$. For now, we will assume this is true. To reach a contradiction, suppose $r\not\equiv 1\pmod{51}$. Thus, $r\equiv 35\pmod{51}$ or $r$ is a prime divisor of $\Delta(f)$ or $51$, so $r$ divides $51\cdot t\cdot p_{2}p_{3}\cdots p_m=51Q$. Since $f(c)\equiv 6529 \cdot 6733 \cdot 1716587581 \cdot 8120815069 \cdot 7019850568745870836272543037\pmod{51Q}$ and $r$ is a divisor of $51Q$, we deduce that $f(c)\equiv 6529 \cdot 6733 \cdot 1716587581 \cdot 8120815069 \cdot 7019850568745870836272543037\pmod{r}$. But $r$ is a divisor of $f(c)$, so $f(c)\equiv 0 \pmod{r}$. Therefore, $6529 \cdot 6733 \cdot 1716587581 \cdot 8120815069 \cdot 7019850568745870836272543037\equiv 0\pmod{r}$. Thus, it must happen that $r=6529, 6733, 1716587581, 8120815069, 7019850568745870836272543037$, which are $\equiv 1 \pmod{51}$. This forces $r$ to be $\equiv 1 \pmod{51}$, a contradiction. Therefore, $f(c)$ is only divisible by primes $\equiv 1\pmod{51}$ (and by $p_{1}=137$).
+\end{proof}
+
+Finally, from the fact that $f(c)$ has every prime divisor $\equiv 1 \pmod{51}$ except for $p_{1}=137$ it follows, mod $51$, that $f(c)=1\cdot1\cdots 1\cdot35=35$ (note that $35$ only appears once because $p_{1}=137\equiv35\pmod{51}$ and the fact that $137^2$ does not divide $f(c)$). However, observe that $f(c)\equiv f(0)\equiv 1\pmod{51}$. This is a contradiction. Therefore, the arithmetic progression $\equiv 35\pmod{51}$ contains infinitely many primes.
+
+\section{Properties of the polynomial \texorpdfstring{$f(x)$}{fx}}\label{sec:properties}
+ 
+To complete the proof of the main Theorem in Section \ref{sec:mainTh} we must justify that every prime divisor $p$ of $f(c)$ either belongs to the finite set 
+\begin{equation*}
+T:=\{p: p \ \text{is a prime divisor of} \ \Delta(f) \ \text{or is a prime divisor of} \ 51\}
+\end{equation*}
+or satisfies $p\equiv 1,35\pmod{51}$. To see this, we must first recall the expression of the discriminant of a polynomial. 
+\begin{definition}
+The discriminant of a monic polynomial $A(x)=x^m+a_{m-1}x^{m-1}+\cdots+a_1x+a_0$ is given, in terms of its roots $\{r_1,r_2,\dots,r_m\}\subset\C$ (not necessarily distinct), by
+\begin{equation}\label{eq:discrim}
+	\Delta(A)=\prod_{i<j}(r_i-r_j)^2, \quad 1\leqslant i,j\leqslant m.
+\end{equation}
+\end{definition}
+
+It will be useful to remember that the $51$st cyclotomic polynomial is $\Phi_{51}(x)=x^{32} - x^{31} + x^{29} - x^{28} + x^{26} - x^{25} + x^{23} - x^{22} + x^{20} - x^{19} + x^{17} - x^{16} + x^{15} - x^{13} + x^{12} - x^{10} + x^{9} - x^{7} + x^{6} - x^{4} + x^{3} - x + 1$. We shall also define what a \emph{prime divisor} of a given polynomial is. 
+\begin{definition}
+Let $A(x)\in\Z[x]$ be a polynomial. We say that a prime number $p$ is a \emph{prime divisor} of $A$ (or simply that $p$ \emph{divides} $A$) if there exists $m\in\Z$ such that $p$ divides $A(m)$.
+\end{definition}
+With the definition above, we are interested in describing the prime divisors of $f$.
+
+Let's now start the proof. Consider the set $S:=\splitatcommas{\{1, 2, 4, 5, 7, 8, 10, 11, 13, 14, 16, 20, 23, 26, 29, 32\}}$ and the values $h(\zeta^{s}):=(\zeta^{s}-51)(51-\zeta^{35s})$, with $s\in S$ and $\zeta:=e^{2\pi i/{51}}$, a $51$st primitive root of unity (thus a root of $\Phi_{51}(x)$). A simple calculation shows that $f(x)$ can be written as
+\begin{equation}\label{eq:fpolynomial}
+\binoppenalty=10000 % no line break after \cdot
+\mathchardef\plus=\mathcode`+ % save the mathcode
+\mathcode`+="8000 % make the plus math active
+\thinmuskip=0mu
+\begingroup\lccode`~=`+
+  \lowercase{\endgroup\def~}{%
+    \plus\allowbreak\hspace{0pt plus 2pt}%
+}
+\hphantom{}
+\parbox{1.0\displaywidth}{\centering\linespread{1.1}\selectfont
+  \makebox[0pt][r]{$ $}$f(x)=\displaystyle\prod_{s\in S}\big(x-h(\zeta^{s})\big)=x^{16} + 41564 x^{15} + 809798044 x^{14} + 9817081493948 x^{13} + 82882990874110336 x^{12} + 516745943856254528780 x^{11} + 2461045776942047374624636 x^{10} + 9133213097746587155992893740 x^{9} + 26691858129023247806536115380090 x^{8} + 61635331097275521694392753587100407 x^{7} + 112080993547733232403552911983760867409 x^{6} + 158816450223036109059733286885825093520161 x^{5} + 171905565158061875866107680565415107466929985 x^{4} + 137408314622976892172335483399457480336634284510 x^{3} + 76491541061244145651409658257166611628292501466320 x^{2} + 26494764597591439058927261555967710356172555864587511 x + 4301785361217497374788042324368518937185458391375540801.$
+}
+\end{equation}
+
+
+Now, suppose that $p$ is a prime divisor of $f$ such that $p$ does not belong to $T$. Next, consider a field $\F$ containing both the finite field $\F_p$ and $\zeta$\footnote{For instance, consider $\F=\F_{p^n}$ with a suitable integer $n\geqslant 1$ such that $\Phi_{51}$ has a root $\zeta$.}. Since $p$ divides $f$, working in $\F$, there exists $a\in\Z$ such that 
+\begin{equation*}
+f(a)=\prod_{s'\in S}\big(a-h(\zeta^{s'})\big)=0.
+\end{equation*}
+Since $\F$ is a field, there exists some $s\in S$ such that $a=h(\zeta^{s})$.
+\begin{lemma}
+The equality $h(\zeta^s)=h(\zeta^{ps})$ holds in $\F$.
+\end{lemma}
+\begin{proof}
+ Observe that the following calculation holds in $\F$:
+\begin{align}\label{eq:reproots}
+h(\zeta^{s})&=a\notag \\ 
+&=a^p\notag \\ 
+&=h(\zeta^{s})^p\notag \\ 
+&=(\zeta^{s}-51)^p(51-\zeta^{35s})^p\notag \\ 
+&=(\zeta^{ps}-51^p)(51^p-\zeta^{35ps})\notag \\ 
+&=(\zeta^{ps}-51)(51-\zeta^{35ps})\notag \\ 
+&=h(\zeta^{ps}),
+\end{align}
+where we have used Fermat little theorem in the second equality. The fifth equality, on the other hand, relies on the fact that $\F$ has characteristic $p$ (so that $(c+d)^p=c^p+d^p$ for every $c,d \in \F$) and the following one, on Fermat little theorem.
+\end{proof}
+
+Therefore, equality \eqref{eq:reproots} means that $h(\zeta^{ps})=h(\zeta^{s})$ is a root of $\overline{f(x)}\in\F[x]$. 
+
+\begin{lemma}
+$h(\zeta^{ps})$ is also a root of $f(x)$ in $\Q(\zeta)$ $($the smallest subfield of $\C$ containing $\zeta)$.
+\end{lemma}
+\begin{proof}
+Begin by noting that the value $h(\zeta^{ps})$ only depends on the value of $ps \bmod{51}$ since it only appears as an exponent of $\zeta$. Since $p$ does not divide $51$ and $s$ is coprime to $51$, $ps$ is coprime to $51$ (so $ps \bmod{51}$ is coprime to $51$) and hence $\zeta^{ps}$ is a primitive $51$st root of unity.
+
+There are now only two options: either $ps \bmod{51}\in S$ or $ps \bmod{51}\notin S$. In the first case, $h(\zeta^{ps})$ is a root of $f(x)$, observing expression \eqref{eq:fpolynomial}. In the latter case, note that every integer $ps \bmod{51}$ relatively prime to $51$ not in $S$ satisfies $ps\equiv 35t\pmod{51}$ for some $t\in S$ (for instance, if $ps \bmod{51}=49$, pick $t=32\in S$ so that $49\equiv 35\cdot32 \pmod{51}$). This means that $h(\zeta^{ps})=h(\zeta^{35t})$. Let us prove that $h(\zeta^{35t})=h(\zeta^{t})$, so $h(\zeta^{ps})=h(\zeta^{35t})=h(\zeta^{t})$ is also a root of $f(x)$. Indeed,
+\begin{align*}
+h(\zeta^{35t})&=(\zeta^{35t}-51)(51-\zeta^{35^2t})\\
+&=(\zeta^{35^2t}-51)(51-\zeta^{35t})\\
+&=(\zeta^{t}-51)(51-\zeta^{35t})\\
+&=h(\zeta^{t}),
+\end{align*}
+where we have used that $\zeta^{35^2t}$ only depends on the value of $35^2t \bmod{51}$ and the fact that $35^2\equiv 1\pmod{51}$. Therefore, $h(\zeta^{ps})=h(\zeta^{t})$ is always a root of $f(x)$ in $\Q(\zeta)$.
+\end{proof}
+
+\begin{lemma}
+$h(\zeta^{ps})$ and $h(\zeta^{s})$ are the same root of $f(x)$ in $\Q(\zeta)$.
+\end{lemma}
+\begin{proof}
+If $h(\zeta^{ps})$ and $h(\zeta^{s})$ were two distinct roots of $f(x)$ in $\Q(\zeta)$, we know because of \eqref{eq:reproots} that they would be the same in $\F$. Therefore, observing expression \eqref{eq:discrim}, it follows that $\Delta(f \bmod{p})=\Delta(f) \bmod{p}=0$, so $p$ divides $\Delta(f)$. This is a contradiction with our choice of $p$. Thus, $h(\zeta^{ps})$ and $h(\zeta^{s})$ are in fact the same root of $f(x)$ in $\Q(\zeta)$.
+\end{proof}
+
+Therefore, the equality
+\begin{equation*}
+h(\zeta^{ps})=\big(\zeta^{ps}-51\big)\big({51}-\zeta^{35ps}\big)=\big(\zeta^{s}-51\big)\big({51}-\zeta^{35s}\big)=h(\zeta^{s})
+\end{equation*}
+holds in $\Q(\zeta)$. Next, write the above equation in terms of $\theta:=\zeta^{s}$ and multiply both sides by $-1$. This changes yield
+\begin{align}
+2601-{51}\big(\theta^{p}+\theta^{35p}\big)+\theta^{(1+35)p}&=2601-{51}\big(\theta+\theta^{35}\big)+\theta^{1+35}, \notag \\
+-51\big(\theta^{p}+\theta^{35p}\big)+\theta^{36p}&=-51\big(\theta+\theta^{35}\big)+\theta^{36}\label{eq:equality_in_theta}.
+\end{align}
+The right-hand side of the equation above does not depend on $p$. The left-hand side only depends on the value of $p\bmod{51}$, since $p$ only appears as an exponent of $\theta$ (and $\theta$ is a primitive $51$st root of unity). The above equality gives information about $p$, which is what we are interested in. 
+
+\begin{lemma}
+The fact that \eqref{eq:equality_in_theta} holds implies that $p \bmod{51}\in H:=\{1,35\}$.
+\end{lemma}
+\begin{proof}
+To prove this, we will check every value of $p$ such that $p \bmod{51}\notin H$ and conclude that \eqref{eq:equality_in_theta} is not true in $\Q(\theta)$ in those cases. Therefore, we shall see the following: if $p \bmod{51}\in G\setminus H=\splitatcommas{\{2, 4, 5, 7, 8, 10, 11, 13, 14, 16, 19, 20, 22, 23, 25, 26, 28, 29, 31, 32, 37, 38, 40, 41, 43, 44, 46, 47, 49, 50\}}$, then $-h(\theta^p)\neq -h(\theta)$. This will automatically imply what we want to prove: since \eqref{eq:equality_in_theta} holds, $p \bmod{51}\in H$. To see this, rewrite \eqref{eq:equality_in_theta} as
+\begin{equation}\label{eq:equalityQ}
+-51\big(\theta^{p}+\theta^{35p}\big)+\theta^{36p}+51\big(\theta+\theta^{35}\big)-\theta^{36}=0
+\end{equation}
+and trade $\theta$ for $x$, since the condition \eqref{eq:equalityQ} in $\Q(\theta)$ is equivalent to the condition
+\begin{equation}\label{eq:polycheck0}
+-51\big(x^p+x^{35p}\big)+x^{36p}+51\big(x+x^{35}\big)-x^{36}=0
+\end{equation}
+in $\Q[x]/(\Phi_{51}(x))\cong\Q(\theta)$ ($\Phi_{51}(x)$ is also the minimal polynomial of $\theta$). We will explicitly write the case $p=2 \bmod{51}$ (the remaining values of $p \bmod{51}\in G\setminus H$ are left as an exercise to the reader). With this value of $p$, equation \eqref{eq:polycheck0} becomes
+\begin{align*}
+A(x)&:=-51\big(x^{2}+x^{70}\big)+x^{72}+51\big(x+x^{35}\big)-x^{36}\\
+&=x^{72} - 51 x^{70} - x^{36} + 51 x^{35} - 51 x^{2} + 51 x=0.
+\end{align*}
+
+If we recall that $\Q(\theta)\cong\Q[x]/(\Phi_{51}(x))$, the above equation is equivalent to $A(x)$ being a multiple of the $51$st cyclotomic polynomial, $\Phi_{51}(x) = x^{32} - x^{31} + x^{29} - x^{28} + x^{26} - x^{25} + x^{23} - x^{22} + x^{20} - x^{19} + x^{17} - x^{16} + x^{15} - x^{13} + x^{12} - x^{10} + x^{9} - x^{7} + x^{6} - x^{4} + x^{3} - x + 1$. Therefore, we are interested in showing that the residue $R(x)$ of the division $A(x)/\Phi_{51}(x)$ satisfies $R(x)\neq 0$, from which our result will follow. A simple Euclidean division of polynomials shows that $A(x)=B(x)\cdot\Phi_{51}(x)+(x^{21} - 50 x^{19} - 51 x^{18} - 50 x^{2})$, with $B(x)$ a polynomial of degree $40$, so $R(x)=x^{21} - 50 x^{19} - 51 x^{18} - 50 x^{2} \neq 0$. Therefore, equality \eqref{eq:equality_in_theta} implies that $p \bmod{51} \in H$, that is, $p\equiv 1,35\pmod{51}$.
+\end{proof}
+
+In conclusion, every prime divisor $p$ of $f(c)$ either belongs to the finite set 
+\begin{equation*}
+T:=\{p: p \ \text{is a prime divisor of} \ \Delta(f) \ \text{or is a prime divisor of} \ 51\}
+\end{equation*}
+or satisfies $p\equiv 1,35\pmod{51}$, which finally settles the main Theorem in Section \ref{sec:mainTh}. 
+
+\end{document}

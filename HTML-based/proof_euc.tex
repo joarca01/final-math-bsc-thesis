@@ -26,7 +26,7 @@
 \headheight 30pt
 \fancyhf{}
 \rhead{Page \thepage}
-\lhead{\nouppercase{Infinite number of primes in $5n+1$, $n\geqslant 0$}}
+\lhead{\nouppercase{Infinite number of primes in $15n+1$, $n\geqslant 0$}}
 \headsep 1.5em
 
 % ---- Link & URL style ---- %
@@ -63,7 +63,7 @@
 %  }\mathcode`,="8000 #1%
 %  \endgroup
 %}% Break long inline expressions after comma sign.
-\renewcommand\title{\textbf{The arithmetic progression $5n+1$, $n\geqslant0$, contains infinitely many primes.\\ A Euclidean proof}}
+\renewcommand\title{\textbf{The arithmetic progression $15n+1$, $n\geqslant0$, contains infinitely many primes.\\ A Euclidean proof}}
 
 \begin{document}
 \thispagestyle{plain}
@@ -73,38 +73,38 @@
 %{\huge \bfseries \title\par}
 %\vspace{1cm}
 %\end{center}
-\section{The arithmetic progression $5n+1$, $n\geqslant0$, contains infinitely many primes. A Euclidean proof}
+\section{The arithmetic progression $15n+1$, $n\geqslant0$, contains infinitely many primes. A Euclidean proof}
 
-We will prove that the arithmetic progression $\equiv 1 \pmod{5}$ contains infinitely many primes. Equivalently, we will see that there are infinitely many primes of the form $5n+1$, $n\geqslant0$. To follow the proof, one must recall the expression of the discriminant of a polynomial. 
+We will prove that the arithmetic progression $\equiv 1 \pmod{15}$ contains infinitely many primes. Equivalently, we will see that there are infinitely many primes of the form $15n+1$, $n\geqslant0$. To follow the proof, one must recall the expression of the discriminant of a polynomial. 
 
 \textbf{Definition.} The discriminant of a monic polynomial $A(x)=x^d+a_{d-1}x^{d-1}+\cdots+a_1x+a_0$ is given, in terms of its roots $\{r_1,r_2,\dots,r_d\}\subset\C$ (not necessarily distinct), by
 \begin{equation}\label{eq:discrim}
 	\Delta(A)=\prod_{i<j}(r_i-r_j)^2, \quad 1\leqslant i,j\leqslant d.
 \end{equation}
 
-It will be useful to remember that the $5$th cyclotomic polynomial is $\Phi_{5}(x)=x^{4} + x^{3} + x^{2} + x + 1$. We shall also define what a \emph{prime divisor} of a given polynomial is.
+It will be useful to remember that the $15$th cyclotomic polynomial is $\Phi_{15}(x)=x^{8} - x^{7} + x^{5} - x^{4} + x^{3} - x + 1$. We shall also define what a \emph{prime divisor} of a given polynomial is.
 
 \textbf{Definition.} Let $A(x)\in\Z[x]$ be a polynomial. We say that a prime number $p$ is a \emph{prime divisor} of $A$ (or simply that $p$ \emph{divides} $A$) if there exists $m\in\Z$ such that $p$ divides $A(m)$.
 
 \section{The main Theorem}\label{sec:mainTh}
 
-We are now able to show that there exist infinitely many primes $\equiv 1\pmod{5}$. For this purpose, consider the polynomial 
+We are now able to show that there exist infinitely many primes $\equiv 1\pmod{15}$. For this purpose, consider the polynomial 
 \begin{equation*}
-\Phi_{5}(x)=x^{4} + x^{3} + x^{2} + x + 1.
+\Phi_{15}(x)=x^{8} - x^{7} + x^{5} - x^{4} + x^{3} - x + 1.
 \end{equation*}
-We will specifically show that every prime divisor $p$ of $\Phi_{5}(x)$ either belongs to the finite set 
+We will specifically show that every prime divisor $p$ of $\Phi_{15}(x)$ either belongs to the finite set 
 \begin{equation*}
-T=\{5\}
+T=\{3, 5\}
 \end{equation*}
-or satisfies $p\equiv 1 \pmod{5}$. To see this, consider the set $S:=\{1, 2, 3, 4\}$ and the values $\zeta^{s}$, with $s\in S$ and $\zeta:=e^{2\pi i/{5}}$, a $5$th primitive root of unity (thus a root of $\Phi_{5}(x)$). A simple calculation shows that $\Phi_{5}(x)$ can be written as
+or satisfies $p\equiv 1 \pmod{15}$. To see this, consider the set $S:=\{1, 2, 4, 7, 8, 11, 13, 14\}$ and the values $\zeta^{s}$, with $s\in S$ and $\zeta:=e^{2\pi i/{15}}$, a $15$th primitive root of unity (thus a root of $\Phi_{15}(x)$). A simple calculation shows that $\Phi_{15}(x)$ can be written as
 \begin{equation*}
-\Phi_{5}(x)=\prod_{s\in S}\big(x-\zeta^{s}\big)=x^{4} + x^{3} + x^{2} + x + 1.
+\Phi_{15}(x)=\prod_{s\in S}\big(x-\zeta^{s}\big)=x^{8} - x^{7} + x^{5} - x^{4} + x^{3} - x + 1.
 \end{equation*}
-The discriminant of $\Phi_{5}(x)$ can be calculated\footnote{One way of calculating $\Delta(\Phi_{5})$ is via the resultant of $\Phi_{5}$ and $\Phi_{5}'$.} to be $\Delta(\Phi_{5})=5^{3}$.
+The discriminant of $\Phi_{15}(x)$ can be calculated\footnote{One way of calculating $\Delta(\Phi_{15})$ is via the resultant of $\Phi_{15}$ and $\Phi_{15}'$.} to be $\Delta(\Phi_{15})=3^{4} \cdot 5^{6}$.
 
-Now, suppose that $p$ is a prime divisor of $\Phi_{5}$ such that $p$ does not belong to $T$. Next, consider a field $\F$ containing both the finite field $\F_p$ and $\zeta$\footnote{For instance, consider $\F=\F_{p^n}$ with a suitable integer $n\geqslant 1$ such that $\Phi_{5}$ has a root $\zeta$.}. Since $p$ divides $\Phi_{5}$, working in $\F$, there exists $a\in\Z$ such that 
+Now, suppose that $p$ is a prime divisor of $\Phi_{15}$ such that $p$ does not belong to $T$. Next, consider a field $\F$ containing both the finite field $\F_p$ and $\zeta$\footnote{For instance, consider $\F=\F_{p^n}$ with a suitable integer $n\geqslant 1$ such that $\Phi_{15}$ has a root $\zeta$. In this context, $\zeta$ is not the complex root of $\Phi_{15}$, but rather some root of an irreducible factor of $\overline{\Phi_{15}}\in\F_p[x]$ over $\F_p$.}. Since $p$ divides $\Phi_{15}$, working in $\F$, there exists $a\in\Z$ such that 
 \begin{equation*}
-\Phi_{5}(a)=\prod_{s'\in S}\big(a-\zeta^{s'}\big)=0.
+\Phi_{15}(a)=\prod_{s'\in S}\big(a-\zeta^{s'}\big)=0.
 \end{equation*}
 Since $\F$ is a field, there exists some $s\in S$ such that $a=\zeta^{s}$.
 
@@ -116,15 +116,15 @@ Since $\F$ is a field, there exists some $s\in S$ such that $a=\zeta^{s}$.
 \end{equation*}
 where we have used Fermat little theorem in the second equality. \ $\blacksquare$ 
 
-Therefore, the fact that $\zeta^{s}=\zeta^{ps}$ means that $\zeta^{ps}=\zeta^{s}$ is a root of $\overline{\Phi_{5}(x)}\in\F[x]$. 
+Therefore, the fact that $\zeta^{s}=\zeta^{ps}$ means that $\zeta^{ps}=\zeta^{s}$ is a root of $\overline{\Phi_{15}(x)}\in\F[x]$. 
 
-\textbf{Lemma.} \emph{$\zeta^{ps}$ is also a root of $\Phi_{5}(x)$ in $\Q(\zeta)$ $($the smallest subfield of $\C$ containing $\zeta)$.}
+\textbf{Lemma.} \emph{$\zeta^{ps}$ is also a root of $\Phi_{15}(x)$ in $\Q(\zeta)$ $($the smallest subfield of $\C$ containing $\zeta)$.}
 
-\textit{Proof.} Begin by noting that the value $\zeta^{ps}$ only depends on the value of $ps \bmod{5}$ since it only appears as an exponent of $\zeta$. Since $p$ does not divide $5$ and $s$ is coprime to $5$, $ps$ is coprime to $5$ (so $ps \bmod{5}$ is coprime to $5$) and hence $\zeta^{ps}$ is a primitive $5$th root of unity. Thus, $\zeta^{ps}$ is a root of $\Phi_{5}(x)$ in $\Q(\zeta)$. \ $\blacksquare$
+\textit{Proof.} Begin by noting that the value $\zeta^{ps}$ only depends on the value of $ps \bmod{15}$ since it only appears as an exponent of $\zeta$. Since $p$ does not divide $15$ and $s$ is coprime to $15$, $ps$ is coprime to $15$ (so $ps \bmod{15}$ is coprime to $15$) and hence $\zeta^{ps}$ is a primitive $15$th root of unity. Thus, $\zeta^{ps}$ is a root of $\Phi_{15}(x)$ in $\Q(\zeta)$. \ $\blacksquare$
 
-\textbf{Lemma.} \emph{$\zeta^{ps}$ and $\zeta^{s}$ are the same root of $\Phi_{5}(x)$ in $\Q(\zeta)$.}
+\textbf{Lemma.} \emph{$\zeta^{ps}$ and $\zeta^{s}$ are the same root of $\Phi_{15}(x)$ in $\Q(\zeta)$.}
 
-\textit{Proof.} If $\zeta^{ps}$ and $\zeta^{s}$ were two distinct roots of $\Phi_{5}(x)$ in $\Q(\zeta)$, we know because of the equality $\zeta^{s}=\zeta^{ps}$ that they would be the same in $\F$. Therefore, observing the expression of the discriminant, it follows that $\Delta(\Phi_{5} \bmod{p})=\Delta(\Phi_{5}) \bmod{p}=0$, so $p$ divides $\Delta(\Phi_{5})=5^{3}$. This is a contradiction with our choice of $p$. Thus, $\zeta^{ps}$ and $\zeta^{s}$ are in fact the same root of $\Phi_{5}(x)$ in $\Q(\zeta)$. \ $\blacksquare$
+\textit{Proof.} If $\zeta^{ps}$ and $\zeta^{s}$ were two distinct roots of $\Phi_{15}(x)$ in $\Q(\zeta)$, we know because of the equality $\zeta^{s}=\zeta^{ps}$ that they would be the same in $\F$. Therefore, observing the expression of the discriminant, it follows that $\Delta(\Phi_{15} \bmod{p})=\Delta(\Phi_{15}) \bmod{p}=0$, so $p$ divides $\Delta(\Phi_{15})=3^{4} \cdot 5^{6}$. This is a contradiction with our choice of $p$. Thus, $\zeta^{ps}$ and $\zeta^{s}$ are in fact the same root of $\Phi_{15}(x)$ in $\Q(\zeta)$. \ $\blacksquare$
 
 Therefore, the equality
 \begin{equation}\label{eq:equality_in_zeta}
@@ -132,30 +132,30 @@ Therefore, the equality
 \end{equation}
 holds in $\Q(\zeta)$. 
 
-\textbf{Lemma.} \emph{The fact that $\zeta^{ps}=\zeta^{s}$ holds in $\Q(\zeta)$ implies that $p \bmod{5}=1$.}
+\textbf{Lemma.} \emph{The fact that $\zeta^{ps}=\zeta^{s}$ holds in $\Q(\zeta)$ implies that $p \bmod{15}=1$.}
 
 \textit{Proof.} Write the above equation in terms of $\theta:=\zeta^{s}$. This change yields
 \begin{equation*}
 \theta^{p}=\theta,
 \end{equation*}
-where observe that $\theta$ is also a primitive $5$th root of unity. Now, the right-hand side of the equation above does not depend on $p$. The left-hand side only depends on the value of $p\bmod{5}$, since $p$ only appears as an exponent of $\theta$. In conclusion, $\zeta^{ps}=\zeta^{s}$ only holds if $p \bmod{5}=1$, that is, if $p\equiv 1\pmod{5}$. \ $\blacksquare$
+where observe that $\theta$ is also a primitive $15$th root of unity. Now, the right-hand side of the equation above does not depend on $p$. The left-hand side only depends on the value of $p\bmod{15}$, since $p$ only appears as an exponent of $\theta$. In conclusion, $\zeta^{ps}=\zeta^{s}$ only holds if $p \bmod{15}=1$, that is, if $p\equiv 1\pmod{15}$. \ $\blacksquare$
 
-In conclusion, every prime divisor $p$ of $\Phi_{5}$ either belongs to the finite set 
+In conclusion, every prime divisor $p$ of $\Phi_{15}$ either belongs to the finite set 
 \begin{equation*}
-T=\{5\}
+T=\{3, 5\}
 \end{equation*}
-or satisfies $p\equiv 1 \pmod{5}$. In Section \ref{sec:properties} we will establish that the polynomial $\Phi_{5}$ has infinitely many prime divisors. But, from the remark above, all these prime divisors must be $\equiv 1\pmod{5}$ (except for those $p\in T$). This concludes the proof that there are infinitely many primes $\equiv 1 \pmod{5}$.
+or satisfies $p\equiv 1 \pmod{15}$. In Section \ref{sec:properties} we will establish that the polynomial $\Phi_{15}$ has infinitely many prime divisors. But, from the remark above, all these prime divisors must be $\equiv 1\pmod{15}$ (except for those $p\in T$). This concludes the proof that there are infinitely many primes $\equiv 1 \pmod{15}$.
 
-\section{Property of the polynomial \texorpdfstring{$\Phi_{5}(x)$}{Pkx}}\label{sec:properties}
+\section{Property of the polynomial \texorpdfstring{$\Phi_{15}(x)$}{Pkx}}\label{sec:properties}
 
 We just need the following lemma to complete the proof of the main Theorem in Section \ref{sec:mainTh}.
 
-\textbf{Lemma.} \emph{The cyclotomic polynomial $\Phi_{5}(x)\in\Z[x]$ has infinitely many prime divisors.}
+\textbf{Lemma.} \emph{The cyclotomic polynomial $\Phi_{15}(x)\in\Z[x]$ has infinitely many prime divisors.}
 
-\textit{Proof.} There is obviously at least one prime divisor of $\Phi_{5}$, since the case $\Phi_{5}(x)=x^{4} + x^{3} + x^{2} + x + 1=\pm 1$ only happens for a finite number of integer values of $x$. Now suppose $\Phi_{5}$ has only a finite number of prime divisors, say $p_1, p_2,\dots,p_k$ and let $Q:=p_1p_2\cdots p_k$. 
+\textit{Proof.} There is obviously at least one prime divisor of $\Phi_{15}$, since the case $\Phi_{15}(x)=x^{8} - x^{7} + x^{5} - x^{4} + x^{3} - x + 1=\pm 1$ only happens for a finite number of integer values of $x$. Now suppose $\Phi_{15}$ has only a finite number of prime divisors, say $p_1, p_2,\dots,p_k$ and let $Q:=p_1p_2\cdots p_k$. 
 
-Observe that $\degpol(\Phi_{5})=4$ and $\Phi_{5}(0)=1\neq 0$. Then, $\Phi_{5}(Qx)=g(x)$ for some $g(x)\in\Z[x]$ of the form $1+c_1x+\cdots+c_{4}x^{4}$, $c_i\in\Z$, for every $1\leqslant i \leqslant 4$. Note that $Q$ divides every $c_i$. This polynomial $g$ must also have at least one prime divisor, say $p$, for the same reason as before. Therefore, $p$ divides $g(m)$ for some $m\in\Z$, and this implies that $p$ divides $\Phi_{5}(Qm)$. Since $m':=Qm\in\Z$, it follows that $p$ is a prime divisor of $\Phi_{5}$. But $p$ does not divide $Q$, since $p$ dividing $Q$ would mean that $p$ divides $c_i$, for every $1\leqslant i \leqslant 4$ (recall that $Q$ divides every $c_i$). This, together with the fact that $p$ divides $g(m)$, would imply that $p$ divides $g(m) - \sum_{i=1}^{4}c_im^i=1$, which means $p=1$, a contradiction. 
+Observe that $\degpol(\Phi_{15})=8$ and $\Phi_{15}(0)=1\neq 0$. Then, $\Phi_{15}(Qx)=g(x)$ for some $g(x)\in\Z[x]$ of the form $1+c_1x+\cdots+c_{8}x^{8}$, $c_i\in\Z$, for every $1\leqslant i \leqslant 8$. Note that $Q$ divides every $c_i$. This polynomial $g$ must also have at least one prime divisor, say $p$, for the same reason as before. Therefore, $p$ divides $g(m)$ for some $m\in\Z$, and this implies that $p$ divides $\Phi_{15}(Qm)$. Since $m':=Qm\in\Z$, it follows that $p$ is a prime divisor of $\Phi_{15}$. But $p$ does not divide $Q$, since $p$ dividing $Q$ would mean that $p$ divides $c_i$, for every $1\leqslant i \leqslant 8$ (recall that $Q$ divides every $c_i$). This, together with the fact that $p$ divides $g(m)$, would imply that $p$ divides $g(m) - \sum_{i=1}^{8}c_im^i=1$, which means $p=1$, a contradiction. 
 
-Now, $p$ is a prime divisor of $\Phi_{5}$, but $p$ is not any of the primes $p_1,p_2,\dots,p_k$, since we just proved that $p$ does not divide $p_1p_2\cdots p_k=Q$. Thus, we found a new prime divisor of $\Phi_{5}$ not in our list, so one concludes that $\Phi_{5}$ has infinitely many prime divisors. \ $\blacksquare$
+Now, $p$ is a prime divisor of $\Phi_{15}$, but $p$ is not any of the primes $p_1,p_2,\dots,p_k$, since we just proved that $p$ does not divide $p_1p_2\cdots p_k=Q$. Thus, we found a new prime divisor of $\Phi_{15}$ not in our list, so one concludes that $\Phi_{15}$ has infinitely many prime divisors. \ $\blacksquare$
 
 \end{document}

@@ -1,0 +1,135 @@
+\documentclass[12pt, twoside]{article}
+\usepackage{preamble_style}
+\usepackage{preamble}
+\usepackage{bibliography}
+
+\usepackage{epigraph}
+\setlength{\epigraphwidth}{0.44\textwidth} % Optional: control width
+\renewcommand{\epigraphflush}{flushright}
+
+\renewcommand\title{Euclidean proofs of the infinitude of primes in arithmetic progressions}
+\renewcommand\author{Joan Arenillas i Cases}
+\renewcommand\date{June 25, 2025}
+\newcommand\supervisor{Marc Masdeu}
+\newcommand\faculty{Faculty of Sciences}
+\newcommand\department{Department of Mathematics}
+\newcommand\unidegree{BSc in Mathematics}
+
+\begin{document}
+\pagenumbering{Alph}
+\selectlanguage{USenglish}
+\begin{titlepage}
+  \begin{center}
+    \vspace*{0.4in}
+    \begin{figure}[H]
+      \begin{center}
+        \includegraphics[width=6cm]{Images/UABVectoritzat_v2.pdf}
+      \end{center}
+    \end{figure}
+    \vspace*{1.5cm}
+    \textsc{\Large Bachelor Thesis}\\[0.75cm]
+    \rule{157mm}{0.1mm}\\[0.4cm]
+    {\huge \bfseries \title\par}
+    \vspace{0.4cm} % Thesis title
+    \rule{157mm}{0.1mm} \\[1.5cm] % Horizontal line
+    \begin{minipage}[ht]{0.4\textwidth}
+      \begin{flushleft} \large
+        \emph{Author:}\\[0.2cm]
+        \author % Author name - remove the \href bracket to remove the link
+      \end{flushleft}
+    \end{minipage}
+    \begin{minipage}[ht]{0.4\textwidth}
+      \begin{flushright} \large
+        \emph{Supervisor:} \\[0.2cm]
+        \supervisor % Supervisor name - remove the \href bracket to remove the link  
+      \end{flushright}
+    \end{minipage}\\[3cm]
+    \vfill
+    {\large
+      \unidegree\\[0.2cm]
+      \department\\[0.2cm]
+      \faculty\\[0.5cm]
+    }
+    % \vfill
+    \rule{80mm}{0.1mm}\\[0.5cm]
+    {\large \date}\\[0.2cm]
+    \vfill
+  \end{center}
+  \newpage
+\end{titlepage}
+\thispagestyle{empty}
+\cleardoublepage
+
+\thispagestyle{empty}
+\vspace*{\fill}
+\vspace{-4cm}
+\epigraph{What has been affirmed without proof can also be denied without proof.}{\textit{Euclid}}
+\vspace*{\fill}
+\newpage
+\thispagestyle{empty}
+\cleardoublepage
+% \thispagestyle{empty} % Remove page number and header/footer
+% \mbox{} % Add an empty box to create content-free page
+% \newpage % Start a new page
+
+\thispagestyle{plain}
+\pagenumbering{roman}
+\subfile{sections/Acknowledgements}
+% insert more sections here
+\addcontentsline{toc}{section}{Acknowledgements}
+\newpage
+\thispagestyle{plain}
+\cleardoublepage
+
+{
+  \hypersetup{linkcolor=black}
+  \thispagestyle{plain}
+  \tableofcontents
+}
+% \listoffigures
+% \listoftables
+\newpage
+\thispagestyle{empty}
+\cleardoublepage
+
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\subfile{sections/Introduction}
+\newpage
+%\thispagestyle{empty}
+%\blankpage
+\subfile{sections/Fundamentals}
+\newpage
+%\thispagestyle{empty}
+%\blankpage
+\subfile{sections/TheoreticalPart}
+\newpage
+%\thispagestyle{empty}
+%\blankpage
+\subfile{sections/PracticalPart}
+\newpage
+%\thispagestyle{empty}
+%\blankpage
+\subfile{sections/Conclusions}
+\newpage
+%\thispagestyle{empty}
+%\blankpage
+\subfile{sections/Appendix}
+\newpage
+%\thispagestyle{empty}
+%\blankpage
+% insert more sections here
+\phantomsection
+\addcontentsline{toc}{section}{References}
+\thispagestyle{plain}
+\printbibliography
+\thispagestyle{plain}
+% Add a new empty sheet at the end of the document
+\newpage
+\thispagestyle{empty}
+\mbox{}
+% Add another new empty sheet at the end of the document
+%\newpage
+%\thispagestyle{empty}
+%\mbox{}
+\end{document}

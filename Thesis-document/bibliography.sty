@@ -1,0 +1,23 @@
+\usepackage{csquotes} % needed for biblatex.
+\usepackage{stmaryrd} % for the url symbol in references.
+\usepackage[style=alphabetic,sorting=nyt,backend=biber]{biblatex} % for extended bibliography capabilities (sorting can be none and the style numeric-comp).
+\usepackage{hyperref} % for hyperlinks.
+
+\addbibresource{references.bib} % add bibliography file.
+
+\newcommand\enllas{\raise.5pt\hbox{$\boxempty\kern-4.85pt{}^{\nearrow}$}\kern-2pt}
+
+\DeclareFieldFormat{url}{%
+  \mkbibacro{URL}\addcolon\space%
+  \ifhyperref%
+  {\href{#1}{\enllas}}%
+  {\url{#1}}}
+\DeclareFieldFormat{doi}{%
+  \mkbibacro{DOI}\addcolon\space%
+  \ifhyperref%
+  {\href{#1}{\enllas}}%
+  {\url{#1}}}
+
+\SetSymbolFont{stmry}{bold}{U}{stmry}{m}{n} % in order to solve a warning.
+
+

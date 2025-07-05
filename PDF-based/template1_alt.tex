@@ -1,0 +1,113 @@
+\section{Properties of the polynomial \texorpdfstring{$f(x)$}{fx}}\label{sec:properties}
+ 
+To complete the proof of the main Theorem in Section \ref{sec:mainTh} we must justify that {prime_divisors_disc_alt}. To see this, we must first recall the expression of the discriminant of a polynomial. 
+\begin{definition}
+The discriminant of a monic polynomial $A(x)=x^d+a_{d-1}x^{d-1}+\cdots+a_1x+a_0$ is given, in terms of its roots $\{r_1,r_2,\dots,r_d\}\subset\C$ (not necessarily distinct), by
+\begin{equation}\label{eq:discrim}
+	\Delta(A)=\prod_{i<j}(r_i-r_j)^2, \quad 1\leqslant i,j\leqslant d.
+\end{equation}
+\end{definition}
+
+It will be useful to remember that the ${k}${sufix_cyclo_alt} cyclotomic polynomial is $\Phi_{{k}}(x)={cyclotomic_polynomial}$. We shall also define what a \emph{prime divisor} of a given polynomial is. 
+\begin{definition}
+Let $A(x)\in\Z[x]$ be a polynomial. We say that a prime number $p$ is a \emph{prime divisor} of $A$ (or simply that $p$ \emph{divides} $A$) if there exists $m\in\Z$ such that $p$ divides $A(m)$.
+\end{definition}
+With the definition above, we are interested in describing the prime divisors of $f$.
+
+Let's now start the proof. Consider the set $S:=\splitatcommas{\{{coset_reps_list}\}}$ and the values $h(\zeta^{s}):=(\zeta^{s}-{u})({u}-\zeta^{{ell}s})$, with $s\in S$ and $\zeta:=e^{2\pi i/{{k}}}$, a ${k}${sufix_cyclo_alt} primitive root of unity (thus a root of $\Phi_{{k}}(x)$). A simple calculation shows that $f(x)$ can be written as
+\begin{equation}\label{eq:fpolynomial}
+\binoppenalty=10000 % no line break after \cdot
+\mathchardef\plus=\mathcode`+ % save the mathcode
+\mathcode`+="8000 % make the plus math active
+\thinmuskip=0mu
+\begingroup\lccode`~=`+
+  \lowercase{\endgroup\def~}{%
+    \plus\allowbreak\hspace{0pt plus 2pt}%
+}
+\hphantom{}
+\parbox{1.0\displaywidth}{\centering\linespread{1.1}\selectfont
+  \makebox[0pt][r]{$ $}$f(x)=\displaystyle\prod_{s\in S}\big(x-h(\zeta^{s})\big)={poly}.$
+}
+\end{equation}
+{disc_value_alt}
+
+Now, suppose that $p$ is a prime divisor of $f$ such that $p$ does not belong to $T$. Next, consider a field $\F$ containing both the finite field $\F_p$ and $\zeta$\footnote{For instance, consider $\F=\F_{p^n}$ with a suitable integer $n\geqslant 1$ such that $\Phi_{{k}}$ has a root $\zeta$. In this context, $\zeta$ is not the complex root of $\Phi_{{k}}$, but rather some root of an irreducible factor of $\overline{\Phi_{{k}}}\in\F_p[x]$ over $\F_p$.}. Since $p$ divides $f$, working in $\F$, there exists $a\in\Z$ such that 
+\begin{equation*}
+f(a)=\prod_{s'\in S}\big(a-h(\zeta^{s'})\big)=0.
+\end{equation*}
+Since $\F$ is a field, there exists some $s\in S$ such that $a=h(\zeta^{s})$.
+\begin{lemma}
+The equality $h(\zeta^s)=h(\zeta^{ps})$ holds in $\F$.
+\end{lemma}
+\begin{proof}
+ Observe that the following calculation holds in $\F$:
+\begin{align}\label{eq:reproots}
+h(\zeta^{s})&=a\notag \\ 
+&=a^p\notag \\ 
+&=h(\zeta^{s})^p\notag \\ 
+&=(\zeta^{s}-{u})^p({u}-\zeta^{{ell}s})^p\notag \\ 
+&=(\zeta^{ps}-{u}^p)({u}^p-\zeta^{{ell}ps})\notag \\ 
+&=(\zeta^{ps}-{u})({u}-\zeta^{{ell}ps})\notag \\ 
+&=h(\zeta^{ps}),
+\end{align}
+where we have used Fermat little theorem in the second equality. The fifth equality, on the other hand, relies on the fact that $\F$ has characteristic $p$ (so that $(c+d)^p=c^p+d^p$ for every $c,d \in \F$) and the following one, on Fermat little theorem.
+\end{proof}
+
+Therefore, equality \eqref{eq:reproots} means that $h(\zeta^{ps})=h(\zeta^{s})$ is a root of $\overline{f(x)}\in\F[x]$. 
+
+\begin{lemma}
+$h(\zeta^{ps})$ is also a root of $f(x)$ in $\Q(\zeta)$ $($the smallest subfield of $\C$ containing $\zeta)$.
+\end{lemma}
+\begin{proof}
+Begin by noting that the value $h(\zeta^{ps})$ only depends on the value of $ps \bmod{{k}}$ since it only appears as an exponent of $\zeta$. Since $p$ does not divide ${k}$ and $s$ is coprime to ${k}$, $ps$ is coprime to ${k}$ (so $ps \bmod{{k}}$ is coprime to ${k}$) and hence $\zeta^{ps}$ is a primitive ${k}${sufix_cyclo_alt} root of unity.
+
+There are now only two options: either $ps \bmod{{k}}\in S$ or $ps \bmod{{k}}\notin S$. In the first case, $h(\zeta^{ps})$ is a root of $f(x)$, observing expression \eqref{eq:fpolynomial}. In the latter case, note that every integer $ps \bmod{{k}}$ relatively prime to ${k}$ not in $S$ satisfies $ps\equiv {ell}t\pmod{{k}}$ for some $t\in S$ (for instance, if $ps \bmod{{k}}={coprime_not_in_S}$, pick $t={try_reps_list}\in S$ so that ${coprime_not_in_S}\equiv {ell}\cdot{try_reps_list} \pmod{{k}}$). This means that $h(\zeta^{ps})=h(\zeta^{{ell}t})$. Let us prove that $h(\zeta^{{ell}t})=h(\zeta^{t})$, so $h(\zeta^{ps})=h(\zeta^{{ell}t})=h(\zeta^{t})$ is also a root of $f(x)$. Indeed,
+\begin{align*}
+h(\zeta^{{ell}t})&=(\zeta^{{ell}t}-{u})({u}-\zeta^{{ell}^2t})\\
+&=(\zeta^{{ell}^2t}-{u})({u}-\zeta^{{ell}t})\\
+&=(\zeta^{t}-{u})({u}-\zeta^{{ell}t})\\
+&=h(\zeta^{t}),
+\end{align*}
+where we have used that $\zeta^{{ell}^2t}$ only depends on the value of ${ell}^2t \bmod{{k}}$ and the fact that ${ell}^2\equiv 1\pmod{{k}}$. Therefore, $h(\zeta^{ps})=h(\zeta^{t})$ is always a root of $f(x)$ in $\Q(\zeta)$.
+\end{proof}
+
+\begin{lemma}
+$h(\zeta^{ps})$ and $h(\zeta^{s})$ are the same root of $f(x)$ in $\Q(\zeta)$.
+\end{lemma}
+\begin{proof}
+If $h(\zeta^{ps})$ and $h(\zeta^{s})$ were two distinct roots of $f(x)$ in $\Q(\zeta)$, we know because of \eqref{eq:reproots} that they would be the same in $\F$. Therefore, observing expression \eqref{eq:discrim}, it follows that $\Delta(f \bmod{p})=\Delta(f) \bmod{p}=0$, so $p$ divides ${disc_value_2_alt}$. This is a contradiction with our choice of $p$. Thus, $h(\zeta^{ps})$ and $h(\zeta^{s})$ are in fact the same root of $f(x)$ in $\Q(\zeta)$.
+\end{proof}
+
+Therefore, the equality
+\begin{equation*}
+h(\zeta^{ps})=\big(\zeta^{ps}-{u}\big)\big({{u}}-\zeta^{{ell}ps}\big)=\big(\zeta^{s}-{u}\big)\big({{u}}-\zeta^{{ell}s}\big)=h(\zeta^{s})
+\end{equation*}
+holds in $\Q(\zeta)$. Next, write the above equation in terms of $\theta:=\zeta^{s}$ and multiply both sides by $-1$. This changes yield
+\begin{align}
+{u_squared}-{{u}}\big(\theta^{p}+\theta^{{ell}p}\big)+\theta^{(1+{ell})p}&={u_squared}-{{u}}\big(\theta+\theta^{{ell}}\big)+\theta^{1+{ell}}, \notag \\
+-{u}\big(\theta^{p}+\theta^{{ell}p}\big)+\theta^{{1plusell}p}&=-{u}\big(\theta+\theta^{{ell}}\big)+\theta^{{1plusell}}\label{eq:equality_in_theta}.
+\end{align}
+The right-hand side of the equation above does not depend on $p$. The left-hand side only depends on the value of $p\bmod{{k}}$, since $p$ only appears as an exponent of $\theta$ (and $\theta$ is a primitive ${k}${sufix_cyclo_alt} root of unity). The above equality gives information about $p$, which is what we are interested in. 
+
+\begin{lemma}
+The fact that \eqref{eq:equality_in_theta} holds implies that $p \bmod{{k}}\in H:=\{1,{ell}\}$.
+\end{lemma}
+\begin{proof}
+To prove this, we will check every value of $p$ such that $p \bmod{{k}}\notin H$ and conclude that \eqref{eq:equality_in_theta} is not true in $\Q(\theta)$ in those cases. Therefore, we shall see the following: if $p \bmod{{k}}\in G\setminus H=\splitatcommas{\{{G_minus_H_list}\}}$, then $-h(\theta^p)\neq -h(\theta)$. This will automatically imply what we want to prove: since \eqref{eq:equality_in_theta} holds, $p \bmod{{k}}\in H$. To see this, rewrite \eqref{eq:equality_in_theta} as
+\begin{equation}\label{eq:equalityQ}
+-{u}\big(\theta^{p}+\theta^{{ell}p}\big)+\theta^{{1plusell}p}+{u}\big(\theta+\theta^{{ell}}\big)-\theta^{{1plusell}}=0
+\end{equation}
+and trade $\theta$ for $x$, since the condition \eqref{eq:equalityQ} in $\Q(\theta)$ is equivalent to the condition
+\begin{equation}\label{eq:polycheck0}
+-{u}\big(x^p+x^{{ell}p}\big)+x^{{1plusell}p}+{u}\big(x+x^{{ell}}\big)-x^{{1plusell}}=0
+\end{equation}
+in $\Q[x]/(\Phi_{{k}}(x))\cong\Q(\theta)$ ($\Phi_{{k}}(x)$ is also the minimal polynomial of $\theta$). We will explicitly write the case $p={prime_example} \bmod{{k}}$ (the remaining {values_alt} of $p \bmod{{k}}\in G\setminus H$ {is_are_2_alt} left as an exercise to the reader). With this value of $p$, equation \eqref{eq:polycheck0} becomes
+\begin{align*}
+A(x)&:=-{u}\big(x^{{prime_example}}+x^{{ell_times_prime_example}}\big)+x^{{1plusell_times_prime_example}}+{u}\big(x+x^{{ell}}\big)-x^{{1plusell}}\\
+&={dividend_check}=0.
+\end{align*}
+
+If we recall that $\Q(\theta)\cong\Q[x]/(\Phi_{{k}}(x))$, the above equation is equivalent to $A(x)$ being a multiple of the ${k}${sufix_cyclo_alt} cyclotomic polynomial, $\Phi_{{k}}(x) = {cyclotomic_polynomial}$. Therefore, we are interested in showing that the residue $R(x)$ of the division $A(x)/\Phi_{{k}}(x)$ satisfies $R(x)\neq 0$, from which our result will follow. A simple Euclidean division of polynomials shows that $A(x)=B(x)\cdot\Phi_{{k}}(x)+({residue})$, with $B(x)$ a polynomial of degree ${degree_Bx}$, so $R(x)={residue} \neq 0$. Therefore, equality \eqref{eq:equality_in_theta} implies that $p \bmod{{k}} \in H$, that is, $p\equiv 1,{ell}\pmod{{k}}$.
+\end{proof}
+
+In conclusion, {prime_divisors_disc_alt}, which finally settles the main Theorem in Section \ref{sec:mainTh}.

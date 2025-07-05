@@ -1,0 +1,398 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
+\section{Fundamental concepts}\label{sec:fundamentals}
+In this section we will present the basic results that will be needed in future sections. We shall start by introducing some terminology so we can conveniently translate arithmetic progressions into modular arithmetic. We will then define what a ``Euclidean proof'' is in light of the well-known theorems of Euclid and Dirichlet. Also, some basic but relevant properties and definitions related to polynomials will be given. This chapter will conclude with a compendium of Galois and Algebraic Number Theory results, which form the core of the central results in this work.
+
+\subsection{Arithmetic progressions}
+Our main goal is to find a special type of proof of the fact that there exist infinitely many primes in some arithmetic progressions, which are sequences $\{a_n\}_{n=0}^\infty\subset\R$, where the $n$th term is given by the formula 
+	\begin{equation}\label{eq:arithprogression}
+		a_n=kn+\ell, \ n\geqslant 0,
+	\end{equation}
+for some $k,\ell\in\R$.
+
+Hereafter, unless otherwise specified, we will always assume $k$ and $\ell$ to be a pair of non-zero positive integers, since we are only interested in integer values of the sequence $\{a_n\}$. Observe that these two integers univocally identify the arithmetic progression $kn+\ell$, $n\geqslant 0$. We may additionally suppose that $k > \ell$.
+
+\begin{remark}\label{remark:valuesofkell}
+	Observe that requiring $0<\ell<k$ is not restrictive:
+\begin{itemize}
+	\item The cases where $k=0$ or $\ell=0$ have obviously no interest, since there is no hope to find infinitely many primes in such progressions.
+	\item If $k$ and $\ell$ are negative, one can multiply by $-1$ and obtain the same progression, with positive terms instead. We consider positive progressions since we are looking for primes of a certain form, which are positive numbers.
+	\item If $k > 0$ and $\ell < 0$, consider the canonical representative $\bar{\ell}:=\ell \bmod{k}$, which will be positive and less than $k$. Note that the progression $kn+\ell$ will have the same terms as $kn+\bar{\ell}$ for $n \geqslant 1$. This is really just a choice of writing: if, say, $k=5$ and $\ell=-3$, the progression $5n-3$ has the same terms as $5n+2$ (except for the first one). Therefore, in this thesis we choose to write our progressions in the latter form.
+	\item If $k < 0$ and $\ell > 0$, consider the progression $-kn-\ell$, which will have the same terms (but positive) and apply the previous point since now $k > 0$ and $\ell < 0$.
+	\item Finally, if $k,\ell > 0$ but $k < \ell$, consider again the progression $kn+\bar{\ell}$ and note that $kn+\ell$ and $kn+\bar{\ell}$ will have the same terms for $n\geqslant 1$.
+\end{itemize}
+\end{remark}
+
+Observe that, fixed $k$ and $\ell$, every term $a_n$ in the sequence defined by \cref{eq:arithprogression} satisfies 
+\begin{equation*}
+	a_n\equiv \ell\pmod{k}, \ n\geqslant 0.
+\end{equation*}
+Therefore, any prime $p$ we may find in the sequence $\{a_n\}$ will also satisfy $p\equiv \ell\pmod{k}$. Since the integers $k$ and $\ell$ univocally define the arithmetic progression $a_n=kn+\ell$, we will be interested in finding certain proofs of the infinitude of primes (in the arithmetic progression) $\equiv \ell \pmod{k}$ or, equivalently, proofs of the existence of infinitely many primes in the congruence class $\ell \bmod{k}$\footnote{If the context is clear, we will refer to the congruence class $\ell\bmod{k}$ as simply $\ell$.}.
+
+\subsection{The Theorems of Euclid and Dirichlet}\label{sec:EuclidDirichletThms}
+Euclid's theorem of the infinitude of primes \cite{Euclid} plays a pivotal role in this thesis, as we are trying to mimic his proof and extend it to more cases. We should therefore state his Theorem and its proof.
+
+\begin{theorem}[\textbf{Euclid}]\label{th:Euclid}
+	There are infinitely many prime numbers.
+\end{theorem}
+\begin{proof}
+	Suppose there are finitely many primes, say $p_1,p_2,\dots,p_m$. Our goal is to show that there exists yet another prime not in our list to reach a contradiction. Thus, consider $Q:=p_1p_2\cdots p_m+1$. This number has at least one prime divisor, $p$, since $Q>1$. If $p$ was one of the $p_i$ for $1\leqslant i \leqslant m$, then $p$ would divide $p_1p_2\cdots p_m$. Since $p$ also divides $Q$, we deduce that $p$ divides $Q-p_1p_2\cdots p_m=1$, so $p$ must equal $1$, a contradiction ($1$ is not a prime). Therefore, $p$ is a prime, and it cannot be in our list, which is a contradiction again.
+\end{proof}
+
+We are now interested in extending this model of proof to primes of a  certain form. In particular, to primes that are $\equiv\ell \pmod{k}$. In other words, we want to prove \textit{à la Euclid} that there exist infinitely many primes of the form $kn+\ell$, $n\geqslant 0$.
+
+It is immediate to check that we need to impose some conditions over $k$ and $\ell$ to have some possibility of success. For example, if $\gcd(k, \ell)=d>1$, then $k=dk'$ and $\ell=d\ell'$, for some $k', \ell'\in\Z$. Suppose that $p$ is a prime satisfying $p\equiv \ell\pmod{k}$. Then, $p\equiv\ell\pmod{d}$, but since $d$ also divides $\ell$, then $p\equiv 0 \pmod{d}$. Thus, $d$ divides $p$, which necessarily means that $p=d$. Therefore, there is only one prime (if any) in the arithmetic progression $\equiv\ell\pmod{k}$ if $\gcd(k, \ell)>1$. Imposing an extra constraint makes all the difference:
+\begin{theorem}[\textbf{Dirichlet}]\label{th:Dirichlet}
+	Suppose that $k$ and $\ell$ are two fixed, non-zero integers. If $\gcd(k, \ell)=1$, there exist infinitely many primes in the congruence class $\ell \bmod{k}$.
+\end{theorem}
+	As we said in the introduction, the proof of this theorem was first given by Dirichlet in terms of $L$-functions. Although some other proofs that minimize the prerequisites are available \cite{Selberg, ShapiroI, ShapiroII}, proving this theorem is still far from straightforward. Therefore, we shall not give the proof here, but \cite{Dirichlet} is a good reference for it.
+	
+\begin{remark}
+	An even stronger result asserts that the density of primes in the congruence class $\ell \bmod{k}$ exists and equals $1/\varphi(k)$ (see \cite{StrongDirichlet}), where $\varphi$ is Euler's totient function (this function counts the number of positive integers less than $k$ relatively prime to $k$). In this thesis, Dirichlet's Theorem will only refer to \cref{th:Dirichlet}, not to the stronger assertion about the density of such primes.
+\end{remark}	
+
+Thanks to Dirichlet's \cref{th:Dirichlet} we must look for infinitely many primes in arithmetic progressions that satisfy $\gcd(k, \ell)=1$, which sets an extra condition over $k$ and $\ell$. From now on, we will always assume this condition to be true. In fact, for every $k>2$, there are $\varphi(k)>1$ congruence classes with infinitely many primes\footnote{In the cases $k=1,2$ the only congruence class with infinitely many primes is $\ell=1$.}.
+
+However, not every one of these $\varphi(k)$ progressions admits a proof that follows the spirit of Euclid's. In \cref{sec:theoretical} we will establish that the condition $\gcd(k,\ell)=1$ is not enough to find such proofs, the constraint $\ell^2\equiv 1 \pmod{k}$ being also required. In fact, this last condition is stronger than the first one, since it implies that $\ell$ is an invertible element of $\Z/k\Z$, so $\ell$ belongs to $(\Z/k\Z)^\times$, and thus $\gcd(k,\ell)=1$.
+
+Proving that a Euclidean proof can be found if and only if $\ell^2\equiv 1 \pmod{k}$ will be the main technical achievement of this thesis. The progressions that satisfy this will obviously be a subset of those allowed by Dirichlet's \cref{th:Dirichlet}. For any of this to make sense, however, we must precisely define what we mean by ``Euclidean proof'' of the infinitude of primes $\equiv \ell\pmod{k}$. We will first give an example of a proof that follows Euclid's idea in \cref{th:Euclid}, so the definition we will give later is more natural. 
+
+\begin{example}
+Suppose there are finitely many primes $\equiv 1 \pmod{3}$, say $p_1,p_2,\dots,p_m$. Our goal is to show that there exists yet another prime $\equiv 1 \pmod{3}$ not in our list. For this goal, consider $Q:=p_1p_2\cdots p_m$ and the polynomial $f(x):=x^2+3$. Now, $f(Q)=Q^2+3$ has at least one prime divisor, $p$, since it is greater than one. We then have that $p$ divides $Q^2+3$.
+
+Observe that $p\neq p_i$, $1\leqslant i \leqslant m$: if $p=p_i$ for some $i$, then $p$ would divide $Q^2$. Since $p$ also divides $Q^2+3$, we get that $p$ divides $3$, so $p=p_i=3$, which is a contradiction ($3$ is not $\equiv 1\pmod{3}$). Therefore, $p$ is a prime not in our list. We just need to show that $p\equiv 1 \pmod{3}$ to reach a contradiction and conclude the proof. 
+
+If $p$ divides $Q^2+3$, then $Q^2\equiv -3\pmod{p}$. By the Legendre symbol, this means that $\legendre{-3}{p}=1$. Since $\legendre{-3}{p}=\legendre{p}{3}$, we deduce that $\legendre{p}{3}=1$, which happens if and only if $p\equiv 1 \pmod{3}$ (see \cref{th:QR} in \cref{sec:extraresults} in the Appendix). This gives us an infinitude of primes $\equiv 1 \pmod{3}$ provided we have one. Since $7$ is a prime $\equiv 1 \pmod{3}$, the desired result is finally settled.
+\end{example}
+
+Observe that in the case of \cref{th:Euclid} we supposed there are finitely many primes, considered their product, $Q$, and also implicitly considered the polynomial $f(x)=x+1$. We then developed a contradiction argument based on the value $f(Q)$. Similarly, for the previous example, we also considered the product $Q$ and used the irreducible polynomial $f(x)=x^2+3$. We then showed that every prime divisor of $f(Q)$ is $\equiv 1 \pmod{3}$ and again reached a contradiction. To end the proof, we needed to find one prime $\equiv 1\pmod{3}$. 
+
+To construct the proof in the general case, we first define the following concept. Let $f\in\Z[x]$ be a polynomial. We say that a prime number $p$ is a \emph{prime divisor} of $f$ (or simply that $p$ \emph{divides} $f$) if there exists $m\in\Z$ such that $p$ divides $f(m)$. The set of prime divisors of $f$ is denoted by $\Spl_1(f)$. Now, in the general case, we will see that it is enough to find an irreducible polynomial such that all its prime divisors are $\equiv 1$ or $\ell \pmod{k}$ (except maybe \emph{finitely} many)\footnote{Observe that the polynomial $f(x)=x^2+3$ we considered in the case $\equiv 1 \pmod{3}$ satisfies this condition.}. Therefore, we define:
+\begin{definition}\label{def:Euclideanproof}
+	The arithmetic progression $\equiv\ell \pmod{k}$ admits a \emph{Euclidean polynomial} if there exists an irreducible polynomial $f\in\Z[x]$ such that all its prime divisors (except for finitely many) are either $\equiv 1$ or $\ell \pmod{k}$, with infinitely many of the latter kind occurring. We may also suppose that $f$ is monic.
+\end{definition}
+We shall then say that there exists a \emph{Euclidean proof} for the arithmetic progression $\equiv \ell \pmod{k}$ if the proof uses a Euclidean polynomial and the shape of its prime divisors to conclude there are infinitely many primes of this type. The procedure to reach this will be fully developed in \cref{sec:theoretical}.
+
+There are other possible and interesting ways of proving specific examples of Dirichlet Theorem that also avoid its complexity and are not necessarily Euclidean. In \cite{GueronTessler, XianzuLin, Selberg, Mestrovic} many examples of such proofs can be found. We could call these other proofs \textit{elementary}\footnote{By \emph{elementary} we refer to techniques that do not require advanced mathematics such as $L$-functions, but rather use undergraduate-level results.}, rather than Euclidean. For instance, in \cite{Shanks} infinitely many primes $\equiv 1 \pmod{p^n}$ are found ($p$ is a prime and $n$lies in $\N$), but the scheme of the proof has nothing to do with our \cref{def:Euclideanproof}. Instead, it uses the form of the prime divisors of $(2^{mp}-1)/(2^m-1)$ for some integer $m$.
+
+Although Dirichlet's complexity can be overcome by many elemental methods for specific cases, in this thesis we are looking for a \emph{general}, \emph{elementary} and \emph{Euclidean} method to obtain infinitely many primes $\equiv \ell\pmod{k}$.
+
+\subsection{Essential results}
+
+Some basic notation should be recalled before tackling the main results that will pave the way for those in \cref{sec:theoretical}. Let $k\geqslant 1$ be a fixed integer. We shall start by remembering that the multiplicative group of units of $\Z/k\Z$ is 
+	\begin{equation*}
+		G:=(\Z/k\Z)^\times=\{a\in \Z/k\Z: \gcd(k,a)=1\},
+	\end{equation*}
+ and that the number of elements in $G$ equals $\varphi(k)$. Since polynomials are at the core of Euclidean proofs, we will also outline some results and concepts regarding their prime divisors and roots, which will be later on important. The definiton of $G$ enables us to define:
+\begin{definition}\label{def:cyclotomicpol}
+	The \emph{$k$th cyclotomic polynomial}, $\Phi_k$, is defined by the formula
+	\begin{equation}\label{eq:cyclopol}
+		\Phi_k(x):=\prod_{a\in G}\big(x-e^{\frac{2\pi ia}{k}}\big)=\prod_{a\in G}(x-\zeta^a),
+	\end{equation}
+	where we set $\zeta:=e^{2\pi i/k}$. Observe that $\Phi_k$ is a monic polynomial.
+\end{definition}
+It is obvious from \cref{eq:cyclopol} that the roots of $\Phi_k$ are all the $k$th primitive roots of unity and that $\degpol(\Phi_k)=\varphi(k)$. Cyclotomic polynomials satisfy the following important relation, which is proved in \cite{StevenRoman}.
+\begin{lemma}
+	The following equality of polynomials holds:
+	\begin{equation}\label{eq:divisorscyclo}
+		\prod_{d\mid k}\Phi_d(x)=x^k-1.
+	\end{equation}
+\end{lemma}
+
+Some results regarding the prime divisors of polynomials can already be established.
+  \begin{lemma}\label{lemma:propertiesprimedivisors2}
+	Let $f, r\in\Z[x]$. Then,  $\Spl_1(f\circ r)\subseteq \Spl_1(f)$. 
+\end{lemma}
+\begin{proof}		
+	Let $p$ be a prime such that $p$ belongs to $\Spl_1(f\circ r)$. This implies that there exists $a\in\Z$ such that $p$ divides $f(r(a))$. Since $r(a)$ lies in $\Z$ because $r$ belongs to $\Z[x]$, we have that $p$ divides $f(b)$ with $b:=r(a)\in\Z$, so $p$ belongs to $\Spl_1(f)$.
+\end{proof}
+This enables us to prove the following result.
+\begin{proposition}\label{prop:propertiesprimedivisors}
+ If $f\in\Z[x]$ is non-constant, the set $\Spl_1(f)$ is infinite.
+\end{proposition}
+\begin{proof}
+		We can suppose that $f(0)=c\neq 0$. If $f(0)=0$, exchange the polynomial $f$ for $f\circ r$ with a suitable polynomial $r\in\Z[x]$ such that $f(r(0))\neq0$. Proving that $f\circ r$ has infinitely many prime divisors will automatically imply that $f$ has infinitely many prime divisors since $\Spl_1(f\circ r)\subseteq \Spl_1(f)$ (see \cref{lemma:propertiesprimedivisors2}).
+		
+		To begin with, there is obviously at least one prime divisor of $f$, since the case $f(x)=\pm 1$ only happens for a finite number of integer values of $x$. Next, suppose $f$ has only a finite number of prime divisors, say $p_1, p_2,\dots,p_t$, and let $Q:=p_1p_2\cdots p_t$. 
+		
+		 Since $f(0)=c\neq 0$ (changing $f$ for $f\circ r$ if necessary), we have $f(Qcx)=cg(x)$ for some $g\in\Z[x]$ of the form $1+c_1x+c_2x^2+\cdots+c_dx^d$ (where $c_i\in\Z$ for every $1\leqslant i \leqslant d$, and $d=\degpol(f)$). Note that $Q$ divides every $c_i$. This polynomial $g$ must also have at least one prime divisor, say $p$, for the same reason as before. Therefore, $p$ divides $g(m)$ for some $m\in\Z$, and this implies that $p$ divides $f(Qcm)$. Since $m':=Qcm$ lies in $\Z$, it follows that $p$ is a prime divisor of $f$. But $p$ does not divide $Q$, since $p$ dividing $Q$ would mean that $p$ divides $c_i$, for every $1\leqslant i \leqslant d$ (recall that $Q$ divides every $c_i$). This, together with the fact that $p$ divides $g(m)$, would imply that $p$ divides $g(m) - \sum_{i=1}^{d}c_im^i=1$, which means $p=1$, a contradiction. 
+		
+		Now, $p$ is a prime divisor of $f$, but $p$ is not any of the primes $p_1,p_2,\dots,p_t$, since we just proved that $p$ does not divide $p_1p_2\cdots p_t=Q$. Thus, we found a new prime divisor of $f$ not in our list, so one concludes that $f$ has infinitely many prime divisors.
+\end{proof}
+The above proof is a detailed version of that in \cite{Murty}.
+\begin{remark}\label{remark:Nagell}
+ In \cref{sec:theoretical} we will prove that every prime divisor of $\Phi_k$ is $\equiv 1\pmod{k}$, except for finitely many, so, from \cref{prop:propertiesprimedivisors}, we deduce that $\Phi_k$ has infinitely many prime divisors $\equiv 1\pmod{k}$. There is a result due to Trygve Nagell \cite{Murty} that ensures that for any pair of non-constant polynomials $f$ and $g$ in $\Z[x]$, the set $\Spl_1(f)\cap\Spl_1(g)$ is infinite. This tells us that every non-constant polynomial has infinitely many prime divisors $\equiv 1\pmod{k}$.
+\end{remark}
+Let $p$ be a prime and let $\F_p$ be the finite field with $p$ elements. The following result also holds.
+\begin{proposition}\label{prop:doubleroots}
+Fix a non-constant polynomial $f\in\Z[x]$ and let $\F$ be an extension field of $\F_p$. Also let $\overline{f}\in\F_p[x]$ be the reduction of $f \bmod{p}$. An element $a\in\F$ is a double root of $\overline{f}$ if and only if $f(a)\equiv 0\pmod{p}$ and $f'(a)\equiv 0\pmod{p}$.
+\end{proposition}
+\begin{proof}
+	We shall always work in the field $\F_p$ to ease the notation. If $f$ has a double root $a$, we can then write $f(x)=(x-a)^2q(x)$ for some $q\in\F_p[x]$. It is then clear that $f(a)=0$. Furthermore, using the formal derivative, $f'(x)=2(x-a)q(x)+(x-a)^2q'(x)$, which, at $x=a$, reduces to $f'(a)=0$.
+	
+	For the converse implication, we want to show that $(x-a)^2$ divides $f$ in $\F_p[x]$. Since $f(a)=0$, we have that $f(x)=(x-a)r(x)$ for some $r\in\F_p[x]$. Using the formal derivative we get $f'(x)=r(x)+(x-a)r'(x)$, which, at $x=a$, reduces to $f'(a)=r(a)$. Since $f'(a)$ vanishes by hypothesis, we have that $r(a)=0$, so we can also write $r(x)=(x-a)s(x)$ for some $s\in\F_p[x]$. Putting all together yields $f(x)=(x-a)r(x)=(x-a)^2s(x)$. Hence, $(x-a)^2$ divides $f$.
+\end{proof}
+
+Finally, we also need to give an expression for the \emph{discriminant} of a monic polynomial $f\in\Z[x]$, which we denote by $\Delta(f)$. Let $\degpol(f)=d$ and let $\{r_1,r_2,\dots,r_d\}\subset\C$ be the roots of $f$ (not necessarily distinct). Then, 
+	\begin{equation}\label{eq:discrim}
+		\Delta(f)=\prod_{i<j}(r_i-r_j)^2, \quad 1\leqslant i,j\leqslant d.
+	\end{equation}
+
+\subsection{Some Galois Theory}
+
+Galois Theory results will also be needed. Since our definition of Euclidean polynomial requires it to be irreducible (see \cref{def:Euclideanproof}), we will find the following theorem particularly useful. The proofs of the next two results can be found in \cite[Chapter 6 and 7]{GaloisCox}.
+\begin{theorem}\label{th:conjugatesirreduc}
+	Let $F$ be a field and let $f\in F[x]$ be a separable polynomial. Also let $L$ be the splitting field of $f$. Then, the group $\Gal(L/F)$ is transitive on the roots of $f$ if and only if $f$ is irreducible over $F$.
+\end{theorem}
+
+Consider now an arbitrary tower of field extensions $K/L/F$. Recall that if $K/F$ is Galois, then $K/L$ is automatically a Galois extension. A condition can be given so that $L/F$ is also Galois.
+\begin{theorem}\label{th:galoisextcondition}
+	Let $K/L/F$ be a tower of extensions where $K/F$ is Galois. Suppose $L$ is the fixed field of a subgroup $H$ of $\Gal(K/F)$. Then, $L/F$ is Galois if and only if $H$ is normal on $\Gal(K/F)$.
+\end{theorem}
+
+There is one particular field which will be relevant in this thesis. Again, fix an integer $k\geqslant 1$ and let $\zeta$ be a $k$th primitive root of unity (from now on, $\zeta$ will always denote a root of $\Phi_k$). The field extension $\Q(\zeta)/\Q$ is called the \emph{$k$th cyclotomic field}. It is the smallest subfield of $\C$ containing $\zeta$. 
+
+This extension is generated by the cyclotomic polynomial $\Phi_k$. Indeed, since the cyclotomic polynomials are irreducible over $\Q$ (see \cite[Chapter 9]{GaloisCox}), we have that the cyclotomic field is generated via $\Q[x]/(\Phi_k)$, so $\Q(\zeta)$ is a finite field extension over $\Q$, with $[\Q(\zeta):\Q]=\degpol(\Phi_k)=\varphi(k)$.
+
+Now, since every $k$th root of unity is of the form $\zeta^j$ for some $j\in\Z$, it follows that $\Q(\zeta)$ contains every root of $\Phi_k$ (see \cref{def:cyclotomicpol}). Since we are working in characteristic $0$, it follows that $\Q(\zeta)/\Q$ is a Galois extension. The Galois group of this extension can be easily described thanks to the following proposition, proved in \cite[Chapter 9]{GaloisCox}.
+\begin{proposition}\label{prop:Galisominteg}
+	The group $\Gal(\Q(\zeta)/\Q)$ is canonically isomorphic to $(\Z/k\Z)^\times$ via sending the morphism $\sigma_a:\zeta\mapsto\zeta^a$ of $\Gal(\Q(\zeta)/\Q)$ to the residue class $a \bmod{k}$, for every $a\in(\Z/k\Z)^\times$.
+\end{proposition}
+
+In future sections we will extensively use this canonical isomorphism to identify some subgroup of $\Gal(\Q(\zeta)/\Q)$ with the corresponding subgroup of $(\Z/k\Z)^\times$.
+
+\subsection{Some Algebraic Number Theory}\label{sec:ANT}
+
+As we said in the introduction, Euclidean methods to show that the congruence class $\equiv \ell\pmod{k}$ contains infinitely many primes can only be found when $\ell^2\equiv 1\pmod{k}$. This requires proving two implications. Imagine we somehow have a Euclidean polynomial for the congruence class $\equiv\ell\pmod{k}$. In this situation, showing that $\ell^2\equiv 1\pmod{k}$ will be the hardest implication to settle. By ``hard'' we mean that some algebraic number theory will be needed. Therefore, we shall introduce some technical parlance and results, which we will take from Chapter $3$ of \cite{Marcus}.
+
+We say that a field extension $K$ over $\Q$ is a \emph{number field} if $[K:\Q]$ is finite. Now, fix a number field $K$ with $[K:\Q]=n$. The set of all algebraic integers in $K$ is denoted by $\mathcal{O}_K$. That is, 
+	\begin{equation*}
+	\mathcal{O}_K:=\{\alpha\in K: \ \text{exists a monic polynomial} \ h\in \Z[x], h\neq 0 \ \text{and} \ h(\alpha)=0\}\subseteq K.
+	\end{equation*}
+This set is actually a ring, called the \emph{ring of integers} of $K$. Moreover, $\mathcal{O}_K$ is a Dedekind domain, so every non-zero proper ideal factors uniquely (up to the order of the factors) into a product of prime ideals.
+
+If $\mathcal{O}_K=\Z[\alpha]$ for some $\alpha\in\mathcal{O}_K$, then the set $\{1,\alpha,\alpha^2,\dots,\alpha^{n-1}\}$ is called a \emph{$\Z$-power basis} of $\mathcal{O}_K$. In this case, the number field $K$ is called a \emph{monogenic} number field.
+
+If $n=2$ or $K$ is a cyclotomic field, then $\mathcal{O}_K$ always admits a $\Z$-power basis. However, this is not always the case. There is an example due to Dedekind that shows that such a basis cannot always be found. For this purpose, Dedekind considered the number field $K:=\Q(\alpha)$, where $\alpha$ is a root of the polynomial $x^3-x^2-2x-8$ and showed that $K$ is not monogenic (see page $30$ of Dedekind's original article \cite{Dedekind1878}). 
+
+Now, given a prime $p$ of $\Z$, consider the ideal of $\mathcal{O}_K$ defined by $p\mathcal{O}_K:=\{px: x\in \mathcal{O}_K\}$. This ideal is not prime in general, but it breaks down uniquely as a product of prime ideals (up to the order of the factors). Precisely, suppose that the ideal $p\mathcal{O}_K$ factors in $\mathcal{O}_K$ like
+	\begin{equation}\label{eq:factorfrakp}
+		p\mathcal{O}_K=\prod_{i=1}^{g}\mathfrak{p}_i^{e_i},
+	\end{equation}
+	where every $\mathfrak{p}_i$, $1\leqslant i \leqslant g$, is a prime ideal of $\mathcal{O}_K$. The number $e_i\in\N$ is called the \emph{ramification index} of $\mathfrak{p_i}$ over $p$. If $e_i>1$ for any $i$, we say $p$ is \emph{ramified} in $K$. If every $e_i$ equals $1$, we say $p$ is \emph{unramified} in $K$. We also say that $\mathfrak{p}_i$ \emph{divides} or \emph{contains}\footnote{This makes sense since the product of two ideals $I$ and $J$ in a general ring $R$ always satisfies $IJ\subseteq I$ and $IJ\subseteq J$.} $p\mathcal{O}_K$.
+
+We now have the following situation:
+\begin{center}
+\begin{tikzcd}[column sep=tiny]
+K \arrow[d, dash] & \supseteq & \mathcal{O}_K \arrow[d, dash] & \supseteq & p\mathcal{O}_K \arrow[d, dash] \\
+\Q          & \supseteq & \Z              & \ni & p                       
+\end{tikzcd}
+\end{center}
+Observe that $\mathfrak{p}_i\cap\Z=p\Z$, since $\mathfrak{p}_i$ contains $p\mathcal{O}_K\supseteq \Z$, so it contains every multiple of $p$. Now, remember that in Dedekind domains, prime ideals are also maximal ideals. Therefore, for every $1\leqslant i \leqslant g$, $\mathcal{O}_K/\mathfrak{p}_i$ is a field with characteristic $p$ (for a proof of this fact, again see \cite[Chapter 3]{Marcus}), which is called the \emph{residue field} of $\mathfrak{p}_i$. Since it is a field of characteristic $p$, it must be isomorphic to $\F_{p^n}$ for some integer $n\geqslant 1$. This integer is called the \emph{inertia degree} of $\mathfrak{p}_i$ over $p$, and it is denoted by $f_{K/\Q}(\mathfrak{p}_i|p)$ (or simply $f(\mathfrak{p}_i|p)$ or $f_i$ if there is no ambiguity). 
+
+Therefore, $f(\mathfrak{p}_i|p):=[\mathcal{O}_K/\mathfrak{p}_i:\F_p]$, and, in view of this, one can define the \emph{absolute norm} of the nonzero ideal $\mathfrak{p_i}$ by $\Norm(\mathfrak{p_i}):=p^{f_i}$. In the specific case where $K/\Q$ is a normal extension (thus automatically Galois), we have the following result:
+\begin{proposition}\label{prop:factGalois}
+	If $K/\Q$ is a normal extension, then there exists a unique $e\in\N$ such that $p\mathcal{O}_K=\prod_{i=1}^{g}\mathfrak{p}_i^{e}$, and every inertia degree $f_i$ is the same for $1\leqslant i \leqslant g$ (we then simply write the inertia degree as $f$). Moreover, $e\cdot f\cdot g=[K:\Q]$.
+\end{proposition}
+
+In all, when we express $p\mathcal{O}_K$ as in \cref{eq:factorfrakp}, we refer to the data provided by the ramification indices, the inertia degrees and the natural number $g$ as the ``shape'' of the factorization of $p\mathcal{O}_K$.
+
+There are some quantities attached to every number field that describe it. One of these quantities is called the \emph{discriminant} of $K$, and it regulates which primes ramify in $K$. Let $b_1,\dots,b_n$ be an integral basis of $\mathcal{O}_K$, and let $\{\sigma_1,\dots,\sigma_n\}$ be the set of injective ring homomorphisms from $K$ to $\C$. The \emph{discriminant} of a number field $K$, $\Delta(K)$, is defined by $\Delta(K):=(\det(\sigma_i(b_j)_{i,j}))^2$, for $1\leqslant i,j \leqslant n$.
+
+The notion of discriminant can be extended to $\mathcal{O}_K$. In this case, $\Delta(\mathcal{O}_K)$ is defined to be the discriminant of $K$. Also, if $K=\Q(\alpha)$ for some $\alpha$ in $\mathcal{O}_K$, and we let $h$ denote the minimal polynomial of $\alpha$, we then have that $\Delta(\Z[\alpha])$ coincides with the discriminant of $h$. If $K$ is monogenic with $\mathcal{O}_K=\Z[\beta]$ for some $\beta\in\mathcal{O}_K$, then $\Delta(K)$ also coincides with the discriminant of the minimal polynomial of $\beta$.
+
+\begin{remarknonumber}
+We have so far worked with field extensions over $\Q$. The same results hold for \emph{relative extensions} over a fixed, arbitrary number field. This requires replacing $\Q$ with a number field $F$ and $\Z$ with $\mathcal{O}_F$. Also, $p$ would now be a prime ideal $\mathfrak{p}$ of $\mathcal{O}_F$.
+
+In the same lines, one can also define the \emph{relative discriminant} of an extension $K/F$, which is denoted by $\Delta(K/F)$. It is an ideal of $\mathcal{O}_F$ and controls what primes of $F$ ramify in $K$.
+\end{remarknonumber}
+	
+ We will now learn that the shape of $p\mathcal{O}_K$ can be studied via the factorization of a certain polynomial. Suppose a monic polynomial $\overline{h}\in\F_p[x]$ factors into monic irreducible factors $\overline{h_i}\in\F_p[x]$ like 
+\begin{equation*}
+	\overline{h}=\overline{h_1}^{e_1}\overline{h_2}^{e_2}\cdots \overline{h_g}^{e_g},
+\end{equation*}
+for some natural numbers $g$ and $e_i$. We also refer to the quantity $g$, the exponents $e_i$ and the degrees of each $\overline{h_i}$ as the ``shape'' of the factorization of the polynomial $\overline{h}$ in $\F_p[x]$. There exists a criterion by Dedekind that allows to work out the shape of the factorization of $p\mathcal{O}_K$ via the shape of the factorization in $\F_p[x]$ of a certain polynomial with integer coefficients. The criterion holds for all but finitely many primes, and is proved in detail in \cite[Chapter 3]{Marcus}. It reads:
+\begin{theorem}[\textbf{Dedekind Criterion}]\label{th:criterionfactorization}
+	Let $\alpha$ belong to $\mathcal{O}_K$ such that $K=\Q(\alpha)$. Let $h\in\Z[x]$ be the minimal polynomial of $\alpha$ over $\Q$. Also, let $p$ be a prime not dividing $[\mathcal{O}_K:\Z[\alpha]]$, and let $\overline{h}$ be the reduction of $h \bmod{p}$. Then, there exists an integer $g\geqslant 1$, some prime ideals $\mathfrak{p}_i\subseteq\mathcal{O}_K$ and some ramification indices $e_i$ such that
+	\begin{equation*}
+		p\mathcal{O}_K=\mathfrak{p}_1^{e_1}\mathfrak{p}_2^{e_2}\cdots\mathfrak{p}_g^{e_g} \ \ \text{if and only if} \ \ h\equiv \overline{h_1}^{e_1}\overline{h_2}^{e_2}\cdots \overline{h_g}^{e_g} \pmod{p},
+	\end{equation*}
+	where every $\overline{h_i}$ is a distinct monic irreducible factor of $h$ in $\F_p[x]$. Moreover, there is an isomorphism of residue fields $\F_p[x]/(\overline{h_i})\cong\mathcal{O}_K/\mathfrak{p}_i$ defined by sending $x\mapsto\alpha \pmod{\mathfrak{p}_i}$, for every $1\leqslant i \leqslant g$.
+\end{theorem}
+The above theorem tells us that $f(\mathfrak{p}_i|p)=\degpol(\overline{h_i})$, and that there is a bijection between every prime ideal $\mathfrak{p}_i$ and each irreducible factor $\overline{h_i}$ such that $\Norm(\mathfrak{p_i})=p^{\degpol(\overline{h_i})}$. Moreover, since $\Delta(\Z[\alpha])=\Delta(h)=[\mathcal{O}_K:\Z[\alpha]]^2\Delta(\mathcal{O}_K)$ holds, it is enough to check that $p^2$ does not divide $\Delta(h)$ for Dedekind Criterion to work for $p$. The following result can be deduced from the previous theorem.
+
+\begin{corollary}\label{corol:pramifyOKmonogenic}
+	Consider the field extension $K/F$. A prime ideal $\mathfrak{p}$ of $F$ ramifies in $K$ if and only if $\mathfrak{p}$ divides $\Delta(K/F)$.
+\end{corollary} 
+
+\begin{remark}\label{remark:finiteprimesramify}
+	Since $\Delta(K/F)\neq 0$, only finitely many prime ideals of $F$ ramify in $K$.
+\end{remark}
+
+For the following two results we temporarily write the $k$th cyclotomic field as $\Q(\zeta_k)$, and we let $p$ be a prime and $n$ a positive integer. The proof of the upcoming two results can be found in \cite[Chapter 2]{Washington}.
+\begin{proposition}\label{prop:dicrcyclo}
+	The discriminant of the number field $\Q(\zeta_{p^{n}})$ is $\pm p^{p^{n-1}(pn-n-1)}$, where the sign is negative if $p=2$ and $n=2$ or if $p\equiv 3\pmod{4}$. The sign is otherwise positive.
+\end{proposition}
+
+ For the next result, first observe that $\Delta(\Phi_k)=\Delta({\Q(\zeta_k)})$, because $\Q(\zeta_k)$ is monogenic since its ring of integers is $\Z[\zeta_k]$. 
+\begin{proposition}\label{prop:discprimediv}
+	If $p$ divides $\Delta(\Phi_k)$, then $p$ also divides $k$.
+\end{proposition}
+\begin{proof}
+	 A prime number $p$ divides $\Delta(\Phi_k)=\Delta({\Q(\zeta_k)})$  if and only if $p$ ramifies in $\Q(\zeta_k)$ (see \cref{corol:pramifyOKmonogenic}). Thus, we are reduced to prove that the fact that $p$ ramifies in $\Q(\zeta_k)$ implies that $p$ divides $k$. Equivalently, we will show that if $p$ does not divide $k$, then $p$ does not ramify in $\Q(\zeta_k)$.
+	
+	Set $k=\prod_iq_i^{n_i}$, for some primes $q_i$ and some integer exponents $n_i>0$ and note that $\Q(\zeta_k)$ is the compositum of the fields $\Q(\zeta_{q_i^{n_i}})$. Suppose $p$ does not divide $k$, so $p\neq q_i$ for every $i$. Then $p$ is unramified in each $\Q(\zeta_{q_i^{n_i}})$, since $p$ does not divide the discriminant of $\Q(\zeta_{q_i^{n_i}})$ (see \cref{prop:dicrcyclo}). Therefore, $p$ does not ramify in the compositum, which is $\Q(\zeta_k)$.
+\end{proof}
+
+If $p\neq 2$, then the converse of the previous proposition is also true: if $p$ divides $k$, then $\Q(\zeta_p)\subseteq\Q(\zeta_k)$. Since $p\neq 2$, $p$ ramifies in $\Q(\zeta_p)\supsetneq \Q$ (because it divides $\Delta(\Q(\zeta_p))$), so we deduce that $p$ ramifies in $\Q(\zeta_k)$. Thus, $p$ divides $\Delta({\Q(\zeta_k)})=\Delta(\Phi_k)$. However, if we take $p=2$ and $k=6$, then $p$ divides $k$, but $p$ does not divide $\Delta(\Phi_6)=-3$.
+
+\subsection{Notation for Murty Theorem}\label{sec:notationMurty}
+
+With the definitions and results we have given so far we can introduce some notation that will easen the proof of Murty Theorem \cite{Murty}. The notation we follow here is due to Keith Conrad, who gives a detailed version of Murty's theorem in \cite{Conrad}. 
+
+Let $h\in\Z[x]$ be a monic polynomial and let $p$ be a prime divisor of $h$. Recall that in \cref{sec:EuclidDirichletThms} we set
+	\begin{equation*}
+		\Spl_1(h):=\{p : \text{$p$ is a prime divisor of $h$}\}=\{p : \text{$h \bmod{p}$ has a linear factor in $\Z/p\Z[x]$}\}.
+	\end{equation*}
+Giving a rule to determine which primes belong to $\Spl_1(h)$ is the so-called ``reciprocity problem'', and any possible answer to it is a ``reciprocity law''. A helpful reference regarding this topic is \cite{Chebotarev2}.
+
+These reciprocity laws exist for generating polynomials of quadratic extensions and cyclotomic extensions. For example, the well-known \emph{Quadratic Reciprocity Law} (see \cref{th:QR} in \cref{sec:extraresults} in the Appendix) determines when an irreducible monic polynomial $h(x)=x^2+b$ with $b$ in $\Z$ splits into linear factors when reduced mod $p$. That is, this law determines $\Spl_1(h)$ when $\degpol(h)=2$. For example, the QRL enables us to give an easy description of the set $\Spl_1(\Phi_4)=\Spl_1(x^2+1)$. Indeed, let $p$ be a prime divisor of $\Phi_4$, so $n^2+1\equiv 0\pmod{p}$, for some $n\in\Z$. This tells us that $-1$ is a quadratic residue mod $p$, for every prime divisor of $\Phi_4$ different from $2$, so $\legendre{-1}{p}=1$ for $p\neq 2$. By the supplemental laws of the QRL (again, see \cref{sec:extraresults}), we deduce that $p\equiv 1\pmod{4}$, so finally $\Spl_1(\Phi_4)=\{p: p\equiv 1\pmod{4}\}\cup\{2\}$.
+
+ However, $\Spl_1(h)$ for $h(x)=x^5-x+1$ has no easy description. Nevertheless, in this thesis ---taking advantage of the results that lead to Euclidean proofs--- we will give an explicit reciprocity law for a special type of polynomials, which had not been previously considered in the literature. Suppose $L:=\Q(\eta)$ for some $\eta\in\Q(\zeta)$ and $[\Q(\zeta):L]\leqslant 2$. We will effectively give a characterisation of $\Spl_1(h)$, where $h$ is the minimal polynomial of $\eta$ over $\Q$. In fact, the reciprocity law for the cyclotomic case $[\Q(\zeta):L]=1$ is already known \cite{Chebotarev2}.
+ 
+Now fix an arbitrary number field $K$ over $\Q$. Similarly to the set $\Spl_1(h)$, one may define the set $\Spl_1(K)$ as
+	\begin{equation*}
+		\Spl_1(K):=\{p: \text{some $\mathfrak{p}$ dividing $p\mathcal{O}_K$ in $K$ has $f_{K/\Q}(\mathfrak{p} | p)=1$}\}.
+	\end{equation*}
+Thus, in the notation of \cref{eq:factorfrakp}, $\Spl_1(K)$ is the set of primes such that the corresponding factorization in prime ideals of $\mathcal{O}_K$ includes a prime ideal $\mathfrak{p}_i$ with $\Norm(\mathfrak{p}_i)=p$, for some $1\leqslant i \leqslant g$.
+As Keith Conrad summarises in \cite{Conrad}, ``$p$ lies in $\Spl_1(h)$ when $h$ has a root mod $p$, while $p$ lies in $\Spl_1(K)$ when $p$ has a prime ideal factor in $K$ whose residue field is $\Z/p\Z$''.
+
+Again, any rule that determines what primes lie in $\Spl_1(K)$ is called a reciprocity law. For instance, $\Spl_1(\Q(i))$ can be easily calculated using Dedekind Criterion (\cref{th:criterionfactorization}) with $\alpha=i$ and $h=\Phi_4$, which is the minimal polynomial of the algebraic element $i$. Observe that $\mathcal{O}_{\Q(i)}=\Z[i]$, so Dedekind Criterion holds for every prime. Thus, to calculate $\Spl_1(\Q(i))$ we need to work out for what primes $p$ the reduction of $\Phi_4(x)=x^2+1 \bmod{p}$ produces a linear factor in $\F_p[x]$ (since the degrees of the irreducible factors correspond to the inertia degrees)\footnote{In fact, since $\Q(i)/\Q$ is Galois, if $\Phi_4$ has a linear factor$\pmod{p}$, every factor of $\Phi_4\bmod{p}$ will be linear.}. But this will happen exactly when $p$ lies in $\Spl_1(h)$, so finally $\Spl_1(\Q(i))=\{p: p\equiv 1\pmod{4}\}\cup\{2\}$.
+
+Following this idea, in this thesis we will also give a characterisation of $\Spl_1(L)$, for $L$ lying below $\Q(\zeta)$ of degree at most $2$.
+
+Now that we have a better understanding of the sets $\Spl_1(h)$ and $\Spl_1(K)$, we can introduce two more sets, which will play a crucial role in the proof of Murty's theorem. As usual, fix an integer $k\geqslant 1$. We define
+	\begin{equation*}
+		S_1(k,h):=\{b \bmod{k}: p\equiv b \pmod{k} \ \text{for infinitely many $p\in\Spl_1(h)$}\}
+	\end{equation*}
+and
+	\begin{equation*}
+	S_1(k,K):=\{b \bmod{k}: p\equiv b \pmod{k} \ \text{for infinitely many $p\in\Spl_1(K)$}\}.
+	\end{equation*}
+Observe that the elements of the above (finite) sets are congruence classes mod $k$. Moreover, they are subsets of $(\Z/k\Z)^\times$, since $\gcd(k, b)=1$, for otherwise the condition of existing infinitely many primes $\equiv b\pmod{k}$ would not be met.
+
+\begin{remark}\label{rem:equalityS1}
+	These sets are of particular interest since they give a simple description of Euclidean polynomials. Using again Dedekind Criterion, if $h$ is irreducible over $\Q$, and $\theta$ is a root of $h$, $\Spl_1(h)$ and $\Spl_1(\Q(\theta))$ are the same, except maybe in a finite number of cases arising if $\Z(\theta)$ is not the ring of integers of $\Q(\theta)$. However, $S_1(k,h)$ and $S_1(k, \Q(\theta))$ do coincide without exceptions.
+	
+	Thus, observing \cref{def:Euclideanproof} and \cref{remark:Nagell}, a Euclidean polynomial for the progression $\equiv\ell\pmod{k}$ is any monic, irreducible polynomial $h\in\Z[x]$ such that $S_1(k,h)=\{1, \ell\}$ (writing $\ell$ instead of $\ell \bmod{k}$). Equivalently, $h$ will be a Euclidean polynomial for the progression $\equiv\ell\pmod{k}$ if, for any root $\theta\in\C$ of $h$, we have that $S_1(k,\Q(\theta))=\{1, \ell\}$.
+\end{remark}
+
+\subsection{Chebotarev Density Theorem}\label{sec:Chebotarev}
+
+The key step to prove Murty's theorem will be Chebotarev Density Theorem. This result is even deeper than Dirichlet Theorem, and it constitutes a cornerstone in modern algebraic number theory. In order to understand its statement, we must first introduce some concepts and results (proved in detail in \cite{Marcus}). 
+
+Let $K$ and $F$ be number fields, and assume $K/F$ is an abelian extension. Also assume that $K$ is a normal extension of $F$, so $K/F$ is automatically Galois. Now set $G:=\Gal(K/F)$ and let $\mathcal{O}_K$ and $\mathcal{O}_F$ denote the corresponding rings of integers. Also, denote by $\Cl(\sigma)=\{\tau\sigma\tau^{-1}: \tau\in G\}$ the conjugacy class of $\sigma\in G$.
+
+Now, fix a prime $\mathfrak{p}$ of $\mathcal{O}_F$, so that $\mathfrak{p}\cap\Z=p\Z$, for some prime $p$. For each prime $\mathfrak{q}$ of $\mathcal{O}_K$ lying over\footnote{By this we mean any prime ideal $\mathfrak{q}\subseteq\mathcal{O}_K$ such that $\mathfrak{q}\cap\mathcal{O}_F=\mathfrak{p}$.} $\mathfrak{p}$, we define the following two subgroups of $G$:
+\begin{definition}
+	The \emph{decomposition group} is defined by:
+	\begin{align*}
+		D_{\mathfrak{q}}&:=\{\sigma\in G: \sigma(\mathfrak{q})=\mathfrak{q}\}\\
+		&=\{\sigma\in G: \sigma(\alpha)\equiv 0 \pmod{\mathfrak{q}}\ \text{if and only if} \ \alpha\equiv 0\pmod{\mathfrak{q}}, \forall \alpha\in\mathcal{O}_K\}.
+	\end{align*}
+The \emph{inertia group} is defined by:
+	\begin{equation*}
+		I_{\mathfrak{q}}:=\{\sigma\in G: \sigma(\alpha)\equiv \alpha \pmod{\mathfrak{q}}, \forall \alpha\in\mathcal{O}_K\}.
+	\end{equation*}
+\end{definition}
+From the definition, $I_{\mathfrak{q}}$ lies in $D_{\mathfrak{q}}$. In principle, $D_\mathfrak{q}$ and $I_\mathfrak{q}$ depend on $\mathfrak{p}$ and on the choice of $\mathfrak{q}$ lying over $\mathfrak{p}$. If $\mathfrak{q}'$ is another prime ideal of $\mathcal{O}_K$ lying over $\mathfrak{p}$, then $D_{\mathfrak{q}}$ and $D_{\mathfrak{q}'}$ (resp. $I_{\mathfrak{q}}$ and $I_{\mathfrak{q}'}$) are conjugate in $G$ via any $\sigma\in G$ sending $\mathfrak{q}$ to $\mathfrak{q}'$. However, since $K/F$ is abelian, every conjugacy class only contains one element, so $D_\mathfrak{q}$ and $I_\mathfrak{q}$ do not depend on the choice of $\mathfrak{q}$\footnote{We will however not drop the subscript for clarity.}.
+
+Any $\sigma\in G$ is an automorphism of the field $K$, so $\sigma(\mathcal{O}_K)\subseteq\mathcal{O}_K$. Now, if we additionally suppose that $\sigma$ lies in $D_{\mathfrak{q}}\subseteq G$, then $\sigma$ fixes $\mathfrak{q}$ and hence induces a well-defined automorphism $\sigma^*$ of the field $\kappa(\mathfrak{q}):=\mathcal{O}_K/\mathfrak{q}$. Indeed, for each $\sigma\in D_{\mathfrak{q}}$, we define
+\begin{align*}
+	\sigma^*: \kappa(\mathfrak{q})&\longrightarrow \kappa(\mathfrak{q})\\
+	[\alpha] &\longmapsto [\sigma(\alpha)]\\
+	[\alpha+t] &\longmapsto [\sigma(\alpha)+\sigma(t)]=[\sigma(\alpha)]+t
+\end{align*}
+for $\alpha\in\mathcal{O}_K$ and $t\in\mathfrak{q}$. 
+Also write $\kappa(\mathfrak{p}):=\mathcal{O}_F/\mathfrak{p}$. Since $\sigma$ also fixes $\mathcal{O}_F$ (because $\sigma$ lies in $G$), it can be proved that $\sigma^*$ belongs to $G^*:=\Gal(\kappa(\mathfrak{q})/\kappa(\mathfrak{p}))$, so we have a group homomorphism $\pi$ between $D_{\mathfrak{q}}$ and $G^*$. Moreover, this homomorphism is surjective, and its kernel is:
+\begin{equation}\label{eq:kerpi}
+	\Ker(\pi)=\{\sigma\in D_\mathfrak{q}: \sigma^*=\id\}=\{\sigma\in D_\mathfrak{q}: \sigma(\alpha+\mathfrak{q})=\sigma(\alpha)+\sigma(\mathfrak{q})=\alpha+\mathfrak{q}, \ \forall \alpha\in \mathcal{O}_K\}=I_\mathfrak{q},
+\end{equation}
+from which we deduce that $I_\mathfrak{q}$ is a normal subgroup of $G$.
+Therefore, we have the following exact\footnote{A sequence of maps $\cdots\rightarrow A\xrightarrow{f} B\xrightarrow{g} C\rightarrow\cdots$ is \emph{exact} in $B$ if $\im(f)=\Ker(g)$.} sequence in $I_\mathfrak{q}$, $D_\mathfrak{q}$ and $G^*$:
+\begin{equation*}
+	\{1\}\longrightarrow I_{\mathfrak{q}}\hooklongrightarrow D_{\mathfrak{q}}\stackrel{\pi}{\rrightarrow} G^*\longrightarrow \{1\}.
+\end{equation*}
+
+Assume now that $\mathfrak{p}$ is unramified in $K$ (equivalently, $\mathfrak{p}$ does not divide $\Delta(K/F)$ because of \cref{corol:pramifyOKmonogenic}). One can show that $\mathfrak{p}$ ramifies in $K$ if and only if $I_\mathfrak{q}\neq\{1\}$. Therefore, if $\mathfrak{p}$ is unramified in $K$, $I_\mathfrak{q}$ is trivial, and we have that $\pi$ is in fact an isomorphism from \cref{eq:kerpi}. Observe that $\kappa(\mathfrak{q})$ is a finite field extension of $\kappa(\mathfrak{p})$ with characteristic $p$. Therefore, the group $G^*$ is cyclic, with a special generator descending from $D_\mathfrak{q}$:
+\begin{definition}
+	The generator of $G^*$ is denoted by $\Frob_{\mathfrak{p}}^*$, so $\langle\Frob_{\mathfrak{p}}^*\rangle=G^*$. If $\mathfrak{p}$ is unramified in $K$, the automorphism $\pi^{-1}(\Frob_{\mathfrak{p}}^*)\in D_\mathfrak{q}$ is well-defined, and we call it the \emph{Frobenius automorphism} of $\mathfrak{q}$ over $\mathfrak{p}$ and we denote it by $\Frob_{\mathfrak{p}}$.
+\end{definition}
+By noting that the finite group $G^*$ is generated by the automorphism $x\mapsto x^{\Norm(\mathfrak{p})}$, $x\in\kappa(\mathfrak{q})$, one deduces that $\Frob_{\mathfrak{p}}$ is the unique automorphism of $G$ with the following defining property for every $\alpha\in\mathcal{O}_K$:
+\begin{equation*}
+	\Frob_{\mathfrak{p}}(\alpha)\equiv \alpha^{\Norm(\mathfrak{p})} \pmod{\mathfrak{q}}.
+\end{equation*}
+
+\begin{remark}
+	In principle, $\Frob_{\mathfrak{p}}$ would also depend on the prime ideal $\mathfrak{q}$ lying above $\mathfrak{p}$, so we would instead write $\Frob_{\mathfrak{p}, \mathfrak{q}}$. In general, if we consider a different $\mathfrak{q}'$ lying above $\mathfrak{p}$, the Frobenius automorphism $\Frob_{\mathfrak{p}, \mathfrak{q}'}$ attached to it would be conjugate to $\Frob_{\mathfrak{p}, \mathfrak{q}}$. Therefore, the Frobenius element is not well-defined as an element but rather as a conjugacy class. However, since we chose $K/F$ to be abelian, the conjugacy classes only contain one element and $\Frob_{\mathfrak{p}}$ is a unique, well-defined element of $D_\mathfrak{q}\subseteq G$, which does not depend on the choice of $\mathfrak{q}$.
+\end{remark}
+
+Before tackling Chebotarev Density Theorem, we first need to introduce a numerical measure of sets of prime ideals called the \emph{Dirichlet density}. 
+
+	A set of prime ideals $S$ in a number field $K$ has \emph{Dirichlet density} $d(S)$ if the limit
+	\begin{equation}\label{eq:Dirichletdensity1}
+		\lim_{s\rightarrow1^+}\frac{\sum_{\mathfrak{p}\in S}\Norm(\mathfrak{p})^{-s}}{-\log(s-1)}=d(S)
+	\end{equation}
+	exists. If it does not exist, we may always define the \emph{lower Dirichlet density} (resp. \emph{upper Dirichlet density}) using the limit inferior (resp. limit superior).
+
+The Dirichlet density is a finitely additive measure and, from \cref{eq:Dirichletdensity1}, one has that $0\leqslant d\leqslant 1$. The definition of this density is different from the more usual \emph{natural density}. See \cref{sec:naturalDirichletdens} in the Appendix to understand where \cref{eq:Dirichletdensity1} comes from and the relation between the natural and Dirichlet density. To advance towards Chebotarev's theorem, we need the following result.
+\begin{lemma}
+	Let $S$ be the set of primes $\mathfrak{p}$ lying above some prime $p$ with $f_{F/\Q}(\mathfrak{p}|p)\geqslant 2$. Then, the Dirichlet density $d(S)$ is zero.
+\end{lemma}
+\begin{proof}
+	 For $d(S)$ to be zero, it is enough to prove that $\sum_{\mathfrak{p}\in S}\Norm(\mathfrak{p})^{-s}$ converges (absolutely) at $s=1$, since $\lim_{s\rightarrow1^+}\log(s-1)=\infty$ (observe \cref{eq:Dirichletdensity1}). Let $f:=f_{F/\Q}(\mathfrak{p}|p)\geqslant 2$, let $T$ be the set of primes arising from $\mathfrak{p}\cap \Z=p\Z$ for $\mathfrak{p}\in S$, and let $\Pi$ be the set of all primes. Additionally, consider a normal closure $M$ of $F$, which is a finite and normal extension of $\Q$. The number of prime ideals in the factorization of $p\mathcal{O}_M$ is bounded by some $g\leqslant [M:\Q]/2<\infty$, for every $p$ (because of \cref{prop:factGalois}). Since $\Norm(\mathfrak{p})=p^f$, at $s=1$ we have:
+	\begin{equation*}
+		\sum_{\mathfrak{p}\in S}\Norm(\mathfrak{p})^{-1}=\sum_{\mathfrak{p}\in S}p^{-f}\leqslant \sum_{\mathfrak{p}\in S}p^{-2}\leqslant \frac{[M:\Q]}{2}\sum_{p\in \Pi}\frac{1}{p^2}\leqslant \frac{[M:\Q]}{2}\sum_{n=1}^{\infty}\frac{1}{n^2}<\infty.
+	\end{equation*}
+\end{proof}
+
+\begin{remark}\label{remark:inertia1density1}
+	This tells us that the set of primes $\mathfrak{p}$ lying above a certain prime $p$ with $f_{F/\Q}(\mathfrak{p}|p)=1$ has Dirichlet density equal to one.
+\end{remark}
+The Dirichlet density has the following property.
+\begin{lemma}\label{lemma:densityint}
+	Let $A$ be a set with $d(A)=1$ and let $B$ be a set with $d(B)=\delta>0$. Then, $d(A\cap B)>0$.
+\end{lemma}
+\begin{proof}
+	Remember that the inclusion-exclusion principle holds for the Dirichlet density $d$ since it is a finitely additive measure. A direct consequence of this fact is that $d(A\cup B)=d(A)+d(B)-d(A\cap B)$. Now, since always $d(A\cup B)\leqslant 1$, we have that
+	\begin{equation*}
+		d(A)+d(B)-d(A\cap B)\leqslant 1,
+	\end{equation*}
+	which yields $d(A)+d(B)-1\leqslant d(A\cap B)$. Since $d(A)+d(B)=1+\delta>1$, then $d(A\cap B)\geqslant d(A)+d(B)-1 > 1-1=0$. 
+\end{proof}
+
+\begin{remark}\label{remark:intinfinite}
+	From the above result we deduce that $A\cap B$ is infinite, observing \cref{eq:Dirichletdensity1}.
+\end{remark}
+
+Now that we have the notion of density, it is now natural to ask if a fixed element of $G$ corresponds to a Frobenius automorphism over a prime ideal $\mathfrak{p}$. This question is answered using the Chebotarev Density Theorem, which is formulated in terms of Dirichlet density. In the general case where $K/F$ is not necessarily abelian we have:
+\begin{theorem}[\textbf{Chebotarev Density Theorem}]\label{th:chebotarev}
+	Let $C\subset G$ be a fixed conjugacy class. Then, the set 
+	\begin{equation*}
+		S:=\{\mathfrak{p}: \mathfrak{p} \ \text{a prime ideal of} \ F, \mathfrak{p} \ \text{unramified in} K, \ \Cl(\Frob_\mathfrak{p})=C\}
+	\end{equation*}
+	has Dirichlet density $d(S)=\# C/\# G>0$, so there exist infinitely many such prime ideals.
+\end{theorem}
+
+The proof of this theorem goes beyond the scope of this thesis, so it will be skipped here, but can be found in \cite{Chebotarev1}. If the extension $K/F$ is abelian, then each conjugacy class only contains one element, the automorphism $\Frob_{\mathfrak{p}}$ is well-defined and \cref{th:chebotarev} reads:
+
+\begin{corollary}\label{corol:abelchebotarev}
+	Suppose that $K/F$ is abelian, and fix $\sigma\in G$. Then, the set 
+	\begin{equation*}
+		S:=\{\mathfrak{p}: \mathfrak{p} \ \text{a prime ideal of} \ F, \mathfrak{p} \ \text{unramified in} K, \ \Frob_\mathfrak{p} = \sigma\}
+	\end{equation*}
+	has Dirichlet density $d(S)=1/\# G>0$, so there exist infinitely many such prime ideals.
+\end{corollary}
+\end{document}

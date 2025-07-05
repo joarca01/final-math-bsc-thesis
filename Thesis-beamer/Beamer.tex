@@ -1,0 +1,287 @@
+\documentclass[11pt]{beamer}
+\usetheme{Madrid}
+\usefonttheme{serif}
+\usepackage[utf8]{inputenc}
+\usepackage[catalan]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage{tikz-cd}
+\usepackage{bm}
+
+\DeclareMathOperator{\sen}{sen}
+\DeclareMathOperator{\tg}{tg}
+
+\newtheorem{thm}{Teorema}
+\newtheorem{lem}{Lemma}
+\newtheorem{prop}{Proposició}
+\newtheorem{exem}{Exemple}
+\newtheorem{defin}{Definició}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\Q}{\ensuremath{\mathbb{Q}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+\newcommand{\F}{\ensuremath{\mathbb{F}}}
+\DeclareMathOperator{\Spl}{Spl} % order of an element in a group
+\DeclareMathOperator{\Gal}{Gal} % Galois group
+\DeclareMathOperator{\im}{Im} % Image of a function
+\newcommand{\legendre}[2]{\genfrac{(}{)}{}{}{#1}{#2}} % For the Legendre symbol
+\setbeamertemplate{caption}[numbered]
+
+\author[Joan A.C.]{Joan Arenillas i Cases}
+\title[Demostracions Euclidianes]{Demostracions Euclidianes de la infinitud de primers en progressions aritmètiques}
+% Informe o seu email de contato no comando a seguir
+% Por exemplo, alcebiades.col@ufes.br
+\newcommand{\email}{email}
+%\setbeamercovered{transparent} 
+\setbeamertemplate{navigation symbols}{} 
+%\logo{\includegraphics[scale=0.08]{imagens/logomarca_profmat.png}} 
+\institute[]{Universitat Autònoma de Barcelona \par Grau en Matemàtiques} 
+\date{4 de juliol de 2025} 
+%\subject{}
+
+% ---------------------------------------------------------
+% Selecione um estilo de referência
+%\bibliographystyle{apalike}
+\bibliographystyle{plain}
+
+%\bibliographystyle{abbrv}
+%\setbeamertemplate{bibliography item}{\insertbiblabel}
+% ---------------------------------------------------------
+
+% ---------------------------------------------------------
+% Incluir os slides nos quais as referências foram citadas
+%\usepackage[brazilian,hyperpageref]{backref}
+
+%\renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
+%\renewcommand{\backref}{}
+%\renewcommand*{\backrefalt}[4]{
+	%	\ifcase #1 %
+	%		Nenhuma citação no texto.%
+	%	\or
+	%		Citado na página #2.%
+	%	\else
+	%		Citado #1 vezes nas páginas #2.%
+	%	\fi}%
+% ---------------------------------------------------------
+
+\begin{document}
+	
+	\begin{frame}
+	\titlepage
+	\end{frame}
+	
+	%\begin{frame}{Continguts}
+	%	\tableofcontents 
+	%\end{frame}
+	
+	\section{Introducció}
+	
+	\begin{frame}{Introducció I}
+ 	Euclides va demostrar al voltant de l'any $300$ aC que hi ha infinits primers.\newline \\
+ 	\pause
+ 	\begin{proof}
+	 	Suposem que hi ha finits primers: $p_1,p_2,\dots,p_m$. Considerem el número $Q:=p_1p_2\cdots p_m+1>1$, que té almenys un divisor primer. \pause Però $Q$ no és divisible per cap dels primers de la llista finita, contradicció.
+ 	\end{proof}
+	\end{frame}
+
+	\begin{frame}{Introducció II}
+		
+	Considerem la progressió aritmètica $kn+\ell$, per $n\geqslant 0$, on $k,\ell \in\Z^+$. \newline \pause
+	
+	Si $k$ i $\ell$ són coprimers, el Teorema de Dirichlet ens diu que hi ha infinits primers $\equiv\ell\pmod{k}$. \pause
+	\vspace{0.25cm}
+		\begin{alertblock}{Ens preguntem:}
+			\begin{itemize}
+				\item[P1] Quan hi hagi infinits primers $\equiv\ell\pmod{k}$, quan es pot trobar una demostració que segueixi \emph{l'esperit d'Euclides}? \pause
+				\item[P2] Podem trobar un mètode \emph{sistemàtic} i \emph{elemental} que implementi aquestes demostracions?\pause
+			\end{itemize}
+		\end{alertblock}
+		\vspace{0.25cm}
+		L'objectiu del treball és respondre les preguntes \textcolor{red}{P1} i \textcolor{red}{P2}.
+	\end{frame}
+	
+	\begin{frame}{Introducció III}
+	Cal fer la pregunta \textcolor{red}{P1} precisa.\pause
+	\begin{exem}
+		Existeixen infinits primers $\equiv 1 \pmod{3}$.	
+	\end{exem}\pause
+	\begin{proof}
+		Suposem que hi ha només finits primers $\equiv 1 \pmod{3}$: $p_1, p_2, \dots, p_m$. Considerem $Q := p_1 p_2 \cdots p_m$ i el polinomi $f(x) := x^2 + 3$. Ara, $f(Q) = Q^2 + 3$ té almenys un divisor primer, $p$, ja que és més gran que $1$.\pause
+		
+		Si $p = p_i$ per a algun $i$, llavors $p$ divideix $Q^2$. Com que $p$ també divideix $Q^2 + 3$, $p$ divideix $3$, per tant $p = p_i = 3$, contradicció. Per tant, $p$ és un primer que no es troba a la nostra llista.\pause
+		
+		Si $p$ divideix $Q^2 + 3$, llavors $Q^2 \equiv -3 \pmod{p}$. Això vol dir que $p \equiv 1 \pmod{3}$, cosa que ens proporciona una infinitat de nombres primers $\equiv 1 \pmod{3}$ sempre que en tinguem un.
+	\end{proof}
+\end{frame}
+			
+	\begin{frame}{Introducció IV}
+		\begin{alertblock}{Recordem}
+			\begin{itemize}
+				\item[P1] Quan hi hagi infinits primers $\equiv\ell\pmod{k}$, quan es pot trobar una demostració Euclidiana? \pause
+			\end{itemize}
+		\end{alertblock}
+		Un primer $p$ és \emph{divisor primer} de $f\in\Z[x]$ si $p\mid f(m)$ per algun $m\in\Z$.\pause
+	\begin{defin}
+		Diem que la progressió aritmètica $\equiv \ell\pmod{k}$ {\normalfont admet un polinomi Euclidià} si existeix un polinomi irreductible $f\in \Z[x]$ tal que els seus divisors primers, excepte un nombre finit, són $\equiv 1,\ell\pmod{k}$, amb infinits primers de l'últim tipus.
+	\end{defin}
+	\pause
+	Si utilitzem aquest polinomi Euclidià per demostrar la infinitud de primers $\equiv\ell\pmod{k}$, tindrem una \emph{demostració Euclidiana}.
+\end{frame}
+	
+	\section{Part teòrica}
+\begin{frame}{Part teòrica}
+	\begin{alertblock}{Recordem}
+		\begin{itemize}
+			\item[P1] Quan hi hagi infinits primers $\equiv\ell\pmod{k}$, quan es pot trobar una demostració Euclidiana? \pause
+		\end{itemize}
+	\end{alertblock}
+	\vspace{0.25cm}
+	Una part de la pregunta ens la resol Schur \cite{Murty}.
+	\vspace{0.25cm}
+	\begin{thm}[Schur, 1912]
+		Si $\ell^2\equiv 1\pmod{k}$, llavors existeix una demostració Euclidiana del fet que hi ha infinits primers $\equiv \ell\pmod{k}$.
+	\end{thm}
+\end{frame}
+
+	\begin{frame}{Teorema de Schur}
+		Una mica de notació:
+		\begin{itemize}
+			\item Fixem $k\geqslant 3$. \pause
+			\item Fixem $\ell\in (\Z/k\Z)^\times$ que compleixi $\ell^2\equiv 1\pmod{k}$.\pause
+			\item Considerem $\{1,\ell\}\leqslant (\Z/k\Z)^\times$.\pause
+			\item Definim $S$ com el conjunt de representants de les classes laterals de $\{1,\ell\}$ en $(\Z/k\Z)^\times$.\pause
+			\item Fixem $\zeta$, una arrel $k$-èssima primitiva de la unitat i $u\in\Z$.\newline \pause
+		\end{itemize}
+		Considerem el polinomi
+		\begin{equation*}
+			f_u(x):=\prod_{s\in S}\big(x-(\zeta^s-u)(u-\zeta^{\ell s})\big).
+		\end{equation*}
+	\end{frame}
+	
+	\begin{frame}{Teorema de Schur}
+		El polinomi $f_u\in \Z[x]$ serà el nostre polinomi Euclidià.
+		\begin{prop}
+			Excepte finits valors d'$u$, el polinomi $f_u$ genera el cos fix per $\{1,\ell\}$ i és irreductible.
+		\end{prop}\pause
+		\begin{thm}[Schur]
+			Tots els divisors primers de $f_u$ són $\equiv 1,\ell\pmod{k}$ (excepte un nombre finit de primers).
+		\end{thm}
+		\pause
+		\begin{prop}
+			Qualsevol primer que sigui $\equiv 1,\ell\pmod{k}$ divideix $f_u$.
+		\end{prop}
+	\end{frame}
+	
+	\begin{frame}{Teorema de Schur}
+		Això ens diu que $f_u$ és un polinomi Euclidià per la nostra demostració Euclidiana.\pause
+		\begin{thm}
+			Si existeix un primer $p \equiv \ell \pmod{k}$, llavors existeix una demostració Euclidiana de la infinitud de primers $\equiv \ell \pmod{k}$.
+		\end{thm}\pause
+		Aquest teorema ens dona un \emph{argument general} que podem implementar. \pause Hem trobat una demostració \emph{sistemàtica} i \emph{Euclidiana}, però no elemental (de moment).\pause
+	\begin{alertblock}{Recordem}
+		\begin{itemize}
+			\item[P1] Quan hi hagi infinits primers $\equiv\ell\pmod{k}$, quan es pot trobar una demostració que segueixi l'esperit d'Euclides? \pause
+			\item[P2] Podem trobar un mètode \emph{sistemàtic} i \emph{elemental} que implementi aquestes demostracions?
+		\end{itemize}
+	\end{alertblock}
+	\end{frame}
+	
+	\begin{frame}{Teorema de Murty}
+		El recíproc ens el dona Murty \cite{Conrad}.
+		\begin{thm}[Murty, 1988]
+			Si existeix un polinomi Euclidià per la progressió aritmètica $\equiv \ell\pmod{k}$, llavors $\ell^2\equiv 1\pmod{k}$.
+		\end{thm}\pause 	
+		Fixem un cos de nombres $K$. Necessitem definir els conjunts
+		\begin{align*}
+			\Spl_1(K):=\{&p \ \text{primer}: \text{$p$ té un factor ideal primer en $K$} \\
+			&\text{amb $\Z/p\Z$ com a cos residual}\},
+		\end{align*}\pause
+		\begin{equation*}
+			S_1(k,K):=\{b \bmod{k}: p\equiv b \pmod{k} \ \text{per infinits $p\in\Spl_1(K)$}\}.
+		\end{equation*}\pause
+		Cal veure que $S_1(k,K)$ és un \emph{subgrup} de $(\Z/k\Z)^\times$ passant pel Teorema de Densitat de Chebotarev.
+	\end{frame}
+	
+	\begin{frame}{Teorema de Murty}
+		Els teoremes de Schur i Murty ens permeten resoldre completament la pregunta \textcolor{red}{P1}.\checkmark \pause
+		\vspace{0.25cm}
+		\begin{thm}[Murty i Schur]
+			Existeix una demostració Euclidiana del fet que hi ha infinits primers $\equiv \ell\pmod{k}$ si i només si $\ell^2\equiv 1\pmod{k}$.
+		\end{thm}\pause
+		\vspace{0.25cm}
+		A més, hem trobat un mètode \emph{sistemàtic}. Quan l'implementem veurem que és \emph{elemental}.
+	\end{frame}
+	
+	\begin{frame}{Conseqüència: caracterització de $\Spl_1(L)$}
+	Recordem que el polinomi $f_u$ genera el cos fix per $\{1,\ell\}$, diem-li $L$.\pause \newline \\
+	Els divisors primers del polinomi $f_u$ són (excepte finits casos):
+	\begin{equation*}
+		\{p \ \text{primer}: p\equiv 1,\ell\pmod{k}\}.
+	\end{equation*}\pause
+	Hem caracteritzat, a través del Criteri de Dedekind, el conjunt $\Spl_1(L)$:
+	\begin{exampleblock}{Llei de reciprocitat}
+		\begin{equation*}
+			\Spl_1(L)\simeq\{p \ \text{primer}: p\equiv 1, \ell \pmod{k}\}.
+		\end{equation*}
+	\end{exampleblock}
+	\pause
+	Caracteritzacions de $\Spl_1(L)$ es coneixen si $L$ és un cos ciclotòmic o si $[L:\Q]=2$. En el nostre cas, $[\Q(\zeta):L]=2$ i $[L:\Q]=\varphi(k)/2$.
+\end{frame}
+	
+	\section{Implementació pràctica}
+	\begin{frame}{Implementació pràctica}
+		\begin{alertblock}{Recordem}
+			\begin{itemize}
+				\item[P2] Podem trobar un mètode \emph{sistemàtic} i \emph{elemental} que implementi les demostracions Euclidianes?\pause
+			\end{itemize}
+		\end{alertblock}
+		Implementarem el mètode general de Schur i veurem que obtenim una demostració Euclidiana i \emph{elemental}.\pause
+		\begin{columns}
+			\begin{column}{0.5\textwidth}
+				\begin{center}
+					\begin{figure}[h!]
+						\centering
+						\includegraphics[width=0.4\linewidth]{Sage_logo}
+					\end{figure} 
+				\end{center}
+			\end{column}
+			\begin{column}{0.5\textwidth} 
+				\begin{center}
+					\Huge
+					\LaTeX
+				\end{center}
+			\end{column}
+		\end{columns}\pause
+		\vspace{0.5cm}
+		Quan $\ell^2\equiv 1\pmod{k}$, generem qualsevol d'aquestes demostracions amb una \href{http://167.172.185.115/}{\textcolor{blue}{pàgina web}}. \pause Hem resolt finalment la pregunta \textcolor{red}{P2}.\checkmark
+	\end{frame}
+	
+	\section{Conclusions}
+	\begin{frame}{Conclusions}
+		\begin{itemize}
+			\item Hem demostrat de manera completa els teoremes de Schur i Murty.\pause
+			\item Donem un mètode sistemàtic per trobar demostracions Euclidianes de la infinitud de primers $\equiv\ell\pmod{k}$ quan $\ell^2\equiv 1\pmod{k}$.\pause
+			\item A més, implementem efectivament aquest mètode, de manera que les demostracions són elementals i accessibles per a tothom.\pause
+			\item En el camí, hem donat una caracterització del conjunt $\Spl_1(L)$, per un cos $L$ sota del ciclotòmic $\Q(\zeta)$ amb $[\Q(\zeta):L]=2$.
+		\end{itemize}
+	\end{frame}
+	
+	\section{Referències}
+	\begin{frame}[allowframebreaks]{Referències}
+		\bibliographystyle{plain}
+		\bibliography{references}
+	\end{frame}
+	
+	\begin{frame}
+		\begin{center}
+			\vspace{1cm}
+			\huge
+			\textbf{Gràcies!}
+		\end{center}
+	\end{frame}
+	
+\end{document}
