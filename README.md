@@ -14,7 +14,7 @@ The work also aims to give a systematic and elemental method to build Euclidean 
 
 ## Purpose of the repository
 
-This repository serves a double purpose. For one part, it stores the latest version of the BSc Thesis (in English) at `Thesis-document`, together with the Beamer presentation used to defend it (in Catalan) at `Thesis-beamer` (this folder is temporarily unavailable until I defend the Thesis).
+This repository serves a double purpose. For one part, it stores the latest version of the BSc Thesis (in English) at `Thesis-document`, together with the Beamer presentation used to defend it (in Catalan) at `Thesis-beamer`.
 
 However, the main goal of this repository is to host the stable version of the $\LaTeX$, SageMath, and Python codes, together with the HTML templates that *effectively* implement a *systematic*, *elemental*, and *Euclidean* proof of the infinitude of primes $\equiv \ell\pmod{k}$, whenever Schur and Murty's conditions are satisfied. As far as the author is concerned, this is something new to the literature.
 
@@ -31,7 +31,7 @@ The webpage we created (available at http://167.172.185.115) makes the technical
 
 The code for the webpage is located in the folder `HTML-based`.
 
-Alternatively, an early version of the code is available at `PDF-based` (this folder is temporarily unavailable until I defend the Thesis). The relevant file in this folder is `template_euc.ipynb`, which, for a given $k$ and $\ell$, generates a `.tex` file with the proof, which can be later compiled to obtain a `.pdf`. It is enough to have every file in a unique folder and execute the function `ap_euc` in `template_euc.ipynb`. This version of the code requires:
+Alternatively, an early version of the code is available at `PDF-based`. The relevant file in this folder is `template_euc.ipynb`, which, for a given $k$ and $\ell$, generates a `.tex` file with the proof, which can be later compiled to obtain a `.pdf`. It is enough to have every file in a unique folder and execute the function `ap_euc` in `template_euc.ipynb`. This version of the code requires:
 
 - `tex` compiler
 - `stopit` module
